@@ -1,0 +1,13 @@
+#!/bin/bash
+
+gconftool-2 --type=string --set "/desktop/gnome/applications/terminal/exec" "gnome-terminal"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/run_command_terminal" "<Mod4>grave"
+
+# workspace
+gconftool-2 --type=int --set "/apps/metacity/general/num_workspaces" 6
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_1" "<Mod4>h"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_2" "<Mod4>j"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_3" "<Mod4>k"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_4" "<Mod4>l"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_5" "<Mod4>semicolon"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_6" "<Mod4>apostrophe"
