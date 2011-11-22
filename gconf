@@ -1,10 +1,15 @@
 #!/bin/bash
 
+# Launchers
 gconftool-2 --type=string --set "/desktop/gnome/applications/terminal/exec" "gnome-terminal"
 gconftool-2 --type=string --set "/apps/metacity/global_keybindings/run_command_terminal" "<Mod4>grave"
 
-# workspace
-gconftool-2 --type=int --set "/apps/metacity/general/num_workspaces" 6
+# Windows
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/show_desktop" "<Mod4>d"
+gconftool-2 --type=string --set "/apps/metacity/global_keybindings/panel_main_menu" ""
+gconftool-2 --type=string --set "/apps/metacity/window_keybindings/toggle_maximized" "<Alt>F1"
+
+# Workspace
 gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_1" "<Mod4>h"
 gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_2" "<Mod4>j"
 gconftool-2 --type=string --set "/apps/metacity/global_keybindings/switch_to_workspace_3" "<Mod4>k"
