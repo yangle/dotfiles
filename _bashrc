@@ -7,7 +7,7 @@ __git_ps1 ()
 {
     local foo="bar"
 }
-[ -e $HOME/bin/git-completion.sh ] && source $HOME/bin/git-completion.sh
+[ -e $HOME/.bin/git-completion.sh ] && source $HOME/.bin/git-completion.sh
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
