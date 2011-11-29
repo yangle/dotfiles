@@ -1,0 +1,5 @@
+#!/bin/sh
+
+setxkbmap -option ctrl:nocaps
+xhost +localhost
+exec ck-launch-session gnome-session

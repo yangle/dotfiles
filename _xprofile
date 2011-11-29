@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PATH=$HOME/bin:$PATH
+export TEXINPUTS=".:$HOME/Documents/Repository/:"
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+ibus-daemon -x -d
