@@ -1,1 +1,4 @@
 config files
+
+_xxx => ~/.xxx
+-xxx/.../yyy => ~/.xxx/.../yyy
