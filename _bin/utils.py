@@ -49,8 +49,8 @@ def md5sum(filename,block_size=128):
 # basic filesystem operations
 def absPathRel2Script(path):
     # sys.path[0] gives the full path to the script, regardless of cwd.
-    return os.path.join(sys.path[0], path) 
-def mkdir(path): 
+    return os.path.join(sys.path[0], path)
+def mkdir(path):
     # '-p' = no error if existing, make parent directories as needed
     # subprocess.Popen(['mkdir -p "%s"'%path], shell=True, stderr=subprocess.PIPE).wait()
     try:
@@ -69,8 +69,8 @@ def execute_realtime(cmd):
     if pexpect==None:   # you can also try http://stackoverflow.com/questions/527197/intercepting-stdout-of-a-subprocess-while-it-is-running
                         #              and http://stackoverflow.com/questions/2804543/read-subprocess-stdout-line-by-line
                         # but since i can install pexpect to $HOME, i wouldn't bother....
-        stdo,stde,code=execute(cmd)[0].split('\n')
-        for line in stdo+stde:
+        stdo,stde,code=execute(cmd)
+        for line in (stdo+stde).split('\n'):
             yield line
         assert code==0
     else:
