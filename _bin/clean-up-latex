@@ -1,0 +1,105 @@
+#!/usr/bin/env python2
+
+import os
+import sys
+import subprocess
+import argparse
+import re
+
+target='publish'
+def process(a):
+    text=''
+    commands=''
+    comments=''
+    pdflist=[]
+    execute('mkdir -p %s'%target)
+    texdir,texfile=os.path.split(a.texfile)
+    texname,dottex=os.path.splitext(texfile)
+    assert dottex=='.tex'
+
+    if a.use_bbl:
+        bblfile=os.path.join(os.path.dirname(a.texfile),'.tmpTeX','%s.bbl'%texname)
+        if os.path.isfile(bblfile):
+            with open(bblfile) as f:
+                bbl=f.read()
+        else:
+            print 'No bbl file was found. Please run mypdflatex first!'
+
+    with open(a.texfile) as f:
+        for line in f:
+            if line.startswith(r"\usepackage{grffile}"):
+                continue
+            if not a.keep_comments and line[0]=='%':
+                line1=line[1:].lstrip(' ')
+                if line1.startswith('./'):
+                    commands+=line1
+                else:
+                    comments+=line1
+                continue
+            if 'includegraphics' in line:
+                line,fig_old,fig_new=figname(line,use_eps=a.pdf2eps)
+                pdflist.append(fig_old)
+                if a.pdf2eps:
+                    fig_ps=fig_new.replace('.eps','.ps')
+                    print 'Converting to eps %s' % fig_old
+                    execute('pdftops-cairo "%s" "%s"'%(fig_old,fig_ps))
+                    execute('ps2eps -f "%s"'%fig_ps)
+                    execute('rm "%s"'%fig_ps)
+                else:
+                    execute('cp "%s" "%s"'%(fig_old,fig_new))
+            if a.use_bbl:
+                if r'\bibliography{' in line: #}
+                    line=bbl
+                elif 'bibliographystyle' in line:
+                    continue
+            text+=line
+    with open(os.path.join(target,texfile),'w') as f:
+        f.write(text)
+    print 'Clean-up finished succesfully.'
+    print ''
+    print 'Comments in TeX:'
+    print comments
+    print ''
+    print 'Commands in TeX:'
+    print commands
+    if a.save_commands!=None:
+        with open(a.save_commands,'w') as f:
+            f.write('#/bin/bash\nset -e 1\nmkdir -p fig_paper\n')
+            f.write(commands)
+            f.write('\n'.join('mv "%s" fig_paper/'%pdf for pdf in pdflist))
+            f.write('\n')
+
+def figname(line,use_eps=False):
+    """Identify figure name from line. Remove all the non-alphanumeric characters. Remove relative path."""
+    s=re.search(r'includegraphics(\[.*\])?\{(.*)\}',line)
+    assert s
+    fig_old=s.group(2)
+
+    path,name=os.path.split(fig_old)
+    old,ext=os.path.splitext(name)
+
+    if use_eps and ext=='.pdf':
+        ext='.eps'
+
+    new=''.join(c if c.isalnum() else '_' for c in old)
+    fig_new=os.path.join(target,'%s%s'%(new,ext))
+
+    line=line.replace(fig_old,'%s%s'%(new,ext)) # remove relative path
+    return line,fig_old,fig_new
+
+def execute(command):
+    p=subprocess.Popen([command], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdo,stde=p.communicate()
+    assert p.returncode==0,command
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,add_help=True,
+                                   description='Clean up TeX source, remove grffile dependency, and more.')
+    parser.add_argument('--keep-comments',action='store_true',help='keep comments in TeX source')
+    parser.add_argument('--use-bbl',action='store_true',help='look for .bbl file and absorb it into TeX source')
+    parser.add_argument('--pdf2eps',action='store_true',help='convert all pdf figures to eps')
+    parser.add_argument('--save-commands',default=None,help='save commands to a file')
+    parser.add_argument('texfile',default=None,help='filename of the TeX source')
+    a=parser.parse_args()
+    process(a)
+

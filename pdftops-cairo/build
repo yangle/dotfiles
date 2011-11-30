@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -o ../_bin/pdftops-cairo pdftops-cairo.c `pkg-config --cflags --libs cairo poppler-glib`
