@@ -2,4 +2,5 @@
 *.swo
 *.pyc
 _vim/.netrwhist
+_bin/diagham-tags
 backup-*
