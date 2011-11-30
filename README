@@ -2,3 +2,6 @@ config files
 
 _xxx => ~/.xxx
 -xxx/.../yyy => ~/.xxx/.../yyy
+xxx => ignored
+
+gconf: basic gnome settings
