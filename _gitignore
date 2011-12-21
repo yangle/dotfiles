@@ -1,0 +1,6 @@
+*.swp
+*.swo
+*~
+.mypdflatexmk
+.tmpTeX/*
+*.pyc
