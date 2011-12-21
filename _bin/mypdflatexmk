@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# :silent !mypdflatexmk % &
+
+# check number of arguments
+if [ $# -ne 1 ]
+then
+    echo "Error in $(basename $0) - Invalid Argument Count"
+    echo "Syntax: $(basename $0) my.tex"
+    exit 1
+fi
+
+# single-instance trick adopted from 
+# http://stackoverflow.com/questions/185451/quick-and-dirty-way-to-ensure-only-one-instance-of-a-shell-script-is-running-at-a
+DIRNAME=`dirname "$1"`
+FULLDIRNAME="`cd \"$DIRNAME\" 2>/dev/null && pwd || echo \"$DIRNAME\"`/.mypdflatexmk"
+mkdir -p ${FULLDIRNAME}
+LOCKFILE=${FULLDIRNAME}"/lock"
+ERRORMSG=${FULLDIRNAME}"/mesg"
+if [ -e ${LOCKFILE} ] && kill -0 `cat ${LOCKFILE}`; then
+    if [[ -a ${ERRORMSG} ]]; then # file exists
+        if [[ -s ${ERRORMSG} ]]; then # file is non-empty
+            cat ${ERRORMSG}
+            exit 1
+        else # file is empty
+            echo Compile finished without error
+            exit 0
+        fi
+    else # file doesn't exist
+        echo "Can't open latex error message!"
+        exit 1
+    fi
+fi
+
+# make sure the lockfile is removed when we exit and then claim it
+trap "rm -f ${LOCKFILE}; exit" INT TERM EXIT
+echo $$ > ${LOCKFILE}
+
+# create compile errormsg holder
+cat /dev/null > ${ERRORMSG}
+
+# find the files to monitor -- right now only .tex files. no subfolders are monitored
+#B=`basename "$1"`
+TEXFILES="`cd \"$DIRNAME\" 2>/dev/null && pwd || echo \"$DIRNAME\"`/*.tex"
+COUNT=$(ls ${TEXFILES} 2> /dev/null | wc -l)
+while true; do
+    if [ "${COUNT}" != "0" ]; then
+        inotifywait -qq -e CLOSE_WRITE ${TEXFILES}
+        mypdflatex $1 > ${ERRORMSG}
+        if [ $? -eq 0 ]; then
+            cat /dev/null > ${ERRORMSG}
+        fi
+    else
+        echo "No TeX file found!"
+        exit 1
+    fi
+done
+
+# clean stuff
+rm -f ${LOCKFILE}
+exit 0
