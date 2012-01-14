@@ -33,7 +33,7 @@ def main():
         print 'Creating backup'
         tarball=os.path.join(_root,time.strftime('backup-%y%m%d.%H%M%S.tar.bz2'))
         stdo,stde,code=execute(['tar','jcvf',tarball]+backup,cwd=_home)
-        if stdo!=''.join('%s\n'%name for name in backup) or len(stde)>0 or code!=0:
+        if len(stde)>0 or code!=0:
             print stdo
             print stde
             print 'Exit status %d'%code
