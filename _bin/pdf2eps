@@ -1,0 +1,20 @@
+#!/usr/bin/env python2
+
+import sys
+import os
+
+sys.path.append(os.path.expanduser('~/sandbox/python'))
+from common import abspath,mkdir,execute
+
+mkdir('eps')
+for name in sys.argv[1:]:
+    print name
+    base,ext=os.path.splitext(name)
+    assert ext=='.pdf'
+    pdf=abspath(os.getcwd(),name)
+    ps=abspath(os.getcwd(),base+'.ps')
+    eps=abspath(os.getcwd(),base+'.eps')
+    execute('pdftops-cairo "%s" "%s"'%(pdf,ps))
+    execute('ps2eps "%s"' % ps)
+    execute('mv "%s" eps/' % eps)
+    execute('rm "%s"' % ps)

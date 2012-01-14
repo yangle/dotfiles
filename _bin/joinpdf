@@ -1,0 +1,29 @@
+#!/usr/bin/python2
+
+import sys
+import subprocess
+
+def execute(command):
+    p=subprocess.Popen([command], shell=True, stdout=subprocess.PIPE, 
+                            stderr=subprocess.PIPE)
+    m=p.communicate()
+    return [p.returncode]+list(m)
+
+if len(sys.argv)<4:
+    print "Usage: joinpdf 1.pdf 2.pdf 3.pdf ... output.pdf"
+    sys.exit(1);
+else:
+    input=sys.argv[1:-1]
+    output=sys.argv[-1]
+    result=execute(r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" "%s"' \
+                   % (output, r'" "'.join(input))) 
+    if result[0]!=0:
+        print result[2],result[1],
+        sys.exit(1)
+    else:
+        print "Done!"
+        sys.exit(0)
+
+
+
+

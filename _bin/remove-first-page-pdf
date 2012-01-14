@@ -1,0 +1,27 @@
+#!/usr/bin/python2
+
+import sys
+import os
+import subprocess
+
+def execute(command):
+    p=subprocess.Popen([command], shell=True, stdout=subprocess.PIPE, 
+                            stderr=subprocess.PIPE)
+    m=p.communicate()
+    return [p.returncode]+list(m)
+
+if len(sys.argv) not in (2,3):
+    print "Usage: remove-first-page-pdf in.pdf\n"+\
+          "    or remove-first-page.pdf in.pdf out.pdf"
+    sys.exit(1);
+else:
+    input=sys.argv[1]
+    output=sys.argv[-1] if len(sys.argv)==3 else os.path.expanduser(os.path.join('~/Desktop',os.path.basename(input)))
+    result=execute(r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dFirstPage=2 -sOutputFile="%s" "%s"' \
+                   % (output, input))
+    if result[0]!=0:
+        print result[2],result[1],
+        sys.exit(1)
+    else:
+        print "Done!"
+        sys.exit(0)
