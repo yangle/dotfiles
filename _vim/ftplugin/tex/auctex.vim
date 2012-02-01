@@ -1661,6 +1661,9 @@ iab <buffer> \v \vfill
 "inoremap <buffer> ;d \diamond
 "inoremap <buffer> ;I \int_{\mathbf{R}^d}
 
+" disable type-specific indentation. it sucks for TeX.
+filetype plugin indent off
+
 " }}}
 " "========================================================================="
 
