@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Mathematica
+Comment=Wolfram Mathematica
+TryExec=mathematica
+Exec=mathematica
+Icon=/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X/Mathematica-128.png
+Type=Application
+Categories=Utility;
+StartupNotify=true
