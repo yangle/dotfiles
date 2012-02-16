@@ -2,7 +2,7 @@
 Name=Mathematica
 Comment=Wolfram Mathematica
 TryExec=mathematica
-Exec=mathematica
+Exec=mathematica -mesa
 Icon=/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X/Mathematica-128.png
 Type=Application
 Categories=Utility;
