@@ -819,6 +819,7 @@ inoremap <buffer> <Leader>b \beta
 inoremap <buffer> <Leader>c \chi
 inoremap <buffer> <Leader>d \delta
 inoremap <buffer> <Leader>e \varepsilon
+inoremap <buffer> <Leader>E \epsilon
 inoremap <buffer> <Leader>f \phi
 inoremap <buffer> <Leader>4 \varphi
 inoremap <buffer> <Leader>g \gamma
