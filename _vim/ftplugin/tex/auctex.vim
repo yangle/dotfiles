@@ -970,6 +970,7 @@ map <buffer><silent> gw :call <SID>TeX_par()<CR>
 inoremap <buffer> <Insert>b <Left>\mathbf{<Right>}
 inoremap <buffer> <Insert>B <Left>\mathbb{<Right>}
 inoremap <buffer> <Insert>r <Left>\mathrm{<Right>}
+inoremap <buffer> <Insert>f <Left>\mathsf{<Right>}
 
 "function! s:mathbf()
 "    echo 'Mathbf: '
