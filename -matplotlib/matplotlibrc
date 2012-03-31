@@ -6,4 +6,4 @@ axes.labelsize      : small
 xtick.labelsize     : xx-small
 ytick.labelsize     : xx-small
 legend.fontsize     : x-small
-text.usetex         : True
+text.usetex         : False
