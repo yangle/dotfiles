@@ -33,8 +33,8 @@ def abspath(*path): # variable number of arguments
     # os.path.abspath was intended to convert path relative to cwd. here it's used to clean up stuff like /a/bc/../def
     # os.path.join('abc/def','/usr') ==> '/usr'
 
-# http://stackoverflow.com/questions/1131220/get-md5-hash-of-a-files-without-open-it-in-python
 def md5sum(filename,block_size=128):
+    # http://stackoverflow.com/questions/1131220/get-md5-hash-of-a-files-without-open-it-in-python
     md5=hashlib.md5()
     with open(filename) as f:
         while True:
@@ -43,6 +43,15 @@ def md5sum(filename,block_size=128):
                 break
             md5.update(data)
     return md5.hexdigest()
+
+class DotDict(dict):
+    """Provide a dict object with . access to elements
+    http://www.rafekettler.com/magicmethods.html
+    http://stackoverflow.com/a/224876
+    """
+    __getattr__= dict.__getitem__
+    __setattr__= dict.__setitem__
+    __delattr__= dict.__delitem__
 
 ############### toooooold ######################33
 
