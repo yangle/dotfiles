@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# $ dconf dump / > conf1
+# ... change setting
+# $ dconf dump / > conf2
+# $ diff conf1 conf2
+
+# Windows
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
+gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Alt>F1']"
+
+# Workspace
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>h']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>j']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>k']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>l']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>semicolon']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>apostrophe']"
+
+# Launchers
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
+# For some reason, <Super> does not work here. Need to fall back to <Mod4>
+# Also, <Mod4>x is triggered by Win+xx. https://bugzilla.gnome.org/show_bug.cgi?id=659899#c11
+# help on gsettings: http://blogs.gnome.org/fmuellner/2011/11/22/gnome-shell-gsettings-and-keybindings/comment-page-1/#comment-128
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Mod4>grave'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Gnome Terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Mod4>e'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Mod4>c'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'gcalctool'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Calculator'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Mod4>v'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'gvim'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'GVim'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Mod4>n'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ command 'gedit'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ name 'Gedit'
