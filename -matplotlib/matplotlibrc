@@ -2,7 +2,7 @@ backend             : PDF
 axes.unicode_minus  : False         # unicode minus sign is utterly ugly
 font.size           : 10.0
 patch.linewidth     : 0.5           # edge width of pie charts
-axes.labelsize      : small
+axes.labelsize      : x-small
 xtick.labelsize     : xx-small
 ytick.labelsize     : xx-small
 legend.fontsize     : x-small
