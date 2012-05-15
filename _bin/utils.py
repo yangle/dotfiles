@@ -2,6 +2,7 @@
 
 import os
 import sys
+import re
 import errno
 import subprocess
 import StringIO
@@ -52,6 +53,15 @@ class DotDict(dict):
     __getattr__= dict.__getitem__
     __setattr__= dict.__setitem__
     __delattr__= dict.__delitem__
+
+def key_natural(key):
+    """key to sort alphanumeric stuff in the way that humans expect. Adapted from http://stackoverflow.com/a/2669120"""
+    def to_float(s):
+        try:
+            return float(s)
+        except ValueError:
+            return s
+    return [to_float(s) for s in re.split('([0-9.]+)', key)]
 
 ############### toooooold ######################33
 
