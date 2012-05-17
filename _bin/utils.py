@@ -3,6 +3,7 @@
 import os
 import sys
 import re
+import functools
 import errno
 import subprocess
 import StringIO
@@ -62,6 +63,29 @@ def key_natural(key):
         except ValueError:
             return s
     return [to_float(s) for s in re.split('([0-9.]+)', key)]
+
+class memoized(object):
+    """Memoizing decorator
+
+    Usage: @memoized before functions, memomized() around lambdas
+    """
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+    def __call__(self, *args):
+        try:
+            return self.cache[args]
+        except KeyError:
+            value = self.func(*args)
+            self.cache[args] = value
+            return value
+        except TypeError:
+            return self.func(*args)
+    def __repr__(self):
+        return repr(self.func)
+    def __get__(self, obj, objtype):
+        """support instance methods. see http://stackoverflow.com/a/3296318"""
+        return functools.partial(self.__call__, obj)
 
 ############### toooooold ######################33
 
