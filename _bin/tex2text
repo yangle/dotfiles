@@ -57,18 +57,18 @@ def remove_equations(paragraph):
 def remove_citations(paragraph):
     paragraph = re.sub(r'\\cite{.*?}', '', paragraph, flags=re.M | re.S)
     paragraph = re.sub(r'\\onlinecite{.*?}', '', paragraph, flags=re.M | re.S)
-    paragraph = paragraph.replace('Ref.', 'the reference')
-    paragraph = paragraph.replace('Refs.', 'the references')
+    paragraph = paragraph.replace('Ref.', 'Reference')
+    paragraph = paragraph.replace('Refs.', 'References')
     return paragraph
 
 def remove_refs(paragraph):
     paragraph = re.sub(r'\\label{.*?}', '', paragraph, flags=re.M | re.S)
     paragraph = re.sub(r'\\ref{.*?}', '', paragraph, flags=re.M | re.S)
     paragraph = re.sub(r'\\eqref{.*?}', '', paragraph, flags=re.M | re.S)
-    paragraph = paragraph.replace('Eq.', 'the equation')
-    paragraph = paragraph.replace('Eqs.', 'the equations')
-    paragraph = paragraph.replace('Sec.', 'the section')
-    paragraph = paragraph.replace('Appx.', 'the appendix')
+    paragraph = paragraph.replace('Eq.', 'Equation')
+    paragraph = paragraph.replace('Eqs.', 'Equations')
+    paragraph = paragraph.replace('Sec.', 'Section')
+    paragraph = paragraph.replace('Appx.', 'Appendix')
     return paragraph
 
 def remove_sections(paragraph):
