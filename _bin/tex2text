@@ -1,0 +1,205 @@
+#!/usr/bin/env python2
+
+import os
+import re
+import argparse
+
+def process(raw):
+    raw = '\n'.join(clean_line(line) for line in raw.split('\n'))
+    raw = extract_maintext(raw).replace('~', ' ')
+    paragraphs = raw.split('\n\n')
+    paragraphs = map(remove_equations, paragraphs)
+    paragraphs = map(remove_citations, paragraphs)
+    paragraphs = map(remove_sections, paragraphs)
+    paragraphs = map(remove_refs, paragraphs)
+    paragraphs = map(remove_math, paragraphs)
+
+    symbol = []
+    for paragraph in paragraphs:
+        symbol += re.findall(r'(\\\S+?)[^a-zA-Z]', paragraph)
+
+    for s in set(symbol):
+        print s
+
+    paragraphs = map(cleanup_paragraph, paragraphs)
+    sanitized = '\n\n'.join(paragraphs)
+
+    print sanitized
+
+def clean_line(line):
+    cmd = ('includegraphics', r'\bibliography')
+    if any(c in line for c in cmd):
+        return ''
+
+    i = line.find('%')
+    if i > -1 and (i == 0 or line[i - 1] != '\\'):
+        return line[:i]
+    return line
+
+def extract_maintext(raw):
+    begin_doc = raw.find(r'\begin{document}')
+    end_doc = raw.rfind(r'\end{document}')
+    main = raw[begin_doc + len(r'\begin{document}'): end_doc]
+
+    main = main.replace(r'\appendix', '')
+    for environment in ('widetext', 'enumerate', 'description', 'figure', 'table', 'tabular'):
+        main = main.replace(r'\begin{%s}' % environment, '')
+        main = main.replace(r'\end{%s}' % environment, '')
+    return main
+
+def remove_equations(paragraph):
+    env = ['equation', 'multline', 'align']
+    for name in env:
+        paragraph = re.sub(r'\\begin{%s}.*?\\end{%s}' % (name, name), 'EQUATION', paragraph, flags=re.M | re.S)
+        paragraph = re.sub(r'\\begin{%s\*}.*?\\end{%s\*}' % (name, name), 'EQUATION', paragraph, flags=re.M | re.S)
+    return paragraph
+
+def remove_citations(paragraph):
+    paragraph = re.sub(r'\\cite{.*?}', '', paragraph, flags=re.M | re.S)
+    paragraph = re.sub(r'\\onlinecite{.*?}', '', paragraph, flags=re.M | re.S)
+    paragraph = paragraph.replace('Ref.', 'the reference')
+    paragraph = paragraph.replace('Refs.', 'the references')
+    return paragraph
+
+def remove_refs(paragraph):
+    paragraph = re.sub(r'\\label{.*?}', '', paragraph, flags=re.M | re.S)
+    paragraph = re.sub(r'\\ref{.*?}', '', paragraph, flags=re.M | re.S)
+    paragraph = re.sub(r'\\eqref{.*?}', '', paragraph, flags=re.M | re.S)
+    paragraph = paragraph.replace('Eq.', 'the equation')
+    paragraph = paragraph.replace('Eqs.', 'the equations')
+    paragraph = paragraph.replace('Sec.', 'the section')
+    paragraph = paragraph.replace('Appx.', 'the appendix')
+    return paragraph
+
+def remove_sections(paragraph):
+    paragraph = re.sub(r'\\section{(.*?)}', r'\1', paragraph, flags=re.M | re.S)
+    paragraph = re.sub(r'\\subsection{(.*?)}', r'\1', paragraph, flags=re.M | re.S)
+    paragraph = re.sub(r'\\subsubsection{(.*?)}', r'\1', paragraph, flags=re.M | re.S)
+    paragraph = re.sub(r'\\emph{(.*?)}', r'\1', paragraph, flags=re.M | re.S)
+    return paragraph
+
+def remove_math(paragraph):
+    paragraph = paragraph.replace(r'$', '')
+    for name in [r'\mathcal', r'\mathrm', r'\mathsf', r'\mathbb', r'\mathbf']:
+        paragraph = paragraph.replace(name, '')
+    d = {
+        r'\alpha': r'a',
+        r'\beta': r'b',
+        r'\chi': r'c',
+        r'\delta': r'd',
+        r'\varepsilon': r'e',
+        r'\epsilon': r'E',
+        r'\phi': r'f',
+        r'\varphi': r'4',
+        r'\gamma': r'g',
+        r'\eta': r'h',
+        r'\kappa': r'k',
+        r'\lambda': r'l',
+        r'\mu': r'm',
+        r'\nu': r'n',
+        r'\omega': r'o',
+        r'\pi': r'p',
+        r'\Pi': r'P',
+        r'\theta': r'q',
+        r'\rho': r'r',
+        r'\sigma': r's',
+        r'\tau': r't',
+        r'\upsilon': r'u',
+        r'\vee': r'v',
+        r'\wedge': r'w',
+        r'\xi': r'x',
+        r'\psi': r'y',
+        r'\zeta': r'z',
+        r'\Delta': r'D',
+        r'\Phi': r'F',
+        r'\Gamma': r'G',
+        r'\Lambda': r'L',
+        r'\nabla': r'N',
+        r'\Omega': r'O',
+        r'\Theta': r'Q',
+        r'\varrho': r'R',
+        r'\Sigma': r'S',
+        r'\Upsilon': r'U',
+        r'\Xi': r'X',
+        r'\Psi': r'Y',
+        r'\emptyset': r'0',
+        r'\left': r'1',
+        r'\right': r'2',
+        r'\Big': r'3',
+        r'\partial': r'6',
+        r'\infty': r'8',
+        r'\circ': r'@',
+        r'\equiv': r'=',
+        r'\setminus': r'\\',
+        r'\cdot': r'.',
+        r'\times': r'*',
+        r'\wedge': r'&',
+        r'\bigcap': r'_',
+        r'\dagger': r'+',
+        r'\bigcup': r'+',
+        r'\subset': r'(',
+        r'\supset': r')',
+        r'\leq': r'<',
+        r'\geq': r'>',
+        r'\nonumber': r',',
+        r'\dots': r':',
+        r'\sim': '~',
+        r'\hat': '',
+        r'\{': '{',
+        r'\}': '}',
+        r'\!': '',
+        r'\,': '',
+        r'\.': '',
+        r'\;': '',
+        r'\title': '',
+        r'\frac': '/',
+        r'\widetilde': '',
+        r'\range': '',
+        r'\lesssim': '<',
+        r'\sqrt': '',
+        r'\mathfrak': '',
+        r'\neq': '',
+        r'\hbar': 'h',
+        r'\caption': '',
+        r'\centering': '',
+        r'\item': '',
+        r'\langle': '<',
+        r'\rangle': '>',
+        r'\boldsymbol': '',
+        r'\int': '',
+        r'\bar': '',
+        r'\pm': '',
+        r'\ldots': '',
+        r'\overline': '',
+        r'\begin': '',
+        r'\end': '',
+        r'\in': ' in ',
+        r'\hbar': '',
+        r'\color': '',
+        r'\square': '',
+        r'\sum': '',
+        r'\prod': '',
+        r'\prime': "'",
+        r'\backprime': "'",
+        r'\propto': '~',
+    }
+    for pattern, repl in d.items():
+        paragraph = paragraph.replace(pattern, repl)
+    paragraph = re.sub(r'\\([^\\])', r'\1', paragraph, flags=re.M | re.S)
+    return paragraph
+
+def cleanup_paragraph(paragraph):
+    paragraph = ' '.join(line.rstrip(' ') for line in paragraph.split('\n'))
+    paragraph = re.sub(r'\s+', ' ', paragraph, flags=re.M | re.S)
+    paragraph = paragraph.replace('$', '').replace('{', '').replace('}', '')
+    paragraph = paragraph.replace(' ,', ',').replace(' .', '.')
+    return paragraph
+
+if __name__=='__main__':
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, add_help=True,
+                                   description='Extract plain text from TeX file')
+    parser.add_argument('texfile',default=None,help='filename of the TeX source')
+    a = parser.parse_args()
+    with open(a.texfile) as f:
+        process(f.read())
+
