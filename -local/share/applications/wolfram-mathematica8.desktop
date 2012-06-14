@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Mathematica 8
+Comment=Technical Computing System
+TryExec=/opt/Mathematica/Executables/Mathematica
+Exec=/opt/Mathematica/Executables/Mathematica %F
+Icon=/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X/Mathematica-128.png
+MimeType=application/mathematica;application/vnd.wolfram.cdf  
