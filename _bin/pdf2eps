@@ -4,7 +4,7 @@ import sys
 import os
 
 sys.path.append(os.path.expanduser('~/sandbox/python'))
-from common import abspath,mkdir,execute
+from utils import abspath,mkdir,execute
 
 mkdir('eps')
 for name in sys.argv[1:]:
