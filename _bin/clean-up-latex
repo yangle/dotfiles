@@ -17,7 +17,7 @@ def process(a):
     texname,dottex=os.path.splitext(texfile)
     assert dottex=='.tex'
 
-    if a.use_bbl:
+    if not a.no_bbl:
         bblfile=os.path.join(os.path.dirname(a.texfile),'.tmpTeX','%s.bbl'%texname)
         if os.path.isfile(bblfile):
             with open(bblfile) as f:
@@ -47,7 +47,7 @@ def process(a):
                     execute('rm "%s"'%fig_ps)
                 else:
                     execute('cp "%s" "%s"'%(fig_old,fig_new))
-            if a.use_bbl:
+            if not a.no_bbl:
                 if r'\bibliography{' in line: #}
                     line=bbl
                 elif 'bibliographystyle' in line:
@@ -96,7 +96,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,add_help=True,
                                    description='Clean up TeX source, remove grffile dependency, and more.')
     parser.add_argument('--keep-comments',action='store_true',help='keep comments in TeX source')
-    parser.add_argument('--use-bbl',action='store_true',help='look for .bbl file and absorb it into TeX source')
+    parser.add_argument('--no-bbl',action='store_true',help='do not look for .bbl file and absorb it into TeX source')
     parser.add_argument('--pdf2eps',action='store_true',help='convert all pdf figures to eps')
     parser.add_argument('--save-commands',default=None,help='save commands to a file')
     parser.add_argument('texfile',default=None,help='filename of the TeX source')
