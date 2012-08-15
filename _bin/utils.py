@@ -9,6 +9,7 @@ import subprocess
 import StringIO
 import struct
 import hashlib
+import select
 
 try:
     import pexpect
@@ -35,7 +36,7 @@ def abspath(*path): # variable number of arguments
     # os.path.abspath was intended to convert path relative to cwd. here it's used to clean up stuff like /a/bc/../def
     # os.path.join('abc/def','/usr') ==> '/usr'
 
-def md5sum(filename,block_size=128):
+def md5sum(filename, block_size=128):
     # http://stackoverflow.com/questions/1131220/get-md5-hash-of-a-files-without-open-it-in-python
     md5=hashlib.md5()
     with open(filename) as f:
@@ -86,6 +87,14 @@ class memoized(object):
     def __get__(self, obj, objtype):
         """support instance methods. see http://stackoverflow.com/a/3296318"""
         return functools.partial(self.__call__, obj)
+
+def get_input(prompt, default='default', timeout=10):
+    print prompt, '(timeout = %d sec, press ENTER when finish):' % timeout,
+    i, o, e = select.select([sys.stdin], [], [], timeout)
+    if i:
+        return sys.stdin.readline().strip()
+    else:
+        return default
 
 ############### toooooold ######################33
 
