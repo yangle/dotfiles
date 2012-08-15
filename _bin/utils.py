@@ -30,6 +30,22 @@ sys.stdout=Unbuffered(sys.stdout)
 def main():
     print 'This script implements several useful functions.'
 
+def is_numeric(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
+def to_numeric(string):
+    try:
+        return int(string)
+    except ValueError:
+        try:
+            return float(string)
+        except ValueError:
+            return None
+
 def abspath(*path): # variable number of arguments
     return os.path.abspath(os.path.join(sys.path[0], *path))
     # when this function is called by another script, sys.path[0] is the path to THAT script
