@@ -8,7 +8,7 @@ __git_ps1 ()
 {
     local foo="bar"
 }
-[ -e /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
+[ -e $HOME/.git-prompt.sh ] && source $HOME/.git-prompt.sh
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
