@@ -18,6 +18,9 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>l
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>semicolon']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>apostrophe']"
 
+# disable screenshot
+gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot ''
+
 # Launchers
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
 # For some reason, <Super> does not work here. Need to fall back to <Mod4>
