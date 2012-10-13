@@ -816,6 +816,7 @@ set notimeout
 inoremap <buffer> <Leader><Leader> <Leader>
 inoremap <buffer> <Leader>a \alpha
 inoremap <buffer> <Leader>b \beta
+inoremap <buffer> <Leader>B \boldsymbol{}<Left>
 inoremap <buffer> <Leader>c \chi
 inoremap <buffer> <Leader>d \delta
 inoremap <buffer> <Leader>e \varepsilon
