@@ -18,3 +18,4 @@
     untracked = cyan
 [core]
     excludesfile = ~/.gitignore
+    editor = vim
