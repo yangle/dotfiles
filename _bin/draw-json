@@ -37,12 +37,20 @@ def plot_json(js, silent=True):
         d.update(strip_(_fig))
         fig, axes = plt.subplots(**d)
         axes = axes.flatten()
+        if len(_fig._axes) > len(axes):
+            assert all(ax._is_twinx_of is not None for ax in _fig._axes[len(axes):])
+            axes += [axes[ax._is_twin_of].twinx() for ax in _fig._axes[len(axes):]]
     else:
         fig = plt.figure(**strip_(_fig))
-        axes = [fig.add_axes(_ax._lbwh or [0.13, 0.16, 0.84, 0.79], **strip_(_ax)) for _ax in _fig._axes]
         # if ax lbwh is not provided, we put in some trial value here. The final layout is determined dynamically
+        axes = [fig.add_axes(_ax._lbwh or [0.13, 0.16, 0.84, 0.79], **strip_(_ax)) if (_ax._is_twinx_of is None) else None
+                for _ax in _fig._axes]
+        for i in xrange(len(axes)):
+            if axes[i] == None:
+                axes[i] = axes[_fig._axes[i]._is_twinx_of].twinx()
 
     # plot each set of axes
+    naxes = sum(1 for _ax in _fig._axes if _ax._is_twinx_of is not None)
     for ax_index, (ax, _ax) in enumerate(zip(axes, _fig._axes)):
         # draw each layer
         layers = []
@@ -82,9 +90,11 @@ def plot_json(js, silent=True):
                 getattr(ax, 'set_%s' % key)(*setting._args, **strip_(setting))
 
         # subplot label
-        if len(axes) > 1:
+        if naxes > 1 and _ax._is_twinx_of is None:
             props = dict(boxstyle='round', facecolor='wheat', alpha=0.85)
-            ax.text(0.07, 0.94, r'\textbf{%s)}' % chr(ord('a') + ax_index), ha='center', va='center', size=8, color=[0.3, 0.3, 0.3], transform=ax.transAxes, zorder=-10)
+            n = sum(1 for _ax in _fig._axes[:ax_index] if _ax._is_twinx_of is not None)
+            text = r'\textbf{%s)}' % chr(ord('a') + ax_index - n)
+            ax.text(0.07, 0.94, text, ha='center', va='center', size=8, color=[0.3, 0.3, 0.3], transform=ax.transAxes, zorder=-10)
 
     # maximize ax size
     if all(_ax._lbwh is None for _ax in _fig._axes):
@@ -128,7 +138,7 @@ def maximize_single_ax(fig, margin=0.005):
            1 - 2 * margin - margin_left - margin_right,
            1 - 2 * margin - margin_bottom - margin_top]
     # TODO: add a switch to write the choice to file
-    #print 'lbwh =', pos
+    print 'lbwh =', pos
     ax.set_position(pos)
 
 def maximize_subplots(fig, subplots):

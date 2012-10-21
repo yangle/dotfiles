@@ -65,6 +65,12 @@ class Figure(D):
         self._axes.append(Axes(*args, **kwargs))
         return self._axes[-1]
 
+    def add_twinx(self, ax):
+        """add an extra y axis to a current axes 'ax'"""
+        index = self._axes.index(ax)
+        self._axes.append(Axes(_is_twinx_of=index))
+        return self._axes[-1]
+
     def add_subplots(self, nrows=1, ncols=1, **kwargs):
         """add subplots
 
@@ -89,12 +95,14 @@ class Figure(D):
 
 class Axes(D):
     """a single axis in a matplotlib plot"""
-    def __init__(self, _lbwh=None, **kwargs):
+    def __init__(self, _lbwh=None, _is_twinx_of=None, **kwargs):
         """initialize an axis
 
         _lbwh = (left, bottom, width, height) relative to figsize, optional
+        _is_twinx_of = index in Figure._axes of the leader axes of the twin
         """
         self._lbwh = _lbwh
+        self._is_twinx_of = _is_twinx_of
         self._layers = [] # plots, e.g. ax.scatter
         self._texts = [] # overlay texts
         self._axlines = [] # ax.axhline / ax.axvline
