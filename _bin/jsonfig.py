@@ -95,22 +95,30 @@ class Figure(D):
 
 class Axes(D):
     """a single axis in a matplotlib plot"""
-    def __init__(self, _lbwh=None, _is_twinx_of=None, **kwargs):
+    def __init__(self, _lbwh=None, _is_twinx_of=None, _x_top=False, _y_right=False, **kwargs):
         """initialize an axis
 
         _lbwh = (left, bottom, width, height) relative to figsize, optional
         _is_twinx_of = index in Figure._axes of the leader axes of the twin
+        _y_right = flag for putting the y axis on the right
         """
         self._lbwh = _lbwh
         self._is_twinx_of = _is_twinx_of
+        self._x_top = _x_top
+        self._y_right = _y_right
         self._layers = [] # plots, e.g. ax.scatter
         self._texts = [] # overlay texts
         self._axlines = [] # ax.axhline / ax.axvline
         self._settings = D() # ax.set_xxxx
+        self._xticks = []
+        self._yticks = []
         self.update(kwargs)
 
     def __getattr__(self, item):
-        """Handle ax.set_xxxx with a single parameter"""
+        """Handle ax.set_xxxx with a single parameter.
+
+        examples: set_xlim, set_xscale, set_xticks, set_xticklabels, ...
+        extra: set_tick_properties('x' or 'y', 'major' or 'minor', length=?, labelsize=?)"""
         try:
             return self.__getitem__(item)
         except KeyError:
@@ -176,6 +184,20 @@ class Axes(D):
         default.update(kwargs)
         return self.scatter(*args, **default)
     # ==================
+
+    def xticks(self, positions, labels):
+        """tune tick labels for x axis
+        http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks
+        """
+        assert len(positions) == len(labels)
+        self._xticks = [positions, labels]
+
+    def yticks(self, positions, labels):
+        """tune tick labels for y axis
+        http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks
+        """
+        assert len(positions) == len(labels)
+        self._yticks = [positions, labels]
 
     def legend(self, _indices, _labels, **kwargs):
         """create legend

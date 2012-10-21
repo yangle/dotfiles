@@ -19,6 +19,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.transforms import TransformedBbox, Bbox
 from matplotlib.transforms import blended_transform_factory
+from matplotlib.ticker import MaxNLocator, LogLocator
 
 from utils import DotDict as D
 
@@ -52,6 +53,14 @@ def plot_json(js, silent=True):
     # plot each set of axes
     naxes = sum(1 for _ax in _fig._axes if _ax._is_twinx_of is not None)
     for ax_index, (ax, _ax) in enumerate(zip(axes, _fig._axes)):
+        # tweak label position
+        if '_x_top' in _ax and _ax._x_top:
+            ax.xaxis.tick_top()
+            ax.xaxis.set_label_position('top')
+        if '_y_right' in _ax and _ax._y_right:
+            ax.yaxis.tick_right()
+            ax.yaxis.set_label_position('right')
+
         # draw each layer
         layers = []
         for _layer in _ax._layers:
@@ -82,10 +91,18 @@ def plot_json(js, silent=True):
             actor(*_line._args, **strip_(_line))
 
         # set ax attributes
-        for key, setting in _ax._settings.iteritems():
+        for key, setting in sorted(_ax._settings.iteritems()): # HACK: 'sorted' ensures that set_xtick{label}s() is called after set_scale('log')
             if isinstance(setting, list):
                 for s in setting:
-                    getattr(ax, 'set_%s' % key)(*s._args, **strip_(s))
+                    if key == 'tick_properties':
+                        assert len(s._args) == 2 and s._args[0] in 'xy' and s._args[1] in ('major', 'minor')
+                        axis = ax.xaxis if s._args[0] == 'x' else ax.yaxis
+                        axis.set_tick_params(which=s._args[1], **strip_(s))
+                    elif key in ('xmajorticksize', 'xminorticksize', 'ymajorticksize', 'yminorticksize'):
+                        axis = ax.xaxis if key.startswith('x') else ax.yaxis
+                        axis.set_tick_params(which='major' if 'major' in key else 'minor', **{'length': s._args[0]})
+                    else:
+                        getattr(ax, 'set_%s' % key)(*s._args, **strip_(s))
             else: # backward compatible
                 getattr(ax, 'set_%s' % key)(*setting._args, **strip_(setting))
 
