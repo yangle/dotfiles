@@ -108,6 +108,7 @@ class Axes(D):
         self._y_right = _y_right
         self._layers = [] # plots, e.g. ax.scatter
         self._texts = [] # overlay texts
+        self._annotations = [] # annotations
         self._axlines = [] # ax.axhline / ax.axvline
         self._settings = D() # ax.set_xxxx
         self._xticks = []
@@ -118,7 +119,7 @@ class Axes(D):
         """Handle ax.set_xxxx with a single parameter.
 
         examples: set_xlim, set_xscale, set_xticks, set_xticklabels, ...
-        extra: set_tick_properties('x' or 'y', 'major' or 'minor', length=?, labelsize=?)"""
+        extra: set_tick_properties('x' or 'y', 'major' or 'minor', length=?, labelsize=?, pad=?)"""
         try:
             return self.__getitem__(item)
         except KeyError:
@@ -136,6 +137,13 @@ class Axes(D):
         for more kwargs, see: http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.text
         """
         self._texts.append(D(_args=args, **kwargs))
+
+    def annotate(self, *args, **kwargs):
+        """add annotation: annotate(s, xy, xytext=None, xycoords='data', textcoords='data', arrowprops=None, **kwargs)
+
+        for more kwargs, see: http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.annotate
+        """
+        self._annotations.append(D(_args=args, **kwargs))
 
     def axhline(self, *args, **kwargs):
         """draw a horizontal line: ax.axhline(y, ...)

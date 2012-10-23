@@ -61,35 +61,6 @@ def plot_json(js, silent=True):
             ax.yaxis.tick_right()
             ax.yaxis.set_label_position('right')
 
-        # draw each layer
-        layers = []
-        for _layer in _ax._layers:
-            actor = D(scatter=ax.scatter, plot=ax.plot, Line2D=matplotlib.lines.Line2D)[_layer._type]
-            handle = actor(*_layer._args, **strip_(_layer))
-            layers.append(handle)
-
-        # build legend
-        if '_legend' in _ax:
-            _legend = _ax._legend
-            handles = [layers[i] for i in _legend._indices]
-            leg = ax.legend(handles, _legend._labels, prop=FontProperties(size=_legend._fontsize), **strip_(_legend))
-            leg.get_frame().set_alpha(_legend._alpha)
-
-        # write texts
-        for _text in _ax._texts:
-            # _text._transform can be ('ax', 'data', 'fig')
-            actor = D(ax=ax.transAxes, data=ax.transData, fig=fig.transFigure)
-            if isinstance(_text._transform, list):
-                transform = blended_transform_factory(actor[_text._transform[0]], actor[_text._transform[1]])
-            else:
-                transform = actor[_text._transform]
-            ax.text(*_text._args, transform=transform, **strip_(_text))
-
-        # draw ax*lines
-        for _line in _ax._axlines:
-            actor = D(h=ax.axhline, v=ax.axvline)[_line._direction]
-            actor(*_line._args, **strip_(_line))
-
         # set ax attributes
         for key, setting in sorted(_ax._settings.iteritems()): # HACK: 'sorted' ensures that set_xtick{label}s() is called after set_scale('log')
             if isinstance(setting, list):
@@ -105,6 +76,54 @@ def plot_json(js, silent=True):
                         getattr(ax, 'set_%s' % key)(*s._args, **strip_(s))
             else: # backward compatible
                 getattr(ax, 'set_%s' % key)(*setting._args, **strip_(setting))
+
+        # draw each layer
+        layers = []
+        for _layer in _ax._layers:
+            actor = D(scatter=ax.scatter, plot=ax.plot, Line2D=matplotlib.lines.Line2D)[_layer._type]
+            handle = actor(*_layer._args, **strip_(_layer))
+            layers.append(handle)
+
+        # build legend
+        if '_legend' in _ax:
+            _legend = _ax._legend
+            handles = [layers[i] for i in _legend._indices]
+            leg = ax.legend(handles, _legend._labels, prop=FontProperties(size=_legend._fontsize), **strip_(_legend))
+            leg.get_frame().set_alpha(_legend._alpha)
+
+
+        def make_transform(_transform):
+            """build Transform object from 'data', 'ax', 'fig', or 2-tuple of them"""
+            transforms = D(ax=ax.transAxes, data=ax.transData, fig=fig.transFigure)
+            if isinstance(_transform, list) or isinstance(_transform, tuple):
+                assert len(_transform) == 2
+                return blended_transform_factory(transforms[_transform[0]], transforms[_transform[1]])
+            else:
+                return transforms[_transform]
+
+        # write texts
+        for _text in _ax._texts:
+            # _text._transform can be ('ax', 'data', 'fig')
+            actor = D(ax=ax.transAxes, data=ax.transData, fig=fig.transFigure)
+            kwargs = strip_(_text)
+            kwargs.transform = 'data' if '_transform' not in _text else make_transform(_text._transform)
+            ax.text(*_text._args, **kwargs)
+
+        # annotate
+        for _annotate in _ax._annotations:
+            # _annotate._transform can be ('ax', 'data', 'fig')
+            actor = D(ax=ax.transAxes, data=ax.transData, fig=fig.transFigure)
+            kwargs = strip_(_annotate)
+            if 'xycoords' in _annotate and (isinstance(_annotate.xycoords, list) or isinstance(_annotate.xycoords, tuple)):
+                kwargs.xycoords = make_transform(_annotate._xycoords)
+            if 'textcoords' in _annotate and (isinstance(_annotate.textcoords, list) or isinstance(_annotate.textcoords, tuple)):
+                kwargs.textcoords = make_transform(_annotate._textcoords)
+            ax.annotate(*_annotate._args, **kwargs)
+
+        # draw ax*lines
+        for _line in _ax._axlines:
+            actor = D(h=ax.axhline, v=ax.axvline)[_line._direction]
+            actor(*_line._args, **strip_(_line))
 
         # subplot label
         if naxes > 1 and _ax._is_twinx_of is None:
