@@ -5,7 +5,21 @@
 # $ dconf dump / > conf2
 # $ diff conf1 conf2
 
+# Desktop
+gsettings set org.gnome.nautilus.desktop home-icon-visible false
+gsettings set org.gnome.nautilus.desktop trash-icon-visible false
+gsettings set org.gnome.desktop.background show-desktop-icons true
+gsettings set org.gnome.desktop.interface clock-show-date true
+
+# Power
+gsettings set org.gnome.settings-daemon.plugins.power button-power 'interactive'
+gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothing'
+
+# Caps Lock
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
+
 # Windows
+gsettings set org.gnome.shell.overrides button-layout ':minimize,maximize,close'
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Alt>F1']"

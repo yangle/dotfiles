@@ -10,3 +10,4 @@ fi
 
 xhost +localhost
 exec gnome-session
+#exec gnome-session-cinnamon
