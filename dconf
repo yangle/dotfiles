@@ -11,6 +11,9 @@ gsettings set org.gnome.nautilus.desktop trash-icon-visible false
 gsettings set org.gnome.desktop.background show-desktop-icons true
 gsettings set org.gnome.desktop.interface clock-show-date true
 
+# Nautilus
+gsettings set org.gnome.nautilus.preferences sort-directories-first true
+
 # Power
 gsettings set org.gnome.settings-daemon.plugins.power button-power 'interactive'
 gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothing'
