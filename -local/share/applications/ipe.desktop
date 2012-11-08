@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Ipe
+GenericName=Vector Drawing
+Comment=The Ipe extensible drawing editor
+Exec=ipe %f
+Icon=/opt/icons/ipe.png
+Terminal=false
+Type=Application
+MimeType=application/vnd.ipe+xml;application/pdf;
+Categories=VectorGraphics;
