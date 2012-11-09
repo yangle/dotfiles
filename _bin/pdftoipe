@@ -1,0 +1,28 @@
+#!/usr/bin/python2
+
+import sys
+from utils import execute
+
+def run(cmd, errmsg='Error %d:'):
+    stdo, stde, code = execute(cmd)
+    if code != 0:
+        print errmsg % code
+        print stdo
+        print stde
+
+if len(sys.argv) not in (2, 3):
+    print "Usage: pdftoipe input.pdf [output.ipe]"
+    sys.exit(1);
+else:
+    pdf = sys.argv[1]
+    pathified = '/tmp/pdftoipe-pathified.pdf'
+    run('gs -sDEVICE=pswrite -dNOCACHE -sOutputFile=- -q -dbatch -dNOPAUSE -dQUIET "%s" -c quit | ps2pdf - "%s"' % (pdf, pathified),
+        'Error %d when converting font to path:')
+
+    svg = '/tmp/pdftoipe-pathified.svg'
+    run('pdftocairo -svg "%s" "%s"' % (pathified, svg),
+        'Error %d when converting pdf to svg:')
+
+    ipe = sys.argv[2] if len(sys.argv) == 3 else (pdf[:-4] if pdf.endswith('.pdf') else pdf) + '.ipe'
+    run('svgtoipe "%s" "%s"' % (svg, ipe),
+        'Error %d when converting svg to ipe:')
