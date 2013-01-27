@@ -20,8 +20,8 @@ paren = R
 [interface]
 # XXX: gnome-terminal appears to be braindead. The cursor will disappear unless
 # you set the background colour to "d".
-background = k
-output = w
+background = d
+output = k
 main = c
 prompt = c
 prompt_more = g
