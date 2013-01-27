@@ -6,14 +6,14 @@
 # Copy to ~/.bpython/foo.theme and set "color_scheme = foo" in ~/bpython/config
 
 [syntax]
-keyword = y
-name = c
-comment = b
+keyword = c
+name = k
+comment = y
 string = m
 error = r
 number = G
-operator = Y
-punctuation = y
+operator = R
+punctuation = r
 token = C
 paren = R
 
@@ -23,5 +23,5 @@ paren = R
 background = d
 output = k
 main = c
-prompt = c
+prompt = y
 prompt_more = g
