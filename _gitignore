@@ -4,3 +4,4 @@
 .mypdflatexmk
 .tmpTeX/*
 *.pyc
+*.pyo
