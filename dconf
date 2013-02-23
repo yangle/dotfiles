@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# $ dconf dump / > conf1
-# ... change setting
-# $ dconf dump / > conf2
-# $ diff conf1 conf2
+# watching while changing
+# $ dconf watch /
+
+# mime association
+xdg-mime default evince.desktop application/pdf
 
 # Desktop
 gsettings set org.gnome.nautilus.desktop home-icon-visible false
@@ -23,6 +24,11 @@ gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothi
 
 # Caps Lock
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
+
+# Cinnamon
+gsettings set org.cinnamon.muffin overlay-key ''
+gsettings set org.cinnamon desktop-effects false
+gsettings set org.cinnamon desktop-layout 'flipped'
 
 # Windows
 gsettings set org.gnome.shell.overrides button-layout ':minimize,maximize,close'
@@ -50,8 +56,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Gnome Terminal'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Mod4>e'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'nemo'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Nemo'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Nautilus'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Mod4>c'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'gcalctool'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Calculator'
