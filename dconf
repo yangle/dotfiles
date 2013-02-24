@@ -7,6 +7,7 @@
 xdg-mime default evince.desktop application/pdf
 
 # Desktop
+gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.nautilus.desktop home-icon-visible false
 gsettings set org.gnome.nautilus.desktop trash-icon-visible false
 gsettings set org.nemo.desktop computer-icon-visible false
