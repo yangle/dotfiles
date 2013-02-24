@@ -189,7 +189,7 @@ if !exists("python_no_builtin_highlight")
 " non-essential built-in functions; Python 2.6 only
   syn keyword pythonBuiltin apply buffer coerce intern
 " Cython types "
-  syn keyword pythonBuiltin void bint int short double float unsigned operator
+  syn keyword pythonBuiltin void NULL bint int short double float unsigned operator
   syn keyword pythonBuiltin struct union enum
 endif
 
