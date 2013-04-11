@@ -569,7 +569,7 @@ endfunction
 "
 " and S-F1 - S-F5, which are used to change environments, are similar.
 
-inoremap <buffer><silent> <F1> \begin{equation}<CR>\label{}<CR><CR>\end{equation}<Esc>2k$i
+inoremap <buffer><silent> <F1> \begin{equation}<CR>\end{equation}<Esc>k0
 inoremap <buffer><silent> <F2> <C-R>=<SID>FTwo(<SID>AmsLatex(b:AMSLatex))<CR>
 "inoremap <buffer> <F2> <C-R>=<SID>FTwo(0)<CR>
 inoremap <buffer><silent> <F3> <C-R>=<SID>FThree(<SID>AmsLatex(b:AMSLatex))<CR>
@@ -628,21 +628,21 @@ function! s:FTwo(var)
 	    return "$$\<CR>\<CR>$$\<Up>"
 	endif
     else
-	return "\\begin{equation*}\<CR>\<CR>\\end{equation*}\<Up>"
+	return "\\begin{equation}\<CR>\\begin{aligned}\<CR>\\end{aligned}\<CR>\\end{equation}\<Esc>2k0"
     endif
 endfunction
 function! s:FThree(var)
     if a:var == 0
-	return "\\begin{eqnarray}\<CR>\\label{}\<CR>\<CR>\\end{eqnarray}\<Esc>2k$i"
+	return "\\begin{eqnarray}\<CR>\\end{eqnarray}\<Esc>k0"
     else
-	return "\\begin{align}\<CR>\\label{}\<CR>\<CR>\\end{align}\<Esc>2k$i"
+	return "\\begin{align}\<CR>\\end{align}\<Esc>k0"
     endif
 endfunction
 function! s:FFour(var)
     if a:var == 0
-	return "\\begin{eqnarray*}\<CR>\<CR>\\end{eqnarray*}\<Up>"
+	return "\\begin{eqnarray*}\<CR>\\end{eqnarray*}\<Esc>k0"
     else
-	return "\\begin{align*}\<CR>\<CR>\\end{align*}\<Up>"
+	return "\\begin{align*}\<CR>\\end{align*}\<Esc>k0"
     endif
 endfunction
 function! s:CFTwo(var)
