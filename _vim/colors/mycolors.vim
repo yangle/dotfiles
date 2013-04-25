@@ -1,59 +1,56 @@
-" http://afwebteam.com/x11bycolor.html
-:set background=dark
-:highlight clear
-if version > 580
- hi clear
- if exists("syntax_on")
- syntax reset
- endif
-endif
-let colors_name = "mycolors"
-:hi Normal guifg=greenyellow guibg=grey15
-:hi Cursor guibg=khaki guifg=slategrey
-:hi VertSplit guibg=#c2bfa5 guifg=grey40 gui=none cterm=reverse
-:hi Folded guibg=black guifg=grey40 ctermfg=grey ctermbg=darkgrey
-:hi FoldColumn guibg=black guifg=grey20 ctermfg=4 ctermbg=7
-:hi IncSearch guifg=green guibg=black cterm=none ctermfg=yellow ctermbg=green
-:hi ModeMsg guifg=goldenrod cterm=none ctermfg=brown
-:hi MoreMsg guifg=SeaGreen ctermfg=darkgreen
-:hi NonText guifg=RoyalBlue guibg=grey15 cterm=bold ctermfg=blue
-:hi Question guifg=springgreen ctermfg=green
-:hi Search guibg=peru guifg=wheat cterm=none ctermfg=grey ctermbg=blue
-:hi SpecialKey guifg=yellowgreen ctermfg=darkgreen
-:hi StatusLine guibg=#c2bfa5 guifg=black gui=none cterm=bold,reverse
-:hi StatusLineNC guibg=#c2bfa5 guifg=grey40 gui=none cterm=reverse
-:hi Title guifg=gold gui=bold cterm=bold ctermfg=yellow
-:hi Statement guifg=CornflowerBlue ctermfg=lightblue
-:hi Visual gui=none guifg=khaki guibg=olivedrab cterm=reverse
-:hi WarningMsg guifg=salmon ctermfg=1
-:hi String guifg=SkyBlue ctermfg=darkcyan
-:hi Comment term=bold ctermfg=11 guifg=white
-:hi Constant guifg=#ffa0a0 ctermfg=brown
-:hi Special guifg=darkkhaki ctermfg=brown
-:hi Identifier guifg=salmon ctermfg=red
-:hi Include guifg=red ctermfg=red
-:hi PreProc guifg=red guibg=white ctermfg=red
-:hi Operator guifg=Red ctermfg=Red
-:hi Define guifg=gold gui=bold ctermfg=yellow
-:hi Type guifg=CornflowerBlue ctermfg=2
-:hi Function guifg=navajowhite ctermfg=brown
-:hi Structure guifg=green ctermfg=green
-:hi LineNr guifg=grey50 ctermfg=3
-:hi Ignore guifg=grey40 cterm=bold ctermfg=7
-:hi Todo guifg=orangered guibg=yellow2
-:hi Directory ctermfg=darkcyan
-:hi ErrorMsg cterm=bold guifg=White guibg=Red cterm=bold ctermfg=7 ctermbg=1
-:hi VisualNOS cterm=bold,underline
-:hi WildMenu ctermfg=0 ctermbg=3
-:hi DiffAdd ctermbg=4
-:hi DiffChange ctermbg=5
-:hi DiffDelete cterm=bold ctermfg=4 ctermbg=6
-:hi DiffText cterm=bold ctermbg=1
-:hi Underlined cterm=underline ctermfg=5
-:hi Error guifg=White guibg=Red cterm=bold ctermfg=7 ctermbg=1
-:hi SpellErrors guifg=White guibg=Red cterm=bold ctermfg=7 ctermbg=1
-:hi Pmenu        guifg=#00ffff guibg=#000000            ctermbg=0 ctermfg=6
-:hi PmenuSel     guifg=#ffff00 guibg=#000000 gui=bold   cterm=bold ctermfg=3
-:hi PmenuSbar    guibg=#204d40                          ctermbg=6
-:hi PmenuThumb   guifg=#38ff56                          ctermfg=3
+" Vim color file
 
+set background=dark
+set t_Co=256
+let g:colors_name="mycolors"
+hi clear
+if exists("syntax_on")
+  syntax reset
+endif
+
+let colors_name = "mycolors"
+
+hi Normal ctermbg=235 ctermfg=White
+
+" Groups used in the 'highlight' and 'guicursor' options default value.
+hi ErrorMsg ctermbg=52 ctermfg=White
+hi IncSearch cterm=reverse
+hi ModeMsg cterm=bold
+hi StatusLine cterm=bold ctermfg=18 ctermbg=252
+hi User1 cterm=bold ctermfg=white ctermbg=18
+hi StatusLineNC cterm=none ctermfg=250 ctermbg=29
+hi VertSplit cterm=reverse ctermfg=250 ctermbg=18
+hi Visual cterm=reverse
+hi VisualNOS cterm=underline,bold
+hi DiffText cterm=bold ctermbg=Red
+hi Cursor guibg=Green guifg=Black
+hi lCursor guibg=Cyan guifg=Black
+hi Directory cterm=bold ctermfg=195
+hi LineNr cterm=bold ctermfg=29 ctermbg=234
+hi MoreMsg cterm=bold ctermfg=84
+hi NonText cterm=bold ctermfg=153 ctermbg=239
+hi Question cterm=bold ctermfg=119
+hi Search ctermbg=Yellow ctermfg=Black
+hi SpecialKey cterm=bold ctermfg=153
+hi Title cterm=bold ctermfg=201
+hi WarningMsg ctermfg=202
+hi WildMenu ctermbg=Yellow ctermfg=Black
+hi Folded cterm=bold,italic ctermbg=250 ctermfg=18
+hi FoldColumn cterm=bold ctermbg=250 ctermfg=18
+hi DiffAdd cterm=bold ctermbg=18
+hi DiffChange cterm=bold ctermbg=128
+hi DiffDelete cterm=bold ctermfg=Blue ctermbg=36
+hi CursorColumn cterm=reverse ctermbg=Black guibg=grey40
+hi CursorLine cterm=underline cterm=underline guibg=grey40
+
+" Groups for syntax highlighting
+hi PreProc ctermfg=207
+hi Comment ctermfg=45
+hi Constant cterm=bold ctermfg=217
+hi Special cterm=bold ctermfg=208
+hi SpellBad cterm=underline ctermfg=red ctermbg=none
+hi Statement cterm=bold ctermfg=228
+hi Type cterm=bold ctermfg=82
+hi Ignore cterm=bold ctermfg=236
+
+" vim: sw=2

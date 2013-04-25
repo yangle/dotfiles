@@ -114,4 +114,7 @@ endif
 
 set background=dark
 set t_Co=256
-colorscheme bensday
+set t_AB=[48;5;%dm
+set t_AF=[38;5;%dm
+"colorscheme desert256
+colorscheme mycolors
