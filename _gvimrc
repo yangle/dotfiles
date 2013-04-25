@@ -1,5 +1,5 @@
 " syntax highlighting
-colorscheme bensday
+colorscheme mycolors
 
 " hide toolbar/menu
 set guioptions-=m  "remove menu bar
