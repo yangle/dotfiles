@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Taking snapshot of Arch Linux Repository, adapted from http://lmbrt.com/a/230
+
+# This script expects in pwd a symlink 'archlinux' pointing to an existing repo folder
+# To get started, just create an empty folder and link it
+
+set -e
+
+HOST="http://mirrors.rutgers.edu/archlinux"
+TIMESTAMP=`date +"%Y%m%d"`
+CURRENT=`readlink archlinux`
+echo $TIMESTAMP
+echo $CURRENT
+ 
+cp -al $CURRENT $TIMESTAMP
+
+trickle -sd 1200 lftp $HOST -e "
+lcd $TIMESTAMP
+mirror --loop -n -P5 --dereference core/os/x86_64 core/os/x86_64
+mirror --loop -n -P5 --dereference extra/os/x86_64 extra/os/x86_64
+mirror --loop -n -P5 --dereference multilib/os/x86_64 multilib/os/x86_64
+mirror --loop -n -P5 --dereference community/os/x86_64 community/os/x86_64
+bye
+"
+
+rm archlinux
+ln -s $TIMESTAMP archlinux
+
