@@ -3,6 +3,12 @@
 # watching while changing
 # $ dconf watch /
 
+# free up Win key (Gnome 3.8)
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Alt>Tab', '<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-group "['<Alt>Above_Tab', '<Alt>Above_Tab']"
+gsettings set org.gnome.desktop.wm.keybindings minimize "['']"
+gsettings set org.gnome.shell.keybindings focus-active-notification "['']"
+
 # mime association
 xdg-mime default evince.desktop application/pdf
 
@@ -10,9 +16,6 @@ xdg-mime default evince.desktop application/pdf
 gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.nautilus.desktop home-icon-visible false
 gsettings set org.gnome.nautilus.desktop trash-icon-visible false
-gsettings set org.nemo.desktop computer-icon-visible false
-gsettings set org.nemo.desktop home-icon-visible false
-gsettings set org.nemo.desktop trash-icon-visible false
 gsettings set org.gnome.desktop.background show-desktop-icons true
 gsettings set org.gnome.desktop.interface clock-show-date true
 
@@ -26,10 +29,13 @@ gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothi
 # Caps Lock
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
 
-# Cinnamon
-gsettings set org.cinnamon.muffin overlay-key ''
-gsettings set org.cinnamon desktop-effects false
-gsettings set org.cinnamon desktop-layout 'flipped'
+## Cinnamon
+#gsettings set org.nemo.desktop computer-icon-visible false
+#gsettings set org.nemo.desktop home-icon-visible false
+#gsettings set org.nemo.desktop trash-icon-visible false
+#gsettings set org.cinnamon.muffin overlay-key ''
+#gsettings set org.cinnamon desktop-effects false
+#gsettings set org.cinnamon desktop-layout 'flipped'
 
 # Windows
 gsettings set org.gnome.shell.overrides button-layout ':minimize,maximize,close'
@@ -50,24 +56,22 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot ''
 
 # Launchers
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/']"
-# For some reason, <Super> does not work here. Need to fall back to <Mod4>
-# Also, <Mod4>x is triggered by Win+xx. https://bugzilla.gnome.org/show_bug.cgi?id=659899#c11
 # help on gsettings: http://blogs.gnome.org/fmuellner/2011/11/22/gnome-shell-gsettings-and-keybindings/comment-page-1/#comment-128
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Mod4>grave'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>grave'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Gnome Terminal'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Mod4>e'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>e'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'nautilus'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Nautilus'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Mod4>c'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'gcalctool'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super>c'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'gnome-calculator'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Calculator'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Mod4>v'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super>v'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'gvim'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'GVim'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Mod4>n'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Super>n'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ command 'gedit'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ name 'Gedit'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Mod4>F1'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Super>F1'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ command 'latex-to-unicode.sh'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ name 'LaTeX to Unicode'
