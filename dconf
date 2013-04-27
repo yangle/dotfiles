@@ -12,6 +12,10 @@ gsettings set org.gnome.shell.keybindings focus-active-notification "['']"
 # mime association
 xdg-mime default evince.desktop application/pdf
 
+# Terminal
+gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
+gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+
 # Desktop
 gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.nautilus.desktop home-icon-visible false
