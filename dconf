@@ -10,7 +10,7 @@ gsettings set org.gnome.desktop.wm.keybindings minimize "['']"
 gsettings set org.gnome.shell.keybindings focus-active-notification "['']"
 
 # mime association
-xdg-mime default evince.desktop application/pdf
+xdg-mime default zathura.desktop application/pdf
 
 # Terminal
 gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
