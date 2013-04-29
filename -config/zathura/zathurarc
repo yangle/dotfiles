@@ -1,0 +1,8 @@
+set show-scrollbars true
+set adjust-open "width"
+set incremental-search true
+set window-title-basename true
+
+map <A-1> set "pages-per-row 1"
+map <A-2> set "pages-per-row 2"
+map <C-w> quit
