@@ -3,6 +3,9 @@
 # watching while changing
 # $ dconf watch /
 
+# fix scrolling on touchpad
+gsettings set org.gnome.settings-daemon.peripherals.touchpad scroll-method "edge-scrolling"
+
 # free up Win key (Gnome 3.8)
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Alt>Tab', '<Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-group "['<Alt>Above_Tab', '<Alt>Above_Tab']"
