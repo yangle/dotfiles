@@ -2,6 +2,8 @@ set show-scrollbars true
 set adjust-open "width"
 set incremental-search true
 set window-title-basename true
+set scroll-step 100
+set scroll-full-overlap 0.1
 
 map <A-1> set "pages-per-row 1"
 map <A-2> set "pages-per-row 2"
