@@ -112,7 +112,7 @@ if !exists("autocommands_loaded")
     augroup END
 endif
 
-set term=rxvt-unicode
+"set term=rxvt-unicode # enables italics, but screen bleeds after exit vim
 set background=dark
 set t_Co=256
 set t_AB=[48;5;%dm
