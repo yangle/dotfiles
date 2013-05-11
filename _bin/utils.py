@@ -86,6 +86,7 @@ class memoized(object):
 
     Usage: @memoized before functions, memomized() around lambdas
     """
+    # FIXME: this does not allow kwargs. error msg "__call__() got an unexpected keyword argument ..."
     def __init__(self, func):
         self.func = func
         self.cache = {}
