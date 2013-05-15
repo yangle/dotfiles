@@ -6,16 +6,16 @@
 # Copy to ~/.bpython/foo.theme and set "color_scheme = foo" in ~/bpython/config
 
 [syntax]
-keyword = c
+keyword = y
 name = k
-comment = y
+comment = k
 string = m
 error = r
-number = G
-operator = R
-punctuation = r
+number = M
+operator = B
+punctuation = c
 token = C
-paren = R
+paren = y
 
 [interface]
 # XXX: gnome-terminal appears to be braindead. The cursor will disappear unless
@@ -23,5 +23,5 @@ paren = R
 background = d
 output = k
 main = c
-prompt = y
+prompt = g
 prompt_more = g
