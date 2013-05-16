@@ -1,3 +1,3 @@
 #!/bin/sh
 
-export PATH=$HOME/sandbox/diagham/build/FTI/src/Programs/FCI:$HOME/sandbox/diagham/build/FTI/src/Programs/FTI:$HOME/sandbox/diagham/build/src/Programs:$HOME/sandbox/diagham/build/FQHE/src/Programs/FQHEOnSphere:$HOME/sandbox/diagham/build/FQHE/src/Programs/FQHEOnTorus:$PATH
+export PATH=$HOME/sandbox/diagham/build/Lattice/src/Programs:$HOME/sandbox/diagham/build/FTI/src/Programs/FCI:$HOME/sandbox/diagham/build/FTI/src/Programs/FTI:$HOME/sandbox/diagham/build/src/Programs:$HOME/sandbox/diagham/build/FQHE/src/Programs/FQHEOnSphere:$HOME/sandbox/diagham/build/FQHE/src/Programs/FQHEOnTorus:$PATH
