@@ -10,14 +10,15 @@ import StringIO
 import struct
 import hashlib
 import select
+import cPickle
 
 try:
     import pexpect
 except ImportError:
     pexpect=None
 
-# turn off buffering
 class Unbuffered:
+    """turn off buffering"""
     def __init__(self, stream):
         self.stream = stream
     def write(self, data):
@@ -25,7 +26,8 @@ class Unbuffered:
         self.stream.flush()
     def __getattr__(self, attr):
         return getattr(self.stream, attr)
-sys.stdout=Unbuffered(sys.stdout)
+## this breaks bpython
+# sys.stdout=Unbuffered(sys.stdout)
 
 def main():
     print 'This script implements several useful functions.'
@@ -80,6 +82,22 @@ def key_natural(key):
         except ValueError:
             return s
     return [to_float(s) for s in re.split('([0-9.]+)', key)]
+
+def lp(filename):
+    """load cPickle as return as a DotDict, if possible"""
+    if os.path.isfile(filename):
+        with open(filename) as f:
+            data = cPickle.load(f)
+    elif os.path.isfile(filename + '.pickle'):
+        with open(filename + '.pickle') as f:
+            data = cPickle.load(f)
+    else:
+        return None
+
+    if isinstance(data, dict):
+        return DotDict(data)
+    else:
+        return data
 
 class memoized(object):
     """Memoizing decorator
