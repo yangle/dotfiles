@@ -11,6 +11,7 @@ import struct
 import hashlib
 import select
 import cPickle
+import logging
 
 try:
     import pexpect
@@ -31,6 +32,19 @@ class Unbuffered:
 
 def main():
     print 'This script implements several useful functions.'
+
+def setup_logging(filename=None, lvl=logging.DEBUG):
+    """setup logging to a file + console"""
+    if filename is not None:
+        logging.basicConfig(level=logging.DEBUG,
+                            format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                            datefmt='%m-%d %H:%M',
+                            filename=filename,
+                            filemode='w')
+    console = logging.StreamHandler()
+    console.setLevel(lvl)
+    console.setFormatter(logging.Formatter('%(name)-6s: %(levelname)-8s %(message)s'))
+    logging.getLogger('').addHandler(console)
 
 def is_numeric(string):
     try:
