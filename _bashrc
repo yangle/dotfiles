@@ -62,3 +62,7 @@ if test "$TERM" = "xterm" -o \
     export PROMPT_COMMAND
 fi
 
+if type "register-python2-argcomplete" > /dev/null; then
+    eval "$(register-python2-argcomplete m)"
+fi
+
