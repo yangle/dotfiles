@@ -43,8 +43,9 @@ def setup_logging(filename=None, lvl=logging.DEBUG):
                             filemode='w')
     console = logging.StreamHandler()
     console.setLevel(lvl)
-    console.setFormatter(logging.Formatter('%(name)-6s: %(levelname)-8s %(message)s'))
+    console.setFormatter(logging.Formatter('%(message)s'))
     logging.getLogger('').addHandler(console)
+    return logging.getLogger('')
 
 def is_numeric(string):
     try:
@@ -99,10 +100,10 @@ def key_natural(key):
 
 def lp(filename):
     """load cPickle as return as a DotDict, if possible"""
-    if os.path.isfile(filename):
+    if os.path.isfile(filename + '.pickle'):
         with open(filename) as f:
             data = cPickle.load(f)
-    elif os.path.isfile(filename + '.pickle'):
+    if os.path.isfile(filename):
         with open(filename + '.pickle') as f:
             data = cPickle.load(f)
     else:
