@@ -101,10 +101,10 @@ def key_natural(key):
 def lp(filename):
     """load cPickle as return as a DotDict, if possible"""
     if os.path.isfile(filename + '.pickle'):
-        with open(filename) as f:
+        with open(filename + '.pickle') as f:
             data = cPickle.load(f)
     if os.path.isfile(filename):
-        with open(filename + '.pickle') as f:
+        with open(filename) as f:
             data = cPickle.load(f)
     else:
         return None
