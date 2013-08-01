@@ -16,6 +16,7 @@ set pastetoggle=<F10> " Toggle paste/insert mode
 set wildmode=longest:full " autocomplete filenames to the longest possible
 set wildmenu " show autocomplete multiple matches
 set title " set teminal title
+set nojoinspaces " single space after '.' when joining lines
 
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
