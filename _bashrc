@@ -63,6 +63,6 @@ if test "$TERM" = "xterm" -o \
 fi
 
 if type "register-python2-argcomplete" > /dev/null; then
-    eval "$(register-python2-argcomplete m)"
+    eval "$(register-python2-argcomplete mr)"
 fi
 
