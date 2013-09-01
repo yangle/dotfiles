@@ -19,9 +19,10 @@ with open(filename) as f:
     line=f.readline().rstrip(' \t\r\n')
     if line[0:8]==r'%MASTER=':
         filename=line[8:]
- 
+
 # create work place
 execute('mkdir -p .tmpTeX')
+execute('cp *.bst .tmpTeX/')
 
 # compile
 #s=execute(r"pdflatex -file-line-error -interaction=nonstopmode"+
