@@ -1055,7 +1055,7 @@ endfunction
 
 " Alt-s or Insert-s inserts \sqrt{}
 inoremap <buffer> <M-s> \sqrt{}<Left>
-inoremap <buffer> Insert>s \sqrt{}<Left>
+inoremap <buffer> <Insert>s \sqrt{}<Left>
 
 " Insert-t or Insert-t inserts Textbf
 inoremap <buffer> <Insert>t \textbf{}<Left>
