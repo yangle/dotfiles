@@ -64,5 +64,6 @@ fi
 
 if type "register-python2-argcomplete" > /dev/null; then
     eval "$(register-python2-argcomplete mr)"
+    eval "$(register-python2-argcomplete laughlin)"
 fi
 
