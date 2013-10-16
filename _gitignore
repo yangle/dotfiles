@@ -2,6 +2,6 @@
 *.swo
 *~
 .mypdflatexmk
-.tmpTeX/*
+.tmpTeX
 *.pyc
 *.pyo
