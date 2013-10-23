@@ -1,22 +1,63 @@
 #!/usr/bin/env python2
+# -*- coding: utf8 -*-
 
-import time
-import argparse
-from utils import execute, key_natural
+def extract_parameters(filename):
+    from os.path import basename, splitext
+    tokens = splitext(basename(filename))[0].split('_')
+    if tokens[0].count('~') > 1: # fix the prefix issue
+        i = tokens[0].index('~') + 1
+        tokens[0] = tokens[0][i:]
 
-parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, add_help=True)
-parser.add_argument('filenames', nargs='+', metavar='FILENAME', help='input filenames')
-parser.add_argument('--delay', type=int, default=100, help='delay between frames in unit of 10ms')
-parser.add_argument('--loop', type=int, default=0, help='# of loops before stop')
-parser.add_argument('--density', type=int, default=300, help='resolution of the image')
-parser.add_argument('--output', default=None, metavar='42.gif', help='output filename')
+    tokens = [token.split('~') for token in tokens]
+    return {token[0]: ', '.join(token[1:]) for token in tokens}
 
-args = parser.parse_args()
-i = ' '.join(sorted(args.filenames, key=key_natural)) # sorted naturally
-o = args.output or time.strftime('%y%m%d-%H%M%S.gif')
+def annotate(filename, params, density):
+    from os.path import join, basename, splitext
+    from sh import convert
+    from random import randrange
 
-cmd = 'convert -delay {a.delay} -loop {a.loop} -density {a.density} {i} {o}'.format(a=args, i=i, o=o)
+    print 'annotating', filename
 
-print 'converting...',
-execute(cmd)
-print
+    extracted = extract_parameters(filename)
+    text = '; '.join('%s = %s' % (p, extracted.get(p, 'N/A')) for p in params)
+    output = join('/tmp/movie-maker', splitext(basename(filename))[0] + '_%05x' % randrange(16**5) + '.pdf')
+
+    convert = convert.bake('-density', density)
+    convert = convert.bake(filename)
+    convert = convert.bake('-background', 'Khaki', 'label:%s' % text, '+swap', '-gravity', 'Center', '-append')
+    convert = convert.bake(output)
+    convert()
+
+    return output
+
+from argh.helpers import ArghParser
+from argh import arg, expects_obj
+from argh.completion import autocomplete
+
+@arg('filenames', nargs='+', help='input filenames')
+@arg('--delay', type=int, help='delay between frames in unit of 10ms', default=40)
+@arg('--params', type=str, nargs='*', help='annotate each frame using parameters extracted from filenames', default=[])
+@arg('--loop', type=int, help='# of loops before stop', default=0)
+@arg('--density', type=int, help='resolution of the image', default=300)
+@arg('--output', help='output GIF filename', default='z.gif')
+def animate(filenames, params, delay, loop, density, output):
+    from utils import key_natural
+    from sh import mkdir, convert
+
+    mkdir('-p', '/tmp/movie-maker')
+
+    frames = sorted(filenames, key=key_natural)
+    if len(params) != 0:
+        frames = [annotate(filename, params, density) for filename in frames]
+
+    print 'making', output
+    convert = convert.bake('-delay', delay, '-loop', loop, '-density', density)
+    convert = convert.bake(*frames)
+    convert = convert.bake(output)
+    convert()
+
+if __name__ == '__main__':
+    parser = ArghParser()
+    parser.set_default_command(animate)
+    parser.dispatch()
+
