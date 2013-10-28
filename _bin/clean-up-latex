@@ -71,7 +71,7 @@ def process(a):
 
 def figname(line,use_eps=False):
     """Identify figure name from line. Remove all the non-alphanumeric characters. Remove relative path."""
-    s=re.search(r'includegraphics(\[.*\])?\{(.*)\}',line)
+    s=re.search(r'includegraphics(\[.*\])?\{(.*?)\}',line)
     assert s
     fig_old=s.group(2)
 
