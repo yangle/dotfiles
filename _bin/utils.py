@@ -98,6 +98,11 @@ def key_natural(key):
             return s
     return [to_float(s) for s in re.split('([0-9.]+)', key)]
 
+def sorted_breadth_first(iterable):
+    """abcdefgh -> aecgbfdh"""
+    key = lambda (i, stuff): bin(i)[2:].rjust(32, '0')[::-1]
+    return zip(*sorted(enumerate(iterable), key=key))[1]
+
 def lp(filename):
     """load cPickle as return as a DotDict, if possible"""
     if os.path.isfile(filename + '.pickle'):
