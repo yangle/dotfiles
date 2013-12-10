@@ -68,4 +68,4 @@ if type "register-python2-argcomplete" > /dev/null; then
     eval "$(register-python2-argcomplete rr)"
 fi
 
-. /etc/profile.d/vte.sh
+source /etc/profile.d/vte.sh
