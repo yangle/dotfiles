@@ -1,4 +1,4 @@
-export PATH=$HOME/.bin:$PATH
+export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH
 export PYTHONPATH=$HOME/.bin
 export TEXINPUTS=".:$HOME/Documents/Repository/:"
 [ -e /opt/intel/composerxe/bin/compilervars.sh ] && source /opt/intel/composerxe/bin/compilervars.sh intel64
