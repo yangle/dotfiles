@@ -33,6 +33,16 @@ class Unbuffered:
 def main():
     print 'This script implements several useful functions.'
 
+def profile_this(f):
+    """decorator for profiling"""
+    from cProfile import Profile
+    def profiled(*args, **kwargs):
+        p = Profile()
+        ret = p.runcall(f, *args, **kwargs)
+        p.dump_stats(f.__name__ + '.profile')
+        return ret
+    return profiled
+
 def setup_logging(filename=None, lvl=logging.DEBUG):
     """setup logging to a file + console"""
     if filename is not None:
