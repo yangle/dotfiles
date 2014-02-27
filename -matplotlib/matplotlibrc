@@ -9,4 +9,6 @@ font.serif          : Computer Modern Roman
 font.monospace      : Computer Modern Typewriter
 
 text.usetex         : true
-text.latex.preamble : \usepackage{parskip}  # noindent, correct centering of axis labels
+text.latex.preamble : \usepackage{parskip},\usepackage{bbold}
+    # parskip:  noindent, correct centering of axis labels
+    # bbold: enable $\mathbb{1}$
