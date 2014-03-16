@@ -16,6 +16,9 @@ __git_ps1 ()
 
 alias ls="ls --color=auto"
 
+# pretty print tsv
+alias catt="column -s $'\t' -t"
+
 # disable XON/XOFF, to use CTRL-S/Q
 stty -ixon
 
