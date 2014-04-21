@@ -1,1 +1,80 @@
-../../sandbox/fractional/pbsify
+#!/usr/bin/env python2
+# -*- coding: utf8 -*-
+
+from argh.helpers import ArghParser
+from argh import arg, expects_obj
+
+email = ''.join(map(lambda c: chr(ord(c) - 1), 'zbohmfxvAqsjodfupo/fev'))
+template = """#!/bin/bash
+#PBS -j oe
+#PBS -o .pbs/{job}.out
+#PBS -e .pbs/{job}.err
+#PBS -l walltime={walltime}
+#PBS -l nodes=1:ppn={ppn}
+#PBS -m abe
+#PBS -M """ + email + """
+#PBS -v LD_LIBRARY_PATH
+{extra}
+
+. ~/.bashrc
+
+cd $PBS_O_WORKDIR
+{cmd}
+"""
+
+def get_pbs(cmd, jobprefix, queue, memory, ppn_default=12, serial=[0]):
+    """generate PBS script for a single job"""
+    if not isinstance(cmd, str):
+        cmd = '\n'.join(cmd)
+
+    walltime = dict(test='1:00:00', short='24:00:00', medium='72:00:00')[queue]
+    job = '%s-%d' % (jobprefix, serial[0])
+    serial[0] += 1
+
+    prefix = 'env OMP_NUM_THREADS='
+    ppn = int(cmd[len(prefix): cmd.index(' ', len(prefix))]) if cmd.startswith(prefix) else ppn_default
+    extra = '' if memory is None else '#PBS -l mem=%dgb' % memory
+
+    filename = '.pbs/{job}'.format(job=job)
+    content = template.format(job=job, walltime=walltime, ppn=ppn, extra=extra, cmd=cmd)
+    return filename, content
+
+def chunks(l, n):
+    """cut l into chunks of size no larger than n"""
+    m = len(l) / n + 1 # number of chunks. +1 guarantees the "no larger" part
+    for i in xrange(min(m, len(l))):
+        yield l[i::m]
+
+@arg('script', type=str, help='filename of the script to be processed')
+@arg('-q', dest='queue', type=str, choices=['test', 'short', 'medium'], help='queue name', default='short')
+@arg('-j', dest='jobprefix', type=str, help='job name prefix', default=None)
+@arg('-n', dest='number', type=int, help='put n commands in each PBS script', default=1)
+@arg('--memory', type=int, help='required memory in GB', default=None)
+def process(script, queue, jobprefix, number, memory):
+    """generate PBS scripts, one for each line of the input file"""
+    with open(script) as f:
+        lines = [line.rstrip('\n') for line in f
+                 if line[0] not in '#\n' and not line.startswith('set -e')]
+
+    if jobprefix is None:
+        from pydoc import pager
+        text = ('=' * 60 + '\n').join(get_pbs(cmd, '{jobprefix}', queue, memory)[1] for cmd in chunks(lines, number))
+        pager(text)
+        return
+
+    from sh import mkdir
+    mkdir('-p', '.pbs')
+
+    filenames = []
+    for cmd in chunks(lines, number):
+        filename, content = get_pbs(cmd, jobprefix, queue, memory)
+        with open(filename, 'w') as f:
+            f.write(content)
+        filenames.append(filename)
+
+    print ' && '.join(['qsub ' + filename for filename in filenames])
+
+if __name__ == '__main__':
+    parser = ArghParser()
+    parser.set_default_command(process)
+    parser.dispatch()
