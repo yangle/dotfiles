@@ -72,4 +72,6 @@ if type "register-python2-argcomplete" > /dev/null; then
     eval "$(register-python2-argcomplete rr)"
 fi
 
+[ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
+
 source /etc/profile.d/vte.sh
