@@ -62,6 +62,9 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>a
 # disable screenshot
 gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot ''
 
+# lock screen
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Primary><Alt>l'
+
 # Launchers
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/']"
 # help on gsettings: http://blogs.gnome.org/fmuellner/2011/11/22/gnome-shell-gsettings-and-keybindings/comment-page-1/#comment-128
