@@ -5,6 +5,6 @@ set window-title-basename true
 set scroll-step 100
 set scroll-full-overlap 0.1
 
-map <A-1> set "pages-per-row 1"
-map <A-2> set "pages-per-row 2"
+set inputbar-fg "#000000" # default light-green is unusable
+
 map <C-w> quit
