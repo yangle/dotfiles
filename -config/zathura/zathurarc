@@ -8,5 +8,6 @@ set scroll-full-overlap 0.1
 set selection-clipboard "clipboard"
 
 set inputbar-fg "#000000" # default light-green is unusable
+set inputbar-bg "#FFFFFF"
 
 map <C-w> quit
