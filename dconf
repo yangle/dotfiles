@@ -45,6 +45,9 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier'
 #gsettings set org.cinnamon desktop-effects false
 #gsettings set org.cinnamon desktop-layout 'flipped'
 
+# disable animations
+gsettings set org.gnome.desktop.interface enable-animations false
+
 # Windows
 gsettings set org.gnome.shell.overrides button-layout ':minimize,maximize,close'
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
