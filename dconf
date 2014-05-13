@@ -34,8 +34,9 @@ gsettings set org.gnome.nautilus.preferences sort-directories-first true
 gsettings set org.gnome.settings-daemon.plugins.power button-power 'interactive'
 gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothing'
 
-# Caps Lock
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
+# Caps Lock -> Ctrl
+# Ctrl-Alt-Backspace kills X
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'terminate:ctrl_alt_bksp']"
 
 ## Cinnamon
 #gsettings set org.nemo.desktop computer-icon-visible false
