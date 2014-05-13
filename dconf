@@ -54,6 +54,7 @@ gsettings set org.gnome.shell.overrides button-layout ':minimize,maximize,close'
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Alt>F1']"
+gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'none'
 
 # Workspace
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>h']"
