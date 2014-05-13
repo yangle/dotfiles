@@ -1,7 +1,9 @@
-config files
+dotfiles
 
-_xxx => ~/.xxx
--xxx/.../yyy => ~/.xxx/.../yyy
-xxx => ignored
+"setup" deploys _* and -* files to $HOME folder:
+    _xxx => ~/.xxx
+    _yyy/ => ~/.yyy/
+    -zzz/.../aaa => ~/.zzz/.../aaa   -- leaving other files under ~/.zzz out of git
+    uuu => ignored
 
-gconf: basic gnome settings
+dconf: basic gnome settings
