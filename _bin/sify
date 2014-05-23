@@ -49,7 +49,8 @@ def chunks(l, n):
 @arg('-j', dest='jobprefix', type=str, help='job name prefix', default=None)
 @arg('-n', dest='number', type=int, help='put n commands in each SLURM script', default=1)
 @arg('--memory', type=int, help='required memory in GB', default=None)
-def process(script, queue, jobprefix, number, memory):
+@arg('--after', type=str, nargs='+', metavar='#', help='hold execution till the specified jobs are finished', default=[])
+def process(script, queue, jobprefix, number, memory, after):
     """generate SLURM scripts, one for each line of the input file"""
     with open(script) as f:
         lines = [line.rstrip('\n') for line in f
@@ -71,7 +72,11 @@ def process(script, queue, jobprefix, number, memory):
             f.write(content)
         filenames.append(filename)
 
-    print ' && '.join(['sbatch ' + filename for filename in filenames])
+    sbatch = 'sbatch'
+    if len(after) > 0:
+        sbatch += ' --dependency=afterok:' + ':'.join(after)
+
+    print ' && '.join([sbatch + ' ' + filename for filename in filenames])
 
 if __name__ == '__main__':
     parser = ArghParser()
