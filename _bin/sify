@@ -21,8 +21,16 @@ cd $SLURM_SUBMIT_DIR
 {cmd}
 """
 
-def get_slurm(cmd, jobprefix, queue, memory, ppn_default=12, serial=[0]):
-    """generate PBS script for a single job"""
+def get_current_jobs():
+    """get the list of all submitted jobs"""
+    from sh import whoami
+    me = whoami().rstrip('\n')
+    from sh import squeue
+    raw = squeue('-h', '-Si', '-o', '"%7i"', '-u', me).rstrip('\n')
+    return [int(line.rstrip('" ').lstrip('"')) for line in raw.split('\n')]
+
+def generate_slurm(cmd, jobprefix, queue, memory, ppn_default=12, serial=[0]):
+    """generate SLURM script for a single job"""
     if not isinstance(cmd, str):
         cmd = '\n'.join(cmd)
 
@@ -49,7 +57,7 @@ def chunks(l, n):
 @arg('-j', dest='jobprefix', type=str, help='job name prefix', default=None)
 @arg('-n', dest='number', type=int, help='put n commands in each SLURM script', default=1)
 @arg('--memory', type=int, help='required memory in GB', default=None)
-@arg('--after', type=str, nargs='+', metavar='#', help='hold execution till the specified jobs are finished', default=[])
+@arg('--after', type=str, metavar='# or #min-#max', help='hold execution till the specified job(s) are finished', default=None)
 def process(script, queue, jobprefix, number, memory, after):
     """generate SLURM scripts, one for each line of the input file"""
     with open(script) as f:
@@ -58,23 +66,31 @@ def process(script, queue, jobprefix, number, memory, after):
 
     if jobprefix is None:
         from pydoc import pager
-        text = ('=' * 60 + '\n').join(get_slurm(cmd, '{jobprefix}', queue, memory)[1] for cmd in chunks(lines, number))
+        text = ('=' * 60 + '\n').join(generate_slurm(cmd, '{jobprefix}', queue, memory)[1] for cmd in chunks(lines, number))
         pager(text)
         return
 
     from sh import mkdir
     mkdir('-p', '.slurm')
 
+    from os.path import isfile
     filenames = []
     for cmd in chunks(lines, number):
-        filename, content = get_slurm(cmd, jobprefix, queue, memory)
+        filename, content = generate_slurm(cmd, jobprefix, queue, memory)
+        if isfile(filename):
+            assert not isfile(filename + '.out') # never overwrite started jobs
+
         with open(filename, 'w') as f:
             f.write(content)
         filenames.append(filename)
 
     sbatch = 'sbatch'
-    if len(after) > 0:
-        sbatch += ' --dependency=afterok:' + ':'.join(after)
+    if after is not None:
+        if '-' not in after:
+            sbatch += ' --dependency=afterok:' + after
+        else:
+            amin, amax = map(int, after.split('-'))
+            sbatch += ' --dependency=afterok:' + ':'.join(map(str, [i for i in get_current_jobs() if amin <= i <= amax]))
 
     print ' && '.join([sbatch + ' ' + filename for filename in filenames])
 
