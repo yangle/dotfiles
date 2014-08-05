@@ -1,4 +1,5 @@
-set show-scrollbars true
+# see zathurarc man page for details
+set guioptions "sv"
 set adjust-open "width"
 set incremental-search true
 set window-title-basename true
