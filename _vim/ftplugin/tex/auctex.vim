@@ -1057,11 +1057,11 @@ endfunction
 inoremap <buffer> <M-s> \sqrt{}<Left>
 inoremap <buffer> <Insert>s \sqrt{}<Left>
 
-" Insert-t or Insert-t inserts Textbf
-inoremap <buffer> <Insert>t \textbf{}<Left>
-inoremap <buffer> <M-t> \textbf{}<Left>
-vnoremap <buffer> <Insert>t <C-C>`>a}<Esc>`<i\textbf{<Esc>
-vnoremap <buffer> <M-t> <C-C>`>a}<Esc>`<i\textbf{<Esc>
+" Insert-t or Insert-t inserts \text{}
+inoremap <buffer> <Insert>t \text{}<Left>
+inoremap <buffer> <M-t> \text{}<Left>
+vnoremap <buffer> <Insert>t <C-C>`>a}<Esc>`<i\text{<Esc>
+vnoremap <buffer> <M-t> <C-C>`>a}<Esc>`<i\text{<Esc>
 
 " This is for _{}^{}.  It gets rid of the ^{} part
 inoremap <buffer> <M-x> <Esc>f^cf}
