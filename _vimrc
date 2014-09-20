@@ -1,5 +1,6 @@
 " pathogen
 execute pathogen#infect()
+call pathogen#helptags()
 
 "set lines=30 columns=95 " start size
 set nocp " non-compatible
