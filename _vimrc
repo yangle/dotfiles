@@ -1,3 +1,6 @@
+" pathogen
+execute pathogen#infect()
+
 "set lines=30 columns=95 " start size
 set nocp " non-compatible
 set bs=2 " backspace through leading spaces & linebreak
