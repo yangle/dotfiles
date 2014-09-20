@@ -1,3 +1,4 @@
 [submodule "_vim/bundle/rust"]
 	path = _vim/bundle/rust
 	url = https://github.com/wting/rust.vim
+	ignore = untracked
