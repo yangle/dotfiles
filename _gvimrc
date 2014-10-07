@@ -1,6 +1,11 @@
 " syntax highlighting
 colorscheme mycolors
 
+"" airplane mode
+""set background=light
+""colorscheme default
+""set guifont=Monospace\ 16
+
 " hide toolbar/menu
 set guioptions-=m  "remove menu bar
 set guioptions-=M  "a more extreme version, which does not source the menu script 
