@@ -17,6 +17,12 @@ if len(sys.argv) not in (2,3):
 else:
     input=sys.argv[1]
     output=sys.argv[-1] if len(sys.argv)==3 else os.path.expanduser(os.path.join('~/Desktop',os.path.basename(input)))
+
+    from os.path import isfile
+    if isfile(output):
+        print 'output "%s" already exists!' % output
+        sys.exit(1)
+
     result=execute(r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dFirstPage=2 -sOutputFile="%s" "%s"' \
                    % (output, input))
     if result[0]!=0:

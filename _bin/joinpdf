@@ -15,6 +15,12 @@ if len(sys.argv)<4:
 else:
     input=sys.argv[1:-1]
     output=sys.argv[-1]
+
+    from os.path import isfile
+    if isfile(output):
+        print 'output "%s" already exists!' % output
+        sys.exit(1)
+
     result=execute(r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" "%s"' \
                    % (output, r'" "'.join(input))) 
     if result[0]!=0:
