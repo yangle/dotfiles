@@ -10,7 +10,7 @@ set -e
 cd $HOME/mirror
 mkdir -p log
 
-HOST="http://mirrors.rutgers.edu/archlinux"
+HOST="http://mirror.umd.edu/archlinux"
 TIMESTAMP=`date +"%Y%m%d"`
 LOGSTAMP=`date +"%Y%m%d-%H%M%S"`
 CURRENT=`readlink archlinux`
