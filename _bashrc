@@ -68,7 +68,7 @@ if test "$TERM" = "xterm" -o \
     export PROMPT_COMMAND
 fi
 
-if type "register-python2-argcomplete" > /dev/null; then
+if type "register-python2-argcomplete" > /dev/null 2>&1; then
     eval "$(register-python2-argcomplete rr)"
 fi
 
@@ -84,4 +84,4 @@ fi
 
 [ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
 
-source /etc/profile.d/vte.sh
+[ -e /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
