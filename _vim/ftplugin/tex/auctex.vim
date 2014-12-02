@@ -892,11 +892,11 @@ inoremap <buffer> <Leader><C-I> \in
 inoremap <buffer> <Leader><C-J> \downarrow
 inoremap <buffer> <Leader><C-L> \log
 inoremap <buffer> <Leader><C-P> \uparrow
-inoremap <buffer> <Leader><C-Up> \uparrow
-inoremap <buffer> <Leader><Up> \textuparrow{}
+inoremap <buffer> <Leader><C-Up> \textuparrow{}
+inoremap <buffer> <Leader><Up> \uparrow
 inoremap <buffer> <Leader><C-N> \downarrow
-inoremap <buffer> <Leader><C-Down> \downarrow
-inoremap <buffer> <Leader><Down> \textdownarrow{}
+inoremap <buffer> <Leader><C-Down> \textdownarrow{}
+inoremap <buffer> <Leader><Down> \downarrow
 inoremap <buffer> <Leader><C-F> \to
 inoremap <buffer> <Leader><Right> \lim_{}<Left>
 inoremap <buffer> <Leader><C-S> \sin
