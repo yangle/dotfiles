@@ -898,7 +898,8 @@ inoremap <buffer> <Leader><C-N> \downarrow
 inoremap <buffer> <Leader><C-Down> \textdownarrow{}
 inoremap <buffer> <Leader><Down> \downarrow
 inoremap <buffer> <Leader><C-F> \to
-inoremap <buffer> <Leader><Right> \lim_{}<Left>
+"inoremap <buffer> <Leader><Right> \lim_{}<Left>
+inoremap <buffer> <Leader><Right> \rightarrow
 inoremap <buffer> <Leader><C-S> \sin
 inoremap <buffer> <Leader><C-T> \tan
 inoremap <buffer> <Leader><M-l> \ell
