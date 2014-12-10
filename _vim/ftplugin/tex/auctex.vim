@@ -998,6 +998,7 @@ vnoremap <buffer> <M-c> <C-C>`>a}<Esc>`<i\mathcal{<Esc>
 vnoremap <buffer> <Insert>c <C-C>`>a}<Esc>`<i\mathcal{<Esc>
 inoremap <buffer> <M-c> <C-R>=<SID>MathCal()<CR>
 inoremap <buffer> <Insert>c <C-R>=<SID>MathCal()<CR>
+inoremap <buffer> <Insert>C <C-R>=<SID>MathCal()<CR>
 function! s:MathCal()
     if getline('.')[col('.')-2] =~ '[a-zA-Z0-9]'
 	return "\<Left>\\mathcal{\<Right>}\<Esc>hvUla"
