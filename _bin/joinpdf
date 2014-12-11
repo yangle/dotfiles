@@ -16,11 +16,8 @@ def joinpdf(filenames, output):
     execute(command, choke=True)
 
 if __name__ == '__main__':
-    from sys import argv, exit
-
+    from sys import argv
     if len(argv) < 4:
         print "Usage: joinpdf 1.pdf 2.pdf 3.pdf ... output.pdf"
-        exit(1)
-
-    joinpdf(argv[1:-1], argv[-1])
-
+    else:
+        joinpdf(argv[1:-1], argv[-1])

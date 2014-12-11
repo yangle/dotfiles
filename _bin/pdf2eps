@@ -1,19 +1,22 @@
 #!/usr/bin/env python2
+# -*- coding: utf8 -*-
 
-import sys
-import os
+def convert(filename, dest='eps'):
+    """convert pdf → ps → eps"""
+    from utils import mkdir
+    mkdir(dest)
 
-from utils import abspath,mkdir,execute
+    from os.path import abspath, join, basename, splitext
+    base = splitext(basename(filename))[0]
+    ps = join(dest, base + '.ps')
+    eps = join(dest, base + '.eps')
 
-mkdir('eps')
-for name in sys.argv[1:]:
-    print name
-    base,ext=os.path.splitext(name)
-    assert ext=='.pdf'
-    pdf=abspath(os.getcwd(),name)
-    ps=abspath(os.getcwd(),base+'.ps')
-    eps=abspath(os.getcwd(),base+'.eps')
-    execute('pdftops-cairo "%s" "%s"'%(pdf,ps))
-    execute('ps2eps "%s"' % ps)
-    execute('mv "%s" eps/' % eps)
-    execute('rm "%s"' % ps)
+    from utils import execute
+    execute('pdftops-cairo "%s" "%s"' % (filename, ps), choke=True)
+    execute('ps2eps -f "%s"' % ps, choke=True)
+    execute('rm "%s"' % ps, choke=True)
+
+if __name__ == '__main__':
+    from sys import argv
+    for filename in argv[1:]:
+        convert(filename)
