@@ -31,6 +31,13 @@ def profile_this(f):
         return ret
     return profiled
 
+def repr_args():
+    """repr function name and arguments of the caller"""
+    from inspect import getargvalues, stack
+    caller = stack()[1]
+    info = getargvalues(caller[0])
+    return '%s(%s)' % (caller[3], ', '.join('%s=%s' % (arg, info.locals[arg]) for arg in info.args))
+
 
 
 
@@ -91,6 +98,32 @@ def md5sum(filename, block_size=128):
                 break
             m.update(data)
     return m.hexdigest()
+
+def repr_with_error(value, error, n=1, force_scientific=False, TeX=False):
+    """repr a real number with n-digit error"""
+    from math import log10, floor
+    error = abs(error)
+
+    # immediately round the error to "finalize" the n leading digits
+    error = round(error, - (int(floor(log10(error))) - (n - 1)))
+
+    # overall exponent
+    exponent = 0
+    if force_scientific or error > 10:
+        exponent = int(floor(log10(max(abs(value), error))))
+    value *= 10 ** (-exponent)
+    error *= 10 ** (-exponent)
+
+    # find b as in (error = a * 10**b), with "a" having n digits
+    b = int(floor(log10(error))) - (n - 1)
+
+    s_mean = ('%.' + str(-b) + 'f') % value
+    s_error = str(int(round(error * 10 ** (-b))))
+    s = ('%s_{%s}' if TeX else '%s(%s)') % (s_mean, s_error)
+
+    if exponent != 0:
+        s += (r'\times 10^%d' if TeX else 'e%+d') % exponent
+    return s
 
 
 
