@@ -13,12 +13,7 @@ def joinpdf(filenames, output):
     print command
 
     from utils import execute
-    stdout, stderr, code = execute(command)
-
-    if code != 0:
-        print stderr
-        print stdout
-        exit(code)
+    execute(command, choke=True)
 
 if __name__ == '__main__':
     from sys import argv, exit

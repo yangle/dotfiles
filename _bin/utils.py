@@ -97,11 +97,24 @@ def md5sum(filename, block_size=128):
 
 ####  shell  ###################################################################
 
-def execute(command):
-    """execute command in current directory"""
+def execute(command, choke=False):
+    """execute command in current directory
+
+    choke = whether to choke on non-zero return code
+    """
     from subprocess import Popen, PIPE
     p = Popen([command], shell=True, stdout=PIPE, stderr=PIPE)
     stdout, stderr = p.communicate()
+
+    if choke and p.returncode != 0:
+        if len(stdout) > 0:
+            print stdout,
+        if len(stderr) > 0:
+            print stderr,
+
+        from sys import exit
+        exit(p.returncode)
+
     return stdout, stderr, p.returncode
 
 def execute_realtime(command, choke=True):
