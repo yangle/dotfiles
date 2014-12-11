@@ -4,14 +4,12 @@ import os
 import sys
 import re
 import functools
-import errno
 import subprocess
 import StringIO
 import struct
 import hashlib
 import select
 import cPickle
-import logging
 
 try:
     import pexpect
@@ -42,20 +40,6 @@ def profile_this(f):
         p.dump_stats(f.__name__ + '.profile')
         return ret
     return profiled
-
-def setup_logging(filename=None, lvl=logging.DEBUG):
-    """setup logging to a file + console"""
-    if filename is not None:
-        logging.basicConfig(level=logging.DEBUG,
-                            format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                            datefmt='%m-%d %H:%M',
-                            filename=filename,
-                            filemode='w')
-    console = logging.StreamHandler()
-    console.setLevel(lvl)
-    console.setFormatter(logging.Formatter('%(message)s'))
-    logging.getLogger('').addHandler(console)
-    return logging.getLogger('')
 
 def is_numeric(string):
     try:
@@ -89,24 +73,6 @@ def md5sum(filename, block_size=128):
                 break
             md5.update(data)
     return md5.hexdigest()
-
-class DotDict(dict):
-    """Provide a dict object with . access to elements
-    http://www.rafekettler.com/magicmethods.html
-    http://stackoverflow.com/a/224876
-    """
-    __getattr__= dict.__getitem__
-    __setattr__= dict.__setitem__
-    __delattr__= dict.__delitem__
-
-def key_natural(key):
-    """key to sort alphanumeric stuff in the way that humans expect. Adapted from http://stackoverflow.com/a/2669120"""
-    def to_float(s):
-        try:
-            return float(s)
-        except ValueError:
-            return s
-    return [to_float(s) for s in re.split('([0-9.]+)', key)]
 
 def sorted_breadth_first(iterable):
     """abcdefgh -> aecgbfdh"""
@@ -167,39 +133,6 @@ def get_input(prompt, default='default', timeout=10):
 def absPathRel2Script(path):
     # sys.path[0] gives the full path to the script, regardless of cwd.
     return os.path.join(sys.path[0], path)
-def mkdir(path):
-    # '-p' = no error if existing, make parent directories as needed
-    # subprocess.Popen(['mkdir -p "%s"'%path], shell=True, stderr=subprocess.PIPE).wait()
-    try:
-        os.makedirs(path)
-    except OSError as exc: # Python >2.5
-        if exc.errno == errno.EEXIST:
-            pass
-        else: raise
-
-def execute(command):
-    p=subprocess.Popen([command], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdo,stde=p.communicate()
-    return stdo,stde,p.returncode
-
-def execute_realtime(cmd):
-    if pexpect==None:   # you can also try http://stackoverflow.com/questions/527197/intercepting-stdout-of-a-subprocess-while-it-is-running
-                        #              and http://stackoverflow.com/questions/2804543/read-subprocess-stdout-line-by-line
-                        # but since i can install pexpect to $HOME, i wouldn't bother....
-        stdo,stde,code=execute(cmd)
-        for line in (stdo+stde).split('\n'):
-            yield line
-        assert code==0
-    else:
-        child = pexpect.spawn(cmd)
-        while True:
-            try:
-                child.expect('\n', timeout=None) # http://www.noah.org/wiki/pexpect#Exceptions
-                yield child.before
-            except pexpect.EOF:
-                break
-        child.close()
-        assert child.exitstatus==0
 
 def printDict(dic):
    for key in sorted(dic.keys()):
