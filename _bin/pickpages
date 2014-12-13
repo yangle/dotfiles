@@ -1,0 +1,29 @@
+#!/usr/bin/env python2
+# -*- coding: utf8 -*-
+
+from argh import arg
+
+@arg('filename', type=str, help='input pdf filename')
+@arg('-o', type=str, metavar='FILENAME', help='output pdf filename', default=None)
+@arg('-f', type=int, metavar='#first', help='index of the first page', default=2)
+@arg('-l', type=int, metavar='#last', help='index of the last page', default=None)
+def run(filename, o, f, l):
+    """pick selected pages from a pdf"""
+    if o is None:
+        from os.path import basename
+        o = 'pages-' + basename(filename)
+
+    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dFirstPage=%d' % f
+    if l is not None:
+        command += ' -dLastPage=%d' % l
+    command += ' -sOutputFile="%s" "%s"' % (o, filename)
+
+    from utils import execute
+    print command
+    execute(command, choke=True)
+
+if __name__ == '__main__':
+    from argh.helpers import ArghParser
+    parser = ArghParser()
+    parser.set_default_command(run)
+    parser.dispatch()
