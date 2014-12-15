@@ -1,0 +1,31 @@
+#!/usr/bin/python2
+# -*- coding: utf8 -*-
+
+from argh import arg
+
+@arg('filenames', type=str, nargs='+', metavar='filename', help='.ogg filenames')
+@arg('--bitrate', type=int, help='compression bitrate', default=128)
+@arg('--dirty', action='store_true', help='do not sanitize filename for FAT', default=False)
+def run(filenames, bitrate, dirty):
+    """generate script to convert audio files to MP3. pipe to bash or parallel to execute"""
+    template = 'echo %s → %s.mp3 && ffmpeg -y -v 0 -i "%s" -acodec mp3 -ab %dk "%s.mp3"'
+
+    from os.path import basename, splitext
+    for filename in filenames:
+        output = splitext(basename(filename))[0]
+
+        if not dirty:
+            output = sanitize(output)
+        print template % (filename, output, filename, bitrate, output)
+
+def sanitize(s):
+    """remove invalide characters for filename in FAT filesystem"""
+    from string import ascii_letters, digits
+    valid = "-_.() %s%s" % (ascii_letters, digits)
+    return ''.join(c for c in s if c in valid)
+
+if __name__ == '__main__':
+    from argh.helpers import ArghParser
+    parser = ArghParser()
+    parser.set_default_command(run)
+    parser.dispatch()
