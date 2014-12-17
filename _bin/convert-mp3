@@ -3,13 +3,13 @@
 
 from argh import arg
 
-@arg('filenames', type=str, nargs='+', metavar='filename', help='.ogg filenames')
+@arg('filenames', type=str, nargs='+', metavar='filename', help='audio filenames')
 @arg('--bitrate', type=int, help='compression bitrate', default=128)
 @arg('--dirty', action='store_true', help='do not sanitize filename for FAT', default=False)
 @arg('--overwrite', action='store_true', help='overwrite existing mp3 files', default=False)
 def run(filenames, bitrate, dirty, overwrite):
-    """generate script to convert audio files to MP3. pipe to bash or parallel to execute"""
-    template = 'echo "%s → %s.mp3" && ffmpeg -%s -v 0 -i "%s" -acodec mp3 -ab %dk "%s.mp3"'
+    """generate script converting files to MP3 (pipe to 'parallel' to execute)"""
+    template = 'echo "%s → %s.mp3" && ffmpeg -%s -v 0 -i "%s" -acodec mp3 -ab %dk -map_metadata 0:s:0 "%s.mp3" --'
 
     from os.path import basename, splitext
     for filename in filenames:
