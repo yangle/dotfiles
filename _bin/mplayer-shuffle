@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mplayer -quiet -shuffle $* 2>/dev/null | grep Playing --color=none
