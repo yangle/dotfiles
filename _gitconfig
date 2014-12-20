@@ -1,6 +1,5 @@
-[user]
-    name = Yang-Le
-    email = yanglewu@Princeton.EDU
+[include]
+    path = ~/.gitconfig-whoami
 [color]
     ui=auto
 [color "branch"]
