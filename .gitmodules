@@ -23,3 +23,6 @@
 [submodule "_vim/bundle/asymptote"]
 	path = _vim/bundle/asymptote
 	url = https://github.com/hura/vim-asymptote.git
+[submodule "_vim/bundle/python-syntax"]
+	path = _vim/bundle/python-syntax
+	url = https://github.com/hdima/python-syntax.git
