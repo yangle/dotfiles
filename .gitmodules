@@ -29,3 +29,6 @@
 [submodule "_vim/bundle/indentpython"]
 	path = _vim/bundle/indentpython
 	url = https://github.com/vim-scripts/indentpython.vim.git
+[submodule "_vim/bundle/auctex"]
+	path = _vim/bundle/auctex
+	url = git@github.com:yAngle/auctex.vim.git
