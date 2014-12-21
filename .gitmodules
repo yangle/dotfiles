@@ -32,3 +32,6 @@
 [submodule "_vim/bundle/auctex"]
 	path = _vim/bundle/auctex
 	url = git@github.com:yAngle/auctex.vim.git
+[submodule "_vim/bundle/markdown"]
+	path = _vim/bundle/markdown
+	url = https://github.com/plasticboy/vim-markdown.git
