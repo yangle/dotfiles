@@ -2,3 +2,6 @@
 	path = _vim/bundle/rust
 	url = https://github.com/wting/rust.vim
 	ignore = untracked
+[submodule "_vim/bundle/OmniCppComplete"]
+	path = _vim/bundle/OmniCppComplete
+	url = https://github.com/vim-scripts/OmniCppComplete.git
