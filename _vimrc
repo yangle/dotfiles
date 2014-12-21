@@ -61,10 +61,6 @@ let Tlist_WinWidth = 40
 " --regex-tex=/\\ref[ \t]*\*?\{[ \t]*([^}]*)\}/\1/r,ref/
 let tlist_tex_settings = 'tex;a:section;l:label;r:ref'
 
-" texpdf setting.
-" not to have the '\r' and '\m' leader keys mapped but keep the function keys <F9> <S-F9> mapping
-let g:tex_pdf_map_leader_keys = 0 
-
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
 let g:buftabs_only_basename=1
