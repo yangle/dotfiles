@@ -5,3 +5,6 @@
 [submodule "_vim/bundle/OmniCppComplete"]
 	path = _vim/bundle/OmniCppComplete
 	url = https://github.com/vim-scripts/OmniCppComplete.git
+[submodule "_vim/bundle/cython"]
+	path = _vim/bundle/cython
+	url = git@github.com:yAngle/vim-cython.git

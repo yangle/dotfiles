@@ -110,14 +110,6 @@ filetype plugin on
 " python
 let python_highlight_all = 1
 
-" Cython
-if !exists("autocommands_loaded")
-    let autocommands_loaded=1
-    augroup filetypedetect
-        au! BufRead,BufNewFile *.pyx setfiletype python
-    augroup END
-endif
-
 "set term=rxvt-unicode # enables italics, but screen bleeds after exit vim
 set background=dark
 set t_Co=256
