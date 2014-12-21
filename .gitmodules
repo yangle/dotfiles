@@ -20,3 +20,6 @@
 [submodule "_vim/bundle/a"]
 	path = _vim/bundle/a
 	url = https://github.com/vim-scripts/a.vim.git
+[submodule "_vim/bundle/asymptote"]
+	path = _vim/bundle/asymptote
+	url = https://github.com/hura/vim-asymptote.git
