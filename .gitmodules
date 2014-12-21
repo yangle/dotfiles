@@ -11,3 +11,6 @@
 [submodule "_vim/bundle/surround"]
 	path = _vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "_vim/bundle/buftabs"]
+	path = _vim/bundle/buftabs
+	url = https://github.com/vim-scripts/buftabs.git
