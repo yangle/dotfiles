@@ -8,3 +8,6 @@
 [submodule "_vim/bundle/cython"]
 	path = _vim/bundle/cython
 	url = git@github.com:yAngle/vim-cython.git
+[submodule "_vim/bundle/surround"]
+	path = _vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
