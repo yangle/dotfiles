@@ -5,19 +5,31 @@ from argh import arg
 
 @arg('filenames', type=str, nargs='+', metavar='filename', help='audio filenames')
 @arg('--bitrate', type=int, help='compression bitrate', default=128)
+@arg('--here', action='store_true', help="do not sort into subdirectories based on split('-')[0]", default=False)
 @arg('--dirty', action='store_true', help='do not sanitize filename for FAT', default=False)
 @arg('--overwrite', action='store_true', help='overwrite existing mp3 files', default=False)
-def run(filenames, bitrate, dirty, overwrite):
-    """generate script converting files to MP3 (pipe to 'parallel' to execute)"""
-    template = 'echo "%s → %s.mp3" && ffmpeg -%s -v 0 -i "%s" -acodec mp3 -ab %dk -map_metadata 0:s:0 "%s.mp3" --'
+def run(filenames, bitrate, here, dirty, overwrite):
+    """generate script converting files to MP3 (pipe to 'parallel -j4 -u' to execute)"""
+    from os.path import basename, splitext, join
 
-    from os.path import basename, splitext
     for filename in filenames:
         output = splitext(basename(filename))[0]
-
         if not dirty:
             output = sanitize(output)
-        print template % (filename, output, 'y' if overwrite else 'n', filename, bitrate, output)
+
+        commands = []
+
+        if not here:
+            path, output = output.split('-', 1)
+            output = join(path, output)
+            commands.append('mkdir -p %s' % path)
+
+        commands.append('echo "%s → %s.mp3"' % (filename, output))
+
+        template = 'ffmpeg -%s -v 0 -i "%s" -acodec mp3 -ab %dk -map_metadata 0:s:0 "%s.mp3" --'
+        commands.append(template % ('y' if overwrite else 'n', filename, bitrate, output))
+
+        print ' && '.join(commands)
 
 def sanitize(s):
     """remove invalide characters for filename in FAT filesystem"""
