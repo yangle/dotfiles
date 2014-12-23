@@ -25,7 +25,7 @@
 	url = https://github.com/hura/vim-asymptote.git
 [submodule "_vim/bundle/python-syntax"]
 	path = _vim/bundle/python-syntax
-	url = https://github.com/hdima/python-syntax.git
+	url = git@github.com:yAngle/python-syntax.git
 [submodule "_vim/bundle/indentpython"]
 	path = _vim/bundle/indentpython
 	url = https://github.com/vim-scripts/indentpython.vim.git
