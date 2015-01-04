@@ -1,21 +1,5 @@
 "map <C-H> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
 map <C-H> :A<CR>
-noremap <buffer> <silent> <F9> <Esc>:w<CR>:!make debug<CR>
-inoremap <buffer> <silent> <F9> <Esc>:w<CR>:!make debug<CR>
-noremap <buffer> <silent> <S-F9> <Esc>:!stty erase '^H'; cd exec/test && ../z<CR>
-inoremap <buffer> <silent> <S-F9> <Esc>:!stty erase '^H'; cd exec/test && ../z<CR>
-noremap <buffer> <silent> <C-F9> <Esc>:!make py<CR>
-inoremap <buffer> <silent> <C-F9> <Esc>:!make py<CR>
-
-"Omnicomplete 
-set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_DisplayMode         = 1
-let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-let OmniCpp_ShowAccess          = 1 "show access in pop-up
-let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-set completeopt=menuone,menu,longest
 
 " ctags generation
 function! UpdateTags()
