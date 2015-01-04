@@ -106,6 +106,7 @@ filetype plugin on
 " python
 let python_highlight_all = 1
 let python_version_2 = 1
+au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 
 "set term=rxvt-unicode # enables italics, but screen bleeds after exit vim
 set background=dark
