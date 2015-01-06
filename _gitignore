@@ -6,3 +6,4 @@
 *.pyc
 *.pyo
 doc/tags
+gmon.out
