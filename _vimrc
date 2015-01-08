@@ -47,20 +47,6 @@ au BufRead,BufNewFile *.tex set spell filetype=tex
 au BufRead,BufNewFile *.cls set spell filetype=tex
 au BufRead,BufNewFile *.sty set spell filetype=tex
 
-" Tasklist
-map <F12> :TlistToggle<CR>
-let Tlist_WinWidth = 40
-" Add support for latex
-" use "ctags --list-kinds=tex" to see the tags defined.
-" here we adopt the unused tag "a" to store the hierarchy of (sub(sub))sections
-" correspondingly, the following should be put into .ctags
-" --regex-tex=/\\subsubsection[ \t]*\*?\{[ \t]*([^}]*)\}/| \1/a,subsubsection/
-" --regex-tex=/\\subsection[ \t]*\*?\{[ \t]*([^}]*)\}/-\1/a,subsection/
-" --regex-tex=/\\section[ \t]*\*?\{[ \t]*([^}]*)\}/\1/a,section/
-" --regex-tex=/\\label[ \t]*\*?\{[ \t]*([^}]*)\}/\1/l,label/
-" --regex-tex=/\\ref[ \t]*\*?\{[ \t]*([^}]*)\}/\1/r,ref/
-let tlist_tex_settings = 'tex;a:section;l:label;r:ref'
-
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
 let g:buftabs_only_basename=1
