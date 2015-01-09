@@ -64,8 +64,8 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>l
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>semicolon']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>apostrophe']"
 
-# disable screenshot
-gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot ''
+# screenshot
+gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '<Super>Print'
 
 # lock screen
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Primary><Alt>l'
