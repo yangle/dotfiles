@@ -83,6 +83,8 @@ if [ $EUID -ne 0 ] ; then
     export GPG_AGENT_INFO  # the env file does not contain the export statement
 fi
 
+alias gpgd='gpg --batch -q -d'
+
 [ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
 
 [ -e /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
