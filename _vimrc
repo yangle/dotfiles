@@ -97,6 +97,9 @@ au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+" release Ctrl-C from SQL plugin
+let g:ftplugin_sql_omni_key = '<C-j>'
+
 "set term=rxvt-unicode # enables italics, but screen bleeds after exit vim
 set background=dark
 set t_Co=256
