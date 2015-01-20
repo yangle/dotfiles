@@ -8,6 +8,11 @@ set scroll-full-overlap 0.1
 
 set selection-clipboard "clipboard"
 
+# darker background (switch by Ctrl-R)
+set recolor-keephue true
+set recolor-darkcolor "#000000"
+set recolor-lightcolor "#CCCCCC"
+
 set inputbar-fg "#000000" # default light-green is unusable
 set inputbar-bg "#FFFFFF"
 
