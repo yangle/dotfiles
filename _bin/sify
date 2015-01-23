@@ -4,7 +4,7 @@
 from argh.helpers import ArghParser
 from argh import arg, expects_obj
 
-email = ''.join(map(lambda c: chr(ord(c) - 1), 'zbohmfxvAqsjodfupo/fev'))
+email = ''.join(map(lambda c: chr(ord(c) - 1), 'zbohmfxvAvne/fev'))
 template = """#!/bin/bash
 #SBATCH --mail-user=""" + email + """
 #SBATCH --mail-type=ALL
@@ -12,10 +12,13 @@ template = """#!/bin/bash
 #SBATCH -J {job}
 #SBATCH -N 1
 #SBATCH --ntasks-per-node={ppn}
+#SBATCH --share
 #SBATCH -t {walltime}
-{extra}
+#SBATCH --mem {memory}
 
-. ~/.bashrc
+source ~/.bashrc
+[ -e ~/.bashrc.mine ] && source ~/.bashrc.mine
+
 cd $SLURM_SUBMIT_DIR
 
 {cmd}
@@ -29,21 +32,19 @@ def get_current_jobs():
     raw = squeue('-h', '-Si', '-o', '"%7i"', '-u', me).rstrip('\n')
     return [int(line.rstrip('" ').lstrip('"')) for line in raw.split('\n')]
 
-def generate_slurm(cmd, jobprefix, queue, memory, ppn_default=12, serial=[0]):
+def generate_slurm(cmd, jobprefix, walltime, memory, ppn_default=1, serial=[0]):
     """generate SLURM script for a single job"""
     if not isinstance(cmd, str):
         cmd = '\n'.join(cmd)
 
-    walltime = dict(test='1:00:00', short='24:00:00', medium='72:00:00')[queue]
     job = '%s-%d' % (jobprefix, serial[0])
     serial[0] += 1
 
     prefix = 'env OMP_NUM_THREADS='
     ppn = int(cmd[len(prefix): cmd.index(' ', len(prefix))]) if cmd.startswith(prefix) else ppn_default
-    extra = '' if memory is None else '#SBATCH --mem %d' % (memory * 1024)
 
     filename = '.slurm/{job}'.format(job=job)
-    content = template.format(job=job, walltime=walltime, ppn=ppn, extra=extra, cmd=cmd)
+    content = template.format(job=job, walltime=walltime, memory=memory * 1024, ppn=ppn, cmd=cmd)
     return filename, content
 
 def chunks(l, n):
@@ -53,20 +54,22 @@ def chunks(l, n):
         yield l[i::m]
 
 @arg('script', type=str, help='filename of the script to be processed')
-@arg('-q', dest='queue', type=str, choices=['test', 'short', 'medium'], help='queue name', default='short')
 @arg('-j', dest='jobprefix', type=str, help='job name prefix', default=None)
+@arg('-d', dest='duplicate', type=int, help='duplicate each line multiple times', default=1)
 @arg('-n', dest='number', type=int, help='put n commands in each SLURM script', default=1)
-@arg('--memory', type=int, help='required memory in GB', default=None)
+@arg('-t', dest='walltime', type=str, help='required walltime, with format: m:s, h:m:s, d-h, d-h:m, or d-h:m:s', default='8:00:00')
+@arg('--memory', type=int, help='required memory in GB', default=8)
 @arg('--after', type=str, metavar='# or #min-#max', help='hold execution till the specified job(s) are finished', default=None)
-def process(script, queue, jobprefix, number, memory, after):
+def process(script, jobprefix, duplicate, number, walltime, memory, after):
     """generate SLURM scripts, one for each line of the input file"""
     with open(script) as f:
         lines = [line.rstrip('\n') for line in f
                  if line[0] not in '#\n' and not line.startswith('set -e')]
+    lines = lines * duplicate
 
     if jobprefix is None:
         from pydoc import pager
-        text = ('=' * 60 + '\n').join(generate_slurm(cmd, '{jobprefix}', queue, memory)[1] for cmd in chunks(lines, number))
+        text = ('=' * 60 + '\n').join(generate_slurm(cmd, '{jobprefix}', walltime, memory)[1] for cmd in chunks(lines, number))
         pager(text)
         return
 
@@ -76,7 +79,7 @@ def process(script, queue, jobprefix, number, memory, after):
     from os.path import isfile
     filenames = []
     for cmd in chunks(lines, number):
-        filename, content = generate_slurm(cmd, jobprefix, queue, memory)
+        filename, content = generate_slurm(cmd, jobprefix, walltime, memory)
         if isfile(filename):
             assert not isfile(filename + '.out') # never overwrite started jobs
 
