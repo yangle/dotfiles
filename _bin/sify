@@ -16,6 +16,8 @@ template = """#!/bin/bash
 #SBATCH -t {walltime}
 #SBATCH --mem {memory}
 
+set -e
+
 source ~/.bashrc
 [ -e ~/.bashrc.mine ] && source ~/.bashrc.mine
 
