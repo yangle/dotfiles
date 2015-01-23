@@ -18,7 +18,7 @@ template = """#!/bin/bash
 
 set -e
 
-source ~/.bashrc
+source ~/.bashrc || true
 [ -e ~/.bashrc.mine ] && source ~/.bashrc.mine
 
 [ -n "$SLURM_SUBMIT_DIR" ] && cd $SLURM_SUBMIT_DIR
