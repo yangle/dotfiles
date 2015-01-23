@@ -21,7 +21,7 @@ set -e
 source ~/.bashrc
 [ -e ~/.bashrc.mine ] && source ~/.bashrc.mine
 
-cd $SLURM_SUBMIT_DIR
+[ -n "$SLURM_SUBMIT_DIR" ] && cd $SLURM_SUBMIT_DIR
 
 {cmd}
 """
