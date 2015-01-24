@@ -7,7 +7,7 @@ from argh import arg, expects_obj
 email = ''.join(map(lambda c: chr(ord(c) - 1), 'zbohmfxvAvne/fev'))
 template = """#!/bin/bash
 #SBATCH --mail-user=""" + email + """
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=FAIL
 #SBATCH -o .slurm/{job}.out
 #SBATCH -J {job}
 #SBATCH -N 1
