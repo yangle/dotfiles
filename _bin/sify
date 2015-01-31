@@ -90,6 +90,7 @@ def process(script, jobprefix, duplicate, number, walltime, memory, after):
         filenames.append(filename)
 
     sbatch = 'sbatch'
+    sbatch += ' -A physics-hi' # use high-priority allocation
     if after is not None:
         if '-' not in after:
             sbatch += ' --dependency=afterok:' + after
