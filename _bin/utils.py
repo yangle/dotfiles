@@ -109,7 +109,7 @@ def repr_with_error(value, error, n=1, force_scientific=False, TeX=False):
 
     # overall exponent
     exponent = 0
-    if force_scientific or error > 10:
+    if force_scientific or error > 10 - 1e-13:
         exponent = int(floor(log10(max(abs(value), error))))
     value *= 10 ** (-exponent)
     error *= 10 ** (-exponent)
