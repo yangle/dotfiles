@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FILE_PATH=$1
+THUMBNAIL=$2
+HEIGHT=$3
+
+CONTENT=$(cat "$1")
+
+convert -size 40x48 xc:white -pointsize 8 -font DejaVu-Sans-Mono -draw "text 4,12 \"$CONTENT\"" $2.png
+mv $2.png $2
