@@ -29,9 +29,6 @@
 [submodule "_vim/bundle/markdown"]
 	path = _vim/bundle/markdown
 	url = git@github.com:yAngle/vim-markdown.git
-[submodule "_vim/bundle/ycm"]
-	path = _vim/bundle/ycm
-	url = git@github.com:yAngle/YouCompleteMe.git
 [submodule "_vim/bundle/multiple-cursors"]
 	path = _vim/bundle/multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
