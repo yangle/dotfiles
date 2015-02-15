@@ -94,8 +94,13 @@ let python_highlight_all = 1
 let python_version_2 = 1
 au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 
-" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " release Ctrl-C from SQL plugin
 let g:ftplugin_sql_omni_key = '<C-j>'
