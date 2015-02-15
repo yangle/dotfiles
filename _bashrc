@@ -1,6 +1,10 @@
 export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH
 export PYTHONPATH=$HOME/.bin
 export TEXINPUTS=".:$HOME/Documents/Repository/:"
+
+# silence annoying warnings from grep
+unset GREP_OPTIONS
+
 [ -e /opt/intel/composerxe/bin/compilervars.sh ] && source /opt/intel/composerxe/bin/compilervars.sh intel64
 
 # git
@@ -27,8 +31,8 @@ shopt -s checkwinsize
 
 # color grep
 if echo hello|grep --color=auto l >/dev/null 2>&1; then
-  export GREP_OPTIONS="--color=auto"
-  export GREP_COLORS="ms=01;37;41:mc=01;31:sl=:cx=:fn=4;34:ln=32:bn=32:se=1;31"
+    alias grep='grep --color=auto'
+    export GREP_COLORS="ms=01;37;41:mc=01;31:sl=:cx=:fn=4;34:ln=32:bn=32:se=1;31"
 fi
 
 # PS1
