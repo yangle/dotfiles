@@ -98,9 +98,8 @@ au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" play nice with unicode input using Ctrl-Shift-U
+let g:neocomplete#lock_iminsert = 1
 " Quit completion on Enter
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
