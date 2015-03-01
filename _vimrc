@@ -106,6 +106,10 @@ function! s:my_cr_function()
   return neocomplete#smart_close_popup() . "\<CR>"
 endfunction
 
+" neocomplete doesn't play nice with auto wrap on insert
+" https://github.com/Shougo/neocomplete.vim/issues/345
+autocmd FileType tex let g:neocomplete#enable_at_startup = 0
+
 " release Ctrl-C from SQL plugin
 let g:ftplugin_sql_omni_key = '<C-j>'
 
