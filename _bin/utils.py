@@ -125,6 +125,30 @@ def repr_with_error(value, error, n=1, force_scientific=False, TeX=False):
         s += (r'\times 10^%d' if TeX else 'e%+d') % exponent
     return s
 
+def register_ndarray():
+    """register numpy.ndarray with sqlite"""
+    # taken from http://stackoverflow.com/a/18622264
+    def adapt_ndarray(arr):
+        """ndarray-to-text adapter"""
+        from numpy import save
+        from io import BytesIO
+        out = BytesIO()
+        save(out, arr)
+        out.seek(0)
+        return buffer(out.read())
+    def convert_ndarray(text):
+        """text-to-ndarray converter"""
+        from numpy import load
+        from io import BytesIO
+        out = BytesIO(text)
+        out.seek(0)
+        return load(out)
+
+    from sqlite3 import register_adapter, register_converter
+    from numpy import ndarray
+    register_adapter(ndarray, adapt_ndarray)
+    register_converter("ndarray", convert_ndarray)
+
 
 
 
