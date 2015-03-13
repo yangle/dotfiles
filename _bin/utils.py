@@ -103,6 +103,9 @@ def repr_with_error(value, error, n=1, force_scientific=False, TeX=False):
     """repr a real number with n-digit error"""
     from math import log10, floor
     error = abs(error)
+    if error == 0:
+        from numpy import finfo
+        error = float(finfo(float).eps)
 
     # immediately round the error to "finalize" the n leading digits
     error = round(error, - (int(floor(log10(error))) - (n - 1)))
