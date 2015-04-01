@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# refresh chromium when file changes
+# adapted from https://gist.github.com/razius/8503625
+#
+# Usage: ./refresh-chromium blueprint.md
+
+# vim fires 'move_self' on save
+# chromium doesn't not respond to xdotool key without focus: http://code.google.com/p/chromium/issues/detail?id=393145
+
+TIME_FORMAT='%F %H:%M'
+OUTPUT_FORMAT='%T Event(s): %e fired for file: %w. Refreshing.'
+
+while inotifywait -q -r -e move_self --timefmt "${TIME_FORMAT}" --format "${OUTPUT_FORMAT}" "$@"; do
+    ACTIVE_WINDOW_ID=$(xdotool getactivewindow)
+    xdotool search --onlyvisible --class "Chromium" windowfocus key 'ctrl+r'
+    xdotool windowfocus $ACTIVE_WINDOW_ID
+done
