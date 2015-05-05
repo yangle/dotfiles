@@ -12,6 +12,7 @@ TIME_FORMAT='%F %H:%M'
 OUTPUT_FORMAT='%T Event(s): %e fired for file: %w. Refreshing.'
 
 while inotifywait -q -r -e move_self --timefmt "${TIME_FORMAT}" --format "${OUTPUT_FORMAT}" "$@"; do
+    sleep 0.2
     ACTIVE_WINDOW_ID=$(xdotool getactivewindow)
     xdotool search --onlyvisible --class "Chromium" windowfocus key 'ctrl+r'
     xdotool windowfocus $ACTIVE_WINDOW_ID
