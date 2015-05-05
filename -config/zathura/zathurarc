@@ -16,4 +16,8 @@ set recolor-lightcolor "#CCCCCC"
 set inputbar-fg "#000000" # default light-green is unusable
 set inputbar-bg "#FFFFFF"
 
+set highlight-active-color "#0DFF00"
+set highlight-color "#ED51D0"
+set highlight-transparency 0.7
+
 map <C-w> quit
