@@ -5,13 +5,19 @@ from argh import arg
 
 @arg('filename', type=str, help='input pdf filename')
 @arg('-o', type=str, metavar='FILENAME', help='output pdf filename', default=None)
-@arg('-f', type=int, metavar='#first', help='index of the first page', default=2)
-@arg('-l', type=int, metavar='#last', help='index of the last page', default=None)
-def run(filename, o, f, l):
+@arg('-p', type=str, metavar='#-#', help='select a range of pages', default='2-')
+def run(filename, o, p):
     """pick selected pages from a pdf"""
+    if '-' not in p:
+        f = l = int(p)
+    else:
+        f, l = p.split('-')
+        f = int(f) if len(f) > 0 else 1
+        l = int(l) if len(l) > 0 else None
+
     if o is None:
         from os.path import basename
-        o = 'pages-' + basename(filename)
+        o = 'pages_%02d-%s_' % (f, '' if l is None else l) + basename(filename)
 
     command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dFirstPage=%d' % f
     if l is not None:
