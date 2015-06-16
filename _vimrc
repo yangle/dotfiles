@@ -94,24 +94,6 @@ let python_highlight_all = 1
 let python_version_2 = 1
 au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" play nice with unicode input using Ctrl-Shift-U
-let g:neocomplete#lock_iminsert = 1
-" disable annoying preview
-set completeopt-=preview
-" Quit completion on Enter
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-endfunction
-
-" neocomplete doesn't play nice with auto wrap on insert
-" https://github.com/Shougo/neocomplete.vim/issues/345
-autocmd FileType tex let g:neocomplete#enable_at_startup = 0
-
 " release Ctrl-C from SQL plugin
 let g:ftplugin_sql_omni_key = '<C-j>'
 

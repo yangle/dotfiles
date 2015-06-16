@@ -32,6 +32,3 @@
 [submodule "_vim/bundle/multiple-cursors"]
 	path = _vim/bundle/multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
-[submodule "_vim/bundle/neocomplete"]
-	path = _vim/bundle/neocomplete
-	url = https://github.com/Shougo/neocomplete.vim.git
