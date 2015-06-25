@@ -29,6 +29,8 @@ gsettings set org.gnome.desktop.privacy show-full-name-in-top-bar false
 
 # Nautilus
 gsettings set org.gnome.nautilus.preferences sort-directories-first true
+gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small'
+gsettings set org.gnome.nautilus.list-view default-zoom-level 'small'
 
 # Power
 gsettings set org.gnome.settings-daemon.plugins.power button-power 'interactive'
