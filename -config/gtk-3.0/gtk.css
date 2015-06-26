@@ -17,6 +17,13 @@
     padding: 3px;
 }
 
+/* Flat close button */
+.ssd .titlebar .button.close:not(:hover):not(:active) {
+    border-width: 0;
+    background-image: none;
+    box-shadow: none;
+}
+
 .menubar {
     background-image: linear-gradient(to bottom,
                                       shade(@theme_bg_color, 0.999),
