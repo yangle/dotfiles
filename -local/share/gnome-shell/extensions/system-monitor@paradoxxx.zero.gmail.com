@@ -1,0 +1,1 @@
+../../../../gnome-shell-extensions/system-monitor/system-monitor@paradoxxx.zero.gmail.com

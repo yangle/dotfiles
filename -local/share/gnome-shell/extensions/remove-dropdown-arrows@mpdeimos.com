@@ -1,0 +1,1 @@
+../../../../gnome-shell-extensions/remove-dropdown-arrows
