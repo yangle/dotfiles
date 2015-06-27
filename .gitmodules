@@ -32,3 +32,6 @@
 [submodule "_vim/bundle/multiple-cursors"]
 	path = _vim/bundle/multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "gnome-shell-extensions"]
+	path = gnome-shell-extensions
+	url = git@github.com:yAngle/gnome-shell-extensions.git
