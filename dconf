@@ -28,6 +28,7 @@ gsettings set org.gnome.nautilus.desktop trash-icon-visible false
 gsettings set org.gnome.desktop.background show-desktop-icons true
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.privacy show-full-name-in-top-bar false
+gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 # Nautilus
 gsettings set org.gnome.nautilus.preferences sort-directories-first true
@@ -54,7 +55,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier'
 gsettings set org.gnome.desktop.interface enable-animations false
 
 # Windows
-gsettings set org.gnome.shell.overrides button-layout ':minimize,maximize,close'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Alt>F1']"
