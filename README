@@ -6,6 +6,6 @@ dotfiles
     -zzz/.../aaa => ~/.zzz/.../aaa   -- leaving other files under ~/.zzz out of git
     uuu => ignored
 
-make sure all submodules are fetched: git submodule update --init --recursive
+make sure all submodules are fetched: git submodule sync && git submodule update --init --recursive
 
 dconf: basic gnome settings
