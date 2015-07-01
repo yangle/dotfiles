@@ -34,6 +34,7 @@ tab_length = 4
 color_scheme = my
 
 [keyboard]
+help =
 pastebin = F8
 save = C-s
 
