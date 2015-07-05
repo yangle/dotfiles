@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -Wall -Wextra -std=c99 -o ../_bin/text-thumbnailer text-thumbnailer.c -lpng
