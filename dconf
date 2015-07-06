@@ -17,6 +17,10 @@ gsettings set org.gnome.shell.keybindings toggle-message-tray "['']"
 # mime association
 xdg-mime default zathura.desktop application/pdf
 
+# fcitx
+gsettings set org.gnome.settings-daemon.plugins.keyboard active false
+gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/IMModule':<'fcitx'>}"
+
 # Terminal
 gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
