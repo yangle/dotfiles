@@ -19,9 +19,9 @@ typedef struct
 } Picture;
 
 // font extracted from Dina_r400-6.bdf -- https://www.donationcoder.com/Software/Jibz/Dina
-// [256 * hchar], x-th lowest bit of [c * hchar + y] = the (x, y) pixel of codepoint c
-const int WChar = 6; // font size
-const int HChar = 10;
+const int WChar = 6; // character width
+const int HChar = 10; // character height
+// [256 * HChar], x-th lowest bit of [c * HChar + y] = the (x, y) pixel of codepoint c
 static const char Font[2560] = {
      0, 21,  0,  1,  0,  0,  1,  0,  0,  1,
      0,  0,  0, 28, 20, 20, 28,  0,  0,  0,
@@ -372,7 +372,7 @@ void draw(Picture pic, const char* text, int nrow, int ncol)
     }
 
     // canvas border
-    int aborder = 64;
+    uint8_t aborder = 64;
     for (int y = 0; y < height; ++y)
     {
         Pixel* p = pic.pixels + width * y + xmargin / 2;
