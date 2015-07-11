@@ -1,13 +1,18 @@
 #!/usr/bin/python2
 
-def joinpdf(filenames, output):
+from argh import arg
+@arg('-f', action='store_true', help='overwrite output')
+@arg('filenames', type=str, nargs='+', metavar='input.pdf', help='input pdf filenames')
+@arg('output', type=str, metavar='output.pdf', help='output pdf filename')
+def joinpdf(f, filenames, output):
     """join pdf files"""
-    from sys import exit
 
-    from os.path import isfile
-    if isfile(output):
-        print 'output "%s" already exits!' % output
-        exit(1)
+    if not f:
+        from sys import exit
+        from os.path import isfile
+        if isfile(output):
+            print 'output "%s" already exits!' % output
+            exit(1)
 
     command = r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" "%s"' % (output, r'" "'.join(filenames))
     print command
@@ -16,8 +21,7 @@ def joinpdf(filenames, output):
     execute(command, choke=True)
 
 if __name__ == '__main__':
-    from sys import argv
-    if len(argv) < 4:
-        print "Usage: joinpdf 1.pdf 2.pdf 3.pdf ... output.pdf"
-    else:
-        joinpdf(argv[1:-1], argv[-1])
+    from argh.helpers import ArghParser
+    parser = ArghParser()
+    parser.set_default_command(joinpdf)
+    parser.dispatch()
