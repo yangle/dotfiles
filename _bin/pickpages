@@ -1,31 +1,42 @@
 #!/usr/bin/env python2
 # -*- coding: utf8 -*-
 
-from argh import arg
+def get_npage(pdf):
+    """get the number of pages for a pdf file"""
+    from sh import pdfinfo, grep
+    return int((grep(pdfinfo(pdf), 'Pages')).rstrip('\n').split(' ')[-1])
 
+def parse(raw, filename):
+    """parse a single page range definition"""
+    if '-' not in raw:
+        page = int(raw)
+        return '-dFirstPage=%d -dLastPage=%d "%s"' % (page, page, filename)
+    else:
+        first, last = raw.split('-')
+        first = int(first) if len(first) > 0 else 1
+        last = int(last) if len(last) > 0 else get_npage(filename)
+        return '-dFirstPage=%d -dLastPage=%d "%s"' % (first, last, filename)
+
+from argh import arg
 @arg('filename', type=str, help='input pdf filename')
 @arg('-o', type=str, metavar='FILENAME', help='output pdf filename', default=None)
-@arg('-p', type=str, metavar='#-#', help='select a range of pages', default='2-')
-def run(filename, o, p):
+@arg('-l', action='store_true', help='convert to letter size')
+@arg('-p', type=str, metavar='#,#-#,...', help='comma-separated page ranges', default='2-')
+def run(filename, o, l, p):
     """pick selected pages from a pdf"""
-    if '-' not in p:
-        f = l = int(p)
-    else:
-        f, l = p.split('-')
-        f = int(f) if len(f) > 0 else 1
-        l = int(l) if len(l) > 0 else None
-
     if o is None:
         from os.path import basename
-        o = 'pages_%02d-%s_' % (f, '' if l is None else l) + basename(filename)
+        o = 'p%s_%s' % (p, basename(filename))
 
-    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dFirstPage=%d' % f
-    if l is not None:
-        command += ' -dLastPage=%d' % l
-    command += ' -sOutputFile="%s" "%s"' % (o, filename)
+    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" ' % o
 
-    from utils import execute
+    if l: # http://stackoverflow.com/a/7507511
+        command += '-sPAPERSIZE=letter -dFIXEDMEDIA -dPDFFitPage '
+
+    command += ' '.join(parse(segment, filename) for segment in p.split(','))
+
     print command
+    from utils import execute
     execute(command, choke=True)
 
 if __name__ == '__main__':
