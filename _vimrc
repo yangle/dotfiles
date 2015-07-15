@@ -43,9 +43,12 @@ autocmd InsertLeave * :let @/=""
 "noremap <C-L> <C-W>l
 
 " tex filetype -- the attempt to judge by content will fail for those files without headers
-au BufRead,BufNewFile *.tex set spell filetype=tex
-au BufRead,BufNewFile *.cls set spell filetype=tex
-au BufRead,BufNewFile *.sty set spell filetype=tex
+au BufRead,BufNewFile *.tex setlocal spell filetype=tex
+au BufRead,BufNewFile *.cls setlocal spell filetype=tex
+au BufRead,BufNewFile *.sty setlocal spell filetype=tex
+
+" spellcheck for markdown
+autocmd FileType mkd setlocal spell
 
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
