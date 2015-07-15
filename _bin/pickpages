@@ -26,7 +26,10 @@ def run(filename, o, l, p):
     """pick selected pages from a pdf"""
     if o is None:
         from os.path import basename
-        o = 'p%s_%s' % (p, basename(filename))
+        if filename.endswith('-full.pdf'):
+            o = filename[:-len('-full.pdf')] + '.pdf'
+        else:
+            o = 'p%s_%s' % (p, basename(filename))
 
     command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" ' % o
 
