@@ -19,7 +19,7 @@ run_git () {
             { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } && { $show_name && git -C $1 push; } || { $show_name && git -C $1 status -s; }
             ;;
         pull)
-            { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } && { $show_name && git -C $1 pull; } || { $show_name && git -C $1 status -s; }
+            { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } && { $show_name && git -C $1 pull --ff-only; } || { $show_name && git -C $1 status -s; }
             ;;
         status)
             { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } || { $show_name && git -C $1 status -s; }
