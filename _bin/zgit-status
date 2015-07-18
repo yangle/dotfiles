@@ -1,0 +1,16 @@
+#!/bin/bash
+
+check_status () {
+    # http://stackoverflow.com/a/2185353
+    git -C $1 rev-parse --git-dir >/dev/null 2>&1 || return
+
+    # http://stackoverflow.com/a/2659808
+    check_staged="git -C $1 diff-index --quiet --cached HEAD"
+    check_unstaged="git -C $1 diff-files --quiet"
+    check_untracked=$(git -C $1 ls-files --exclude-standard --others)
+    show_name="echo -e \e[1;31m$1\e[0m"
+    { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } || { $show_name && git -C $1 status -s; }
+}
+
+# http://stackoverflow.com/a/12495234
+find . -maxdepth 1 -type d | while read path; do check_status "$path"; done
