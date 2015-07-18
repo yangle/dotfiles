@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# http://stackoverflow.com/a/2185353
+git rev-parse --git-dir >/dev/null 2>&1 && { echo "This operation must not run in a working tree" && exit 1; }
+
+{ [[ $1 == "push" ]] || [[ $1 == "pull" ]] || [[ $1 == "status" ]]; } || { echo "Please specify push/pull/status" && exit 2; }
+
+run_git () {
+    git -C $1 rev-parse --git-dir >/dev/null 2>&1 || return
+
+    # http://stackoverflow.com/a/2659808
+    check_staged="git -C $1 diff-index --quiet --cached HEAD"
+    check_unstaged="git -C $1 diff-files --quiet"
+    check_untracked=$(git -C $1 ls-files --exclude-standard --others)
+    show_name="echo -e \e[1;31m$1\e[0m"
+
+    case $2 in
+        push)
+            { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } && { $show_name && git -C $1 push; } || { $show_name && git -C $1 status -s; }
+            ;;
+        pull)
+            { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } && { $show_name && git -C $1 pull; } || { $show_name && git -C $1 status -s; }
+            ;;
+        status)
+            { $check_staged && $check_unstaged && [[ -z $check_untracked ]]; } || { $show_name && git -C $1 status -s; }
+            ;;
+    esac
+}
+
+# http://stackoverflow.com/a/12495234
+find . -maxdepth 1 -type d | while read path; do run_git "$path" $1; done
