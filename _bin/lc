@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ `find . -name '*.cc' | wc -l` == 1 ]; then
+    SOURCE=`find . -name '*.cc'`
+    g++ -std=c++11 -Wall -Wextra -o z $SOURCE && ./z
+else
+    echo found multiple .cc files: `find . -name '*.cc'`
+fi
+
