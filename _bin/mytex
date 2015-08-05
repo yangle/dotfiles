@@ -1,11 +1,22 @@
 #!/usr/bin/python2
 
-from argh import arg
+def find_master(filename):
+    """find the master .tex file"""
+    with open(filename) as f:
+        line = f.readline().rstrip(' \t\r\n')
 
+    header = r'%MASTER='
+    if line.startswith(header):
+        return line[len(header):]
+    else:
+        return filename
+
+from argh import arg
 @arg('filename', type=str, help='.tex filename')
 @arg('--temp', type=str, help='path for temporary file', default='.tmpTeX')
 @arg('--latex', action='store_true', help='use latex rather than pdflatex', default=False)
-def run(filename, temp, latex):
+@arg('-x', '--xelatex', action='store_true', help='use xelatex rather than pdflatex', default=False)
+def run(filename, temp, latex, xelatex):
     """compile LaTeX without littering"""
     filename = find_master(filename)
 
@@ -14,7 +25,13 @@ def run(filename, temp, latex):
     execute('cp *.bst %s/' % temp)
     execute('cp *.bib %s/' % temp)
 
-    command = r'rubber --into .tmpTeX -%sfsq "%s"' % ('p' if latex else 'd', filename)
+    mode = '-m pdftex'
+    if latex:
+        mode = ''
+    if xelatex:
+        mode = '-m xelatex'
+
+    command = r'rubber --into .tmpTeX -fsq %s "%s"' % (mode, filename)
     execute(command, choke=True)
 
     from os.path import join, basename, splitext
@@ -23,15 +40,6 @@ def run(filename, temp, latex):
         execute('dvipdf %s %s' % (join(temp, name + '.dvi'), name + '.pdf'), choke=True)
     else:
         execute('cp "%s" .' % join(temp, name + '.pdf'), choke=True)
-
-def find_master(filename):
-    """find the master .tex file"""
-    with open(filename) as f:
-        line = f.readline().rstrip(' \t\r\n')
-    if line[0:8] == r'%MASTER=':
-        return line[8:]
-    else:
-        return filename
 
 if __name__ == '__main__':
     from argh.helpers import ArghParser

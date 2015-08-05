@@ -2,19 +2,14 @@
 
 # automatically recompile TeX on change
 
-# to use in vim
-# :silent !mytexmk % &
-
-# check number of arguments
-if [ $# -ne 1 ]
+if [ $# -lt 1 ]
 then
-    echo "Error in $(basename $0) - Invalid Argument Count"
-    echo "Syntax: $(basename $0) my.tex"
+    echo "Usage: $(basename $0) [options for mytex] document.tex"
     exit 1
 fi
 
 # single-instance trick adopted from http://stackoverflow.com/a/185473
-DIRNAME=`dirname "$1"`
+DIRNAME=`dirname "${@: -1}"`
 FULLDIRNAME="`cd \"$DIRNAME\" 2>/dev/null && pwd || echo \"$DIRNAME\"`/.mytexmk"
 mkdir -p ${FULLDIRNAME}
 LOCKFILE=${FULLDIRNAME}"/lock"
@@ -34,20 +29,20 @@ if [ -e ${LOCKFILE} ] && kill -0 `cat ${LOCKFILE}`; then
     fi
 fi
 
-# make sure the lockfile is removed when we exit and then claim it
+# claim the lockfile, and make sure it is removed on exit
 trap "rm -f ${LOCKFILE}; exit" INT TERM EXIT
 echo $$ > ${LOCKFILE}
 
-# create compile errormsg holder
+# create/clear compile errormsg
 cat /dev/null > ${ERRORMSG}
 
-# find the files to monitor -- right now only .tex files. no subfolders are monitored
+# find the files to monitor -- right now only .tex files; no subfolders are monitored
 TEXFILES="`cd \"$DIRNAME\" 2>/dev/null && pwd || echo \"$DIRNAME\"`/*.tex"
 COUNT=$(ls ${TEXFILES} 2> /dev/null | wc -l)
 while true; do
     if [ "${COUNT}" != "0" ]; then
         inotifywait -qq -e CLOSE_WRITE ${TEXFILES}
-        mytex $1 > ${ERRORMSG}
+        mytex $@ > ${ERRORMSG}
         if [ $? -eq 0 ]; then
             cat /dev/null > ${ERRORMSG}
         fi
@@ -57,6 +52,6 @@ while true; do
     fi
 done
 
-# clean stuff
+# clean up
 rm -f ${LOCKFILE}
 exit 0
