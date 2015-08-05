@@ -11,6 +11,29 @@ def find_master(filename):
     else:
         return filename
 
+def prepare_temp(temp):
+    """create symlinks in temp folder"""
+    from utils import mkdir
+    mkdir(temp)
+
+    from os.path import abspath, dirname, join
+    parent = dirname(abspath(temp))
+    from os import listdir, symlink, remove
+    from errno import EEXIST
+
+    for f in listdir(parent):
+        if f != temp and not any(f.endswith(ext) for ext in ('.pdf', '.aux', '.log', '.out')):
+            source = join(parent, f)
+            target = join(parent, temp, f)
+            try:
+                symlink(source, target)
+            except OSError, e:
+                if e.errno == EEXIST:
+                    remove(target)
+                    symlink(source, target)
+                else:
+                    raise
+
 from argh import arg
 @arg('filename', type=str, help='.tex filename')
 @arg('--temp', type=str, help='path for temporary file', default='.tmpTeX')
@@ -19,11 +42,7 @@ from argh import arg
 def run(filename, temp, latex, xelatex):
     """compile LaTeX without littering"""
     filename = find_master(filename)
-
-    from utils import execute, mkdir
-    mkdir(temp)
-    execute('cp *.bst %s/' % temp)
-    execute('cp *.bib %s/' % temp)
+    prepare_temp(temp)
 
     mode = '-m pdftex'
     if latex:
@@ -31,6 +50,7 @@ def run(filename, temp, latex, xelatex):
     if xelatex:
         mode = '-m xelatex'
 
+    from utils import execute
     command = r'rubber --into .tmpTeX -fsq %s "%s"' % (mode, filename)
     execute(command, choke=True)
 
