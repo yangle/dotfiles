@@ -131,3 +131,11 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Super>F1'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ command 'latex-to-unicode.sh'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ name 'LaTeX to Unicode'
+
+
+
+# check firefox config
+DOTFILES=`cd "$(dirname "${BASH_SOURCE[0]}")" && pwd` # http://stackoverflow.com/a/246128
+if [ `find -L $HOME/.mozilla/firefox -xtype l -samefile $DOTFILES/firefox/user.js | wc -l` -eq 0 ]; then
+    echo -e "\e[1;31mPlease create a symlink for $DOTFILES/firefox/user.js\e[0m"
+fi
