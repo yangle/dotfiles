@@ -126,3 +126,5 @@ vtable
 iff
 rvalue
 variadic
+const
+constness
