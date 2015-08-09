@@ -10,6 +10,8 @@ fi
 
 xhost +localhost
 
+eval $(ssh-agent)
+
 # lock screen fix for gnome 3.8 w/o gdm
 # https://bbs.archlinux.org/viewtopic.php?pid=1265125#p1265125
 gnome-screensaver &
