@@ -45,7 +45,7 @@ gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothi
 
 # Caps Lock -> Ctrl
 # Ctrl-Alt-Backspace kills X
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'terminate:ctrl_alt_bksp']"
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'terminate:ctrl_alt_bksp', 'ctrl:nocaps']"
 
 ## Cinnamon
 #gsettings set org.nemo.desktop computer-icon-visible false
