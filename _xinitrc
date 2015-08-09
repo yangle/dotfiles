@@ -10,6 +10,9 @@ fi
 
 xhost +localhost
 
+# somehow the setting through dconf does not persist through reboot
+setxkbmap -option ctrl:nocaps
+
 eval $(ssh-agent)
 
 # lock screen fix for gnome 3.8 w/o gdm
