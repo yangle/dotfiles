@@ -74,8 +74,6 @@ if type "register-python2-argcomplete" > /dev/null 2>&1; then
     eval "$(register-python2-argcomplete jack)"
 fi
 
-alias gpgd='gpg --batch -q -d'
-
 [ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
 
 [ -e /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh

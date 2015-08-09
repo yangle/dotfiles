@@ -128,3 +128,7 @@ rvalue
 variadic
 const
 constness
+inline
+multithreading
+namespace
+uncopyable
