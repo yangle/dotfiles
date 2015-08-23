@@ -136,3 +136,6 @@ overridable
 templatized
 metaprogramming
 multithreaded
+precompute
+subarray
+subarrays
