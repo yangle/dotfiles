@@ -9,4 +9,4 @@ endfunction
 nnoremap <F4> :call UpdateTags()<CR>
 
 " compile to ./z and run
-noremap <buffer> <silent> <F9> <Esc>:w<CR>:!gcc -std=c99 -Wall -Wextra -o z % && ./z<CR>
+noremap <buffer> <silent> <F9> <Esc>:w<CR>:!gcc -std=c99 -Wall -Wextra -o z % -lm && ./z<CR>
