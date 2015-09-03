@@ -23,6 +23,8 @@ set title " set teminal title
 set nojoinspaces " single space after '.' when joining lines
 set foldlevel=99 " unfold all by default
 
+set display+=lastline " partially display lastline even if it doesn't fit
+
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
 "let loaded_matchparen = 1 " disable bracket matching
