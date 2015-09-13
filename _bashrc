@@ -72,6 +72,7 @@ if type "register-python2-argcomplete" > /dev/null 2>&1; then
     eval "$(register-python2-argcomplete rr)"
     eval "$(register-python2-argcomplete mc)"
     eval "$(register-python2-argcomplete jack)"
+    eval "$(register-python2-argcomplete fd)"
 fi
 
 [ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
