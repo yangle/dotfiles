@@ -20,6 +20,25 @@ def setup_logging(filename=None, lvl=None):
     logging.getLogger('').addHandler(console)
     return logging.getLogger('')
 
+def log_uncaught_exceptions():
+    """log uncaught exceptions"""
+    def hook(exception_class, exception_msg, tb):
+        import logging
+        import traceback
+        logger = logging.getLogger('')
+        if len(logger.handlers) == 0:
+            console = logging.StreamHandler()
+            console.setFormatter(logging.Formatter('%(message)s'))
+            logger.addHandler(console)
+        logging.critical('Traceback (most recent call last):\n%s', ''.join(traceback.format_tb(tb)).rstrip('\n'))
+        if len(str(exception_msg)) == 0:
+            logging.critical(exception_class.__name__)
+        else:
+            logging.critical('%s: %s', exception_class.__name__, str(exception_msg))
+
+    import sys
+    sys.excepthook = hook
+
 def profile_this(f):
     """decorator for profiling"""
     # taken from: https://speakerdeck.com/rwarren/a-brief-intro-to-profiling-in-python
