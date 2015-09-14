@@ -1,0 +1,80 @@
+#!/usr/bin/env python2
+# -*- coding: utf8 -*-
+
+def find_available_x():
+    """find the first available numerical extension"""
+    from itertools import count, dropwhile
+    from glob import glob
+    return dropwhile(lambda i: len(glob('.slurm/*.out.%d' % i)) > 0, count(1)).next()
+
+def find_failed(prefix, ext):
+    """find failed jobs
+
+    prefix = limit to jobs of a given prefix
+    ext = output extension, e.g. '.out'
+
+    return = list of (job, culprit)
+    """
+    msg = 'slurmstepd: *** JOB '
+    failures = []
+    index = find_available_x()
+
+    from glob import glob
+    for log in sorted(glob('.slurm/%s*%s' % (prefix, ext))):
+        with open(log) as f:
+            error = ' / '.join(line[len(msg):].rstrip('* \n') for line in f
+                              if line.startswith(msg))
+            if len(error) == 0:
+                continue
+
+            job = log[:-len(ext)]
+            target = '%s.out.%s' % (job, index)
+            failures.append((job, log, target, error))
+
+    return failures
+
+def rename_when_piped(sources, targets):
+    """rename files when stdout is a pipe"""
+    from os.path import isfile
+    assert all(isfile(source) for source in sources)
+    assert not any(isfile(target) for target in targets)
+
+    from shutil import move
+    from sys import stdout
+    print '# pipe to bash to commit renames'
+    if not stdout.isatty():
+        for source, target in zip(sources, targets):
+            move(source, target)
+
+from argh import arg
+@arg('-p', '--prefix', type=str, help='limit to jobs with a given prefix', default='')
+@arg('-x', type=str, help='search through .slurm/*.out.X', default=None)
+@arg('-f', '--force', action='store_true', help='rename .out and print sbatch commands (otherwise dry-run only)')
+def process(prefix, x, force):
+    """find and prepare failed SLURM jobs for resubmission"""
+    ext = '.out' if x is None else '.out.%s' % x
+    failures = find_failed(prefix, ext)
+
+    if len(failures) == 0:
+        print 'cannot find failed jobs from .slurm/%s*%s' % (prefix, ext),
+        print "-- try tweaking '-p' or '-x'"
+        return
+
+    if not force:
+        index = find_available_x()
+        print '# = %d;' % len(failures),
+        print "rerun with '-f' to rename %s to .out.\033[1;31m%s\033[0m" % (ext, index)
+
+        for job, log, target, error in failures:
+            print '%s # %s' % (log, error)
+        return
+
+    jobs, logs, targets, errors = zip(*failures)
+    rename_when_piped(logs, targets)
+    print ' && '.join('sbatch -A physics-hi %s' % job for job in jobs)
+
+if __name__ == '__main__':
+    from argh.helpers import ArghParser
+    parser = ArghParser()
+    parser.set_default_command(process)
+    parser.dispatch()
