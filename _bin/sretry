@@ -7,15 +7,15 @@ def find_available_x():
     from glob import glob
     return dropwhile(lambda i: len(glob('.slurm/*.out.%d' % i)) > 0, count(1)).next()
 
-def find_failed(prefix, ext):
+def find_failed(prefix, ext, msg):
     """find failed jobs
 
     prefix = limit to jobs of a given prefix
     ext = output extension, e.g. '.out'
+    msg = error lines start with msg
 
-    return = list of (job, culprit)
+    return = list of (job name, log filename, target log filename, error message)
     """
-    msg = 'slurmstepd: *** JOB '
     failures = []
     index = find_available_x()
 
@@ -49,11 +49,12 @@ def rename_when_piped(sources, targets):
 from argh import arg
 @arg('-p', '--prefix', type=str, help='limit to jobs with a given prefix', default='')
 @arg('-x', type=str, help='search through .slurm/*.out.X', default=None)
+@arg('-m', '--msg', type=str, help='error lines start with msg', default='slurmstepd: *** JOB ')
 @arg('-f', '--force', action='store_true', help='rename .out and print sbatch commands (otherwise dry-run only)')
-def process(prefix, x, force):
+def process(prefix, x, msg, force):
     """find and prepare failed SLURM jobs for resubmission"""
     ext = '.out' if x is None else '.out.%s' % x
-    failures = find_failed(prefix, ext)
+    failures = find_failed(prefix, ext, msg)
 
     if len(failures) == 0:
         print 'cannot find failed jobs from .slurm/%s*%s' % (prefix, ext),
