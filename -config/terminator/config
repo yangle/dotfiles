@@ -1,35 +1,37 @@
 [global_config]
   enabled_plugins = APTURLHandler,
 [keybindings]
-  switch_to_tab_7 = <Alt>7
-  go_up = <Alt>k
-  switch_to_tab_10 = <Alt>0
-  switch_to_tab_3 = <Alt>3
-  switch_to_tab_1 = <Alt>1
-  switch_to_tab_4 = <Alt>4
-  switch_to_tab_6 = <Alt>6
-  group_tab = None
   go_down = <Alt>j
-  switch_to_tab_5 = <Alt>5
-  switch_to_tab_2 = <Alt>2
-  go_right = <Alt>l
   go_left = <Alt>h
-  ungroup_tab = None
-  switch_to_tab_9 = <Alt>9
+  go_right = <Alt>l
+  go_up = <Alt>k
   group_all = None
+  group_tab = None
+  layout_launcher = None
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_10 = <Alt>0
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
   switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
   ungroup_all = None
-[profiles]
-  [[default]]
-    background_color = "#ffffdd"
-    foreground_color = "#000000"
+  ungroup_tab = None
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
       profile = default
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_color = "#ffffdd"
+    background_image = None
+    foreground_color = "#000000"
