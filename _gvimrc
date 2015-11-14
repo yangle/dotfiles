@@ -5,6 +5,7 @@ colorscheme mycolors
 ""set background=light
 ""colorscheme default
 ""set guifont=Monospace\ 16
+""set mouse=
 
 " hide toolbar/menu
 set guioptions-=m  "remove menu bar
