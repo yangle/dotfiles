@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+STATE=`gsettings get org.gnome.desktop.peripherals.touchpad tap-to-click`
+
+if [[ $STATE == "true" ]]
+then
+    STATE="false"
+else
+    STATE="true"
+fi
+
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click $STATE
+
+echo tap-to-click = $STATE
