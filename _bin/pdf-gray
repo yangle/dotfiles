@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# adapted from http://superuser.com/a/164857
+
+gs \
+ -sOutputFile="`echo $1 | cut -f1 -d'.'`"-gray.pdf \
+ -sDEVICE=pdfwrite \
+ -sColorConversionStrategy=Gray \
+ -dProcessColorModel=/DeviceGray \
+ -dCompatibilityLevel=1.4 \
+ -dAutoRotatePages=/None \
+ -dNOPAUSE \
+ -dBATCH \
+ "$1"
