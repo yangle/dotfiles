@@ -5,6 +5,7 @@ set incremental-search true
 set window-title-basename true
 set scroll-step 100
 set scroll-full-overlap 0.1
+set first-page-column "1:1"
 
 set selection-clipboard "clipboard"
 
