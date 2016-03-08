@@ -19,6 +19,7 @@ __git_ps1 ()
 [ -z "$PS1" ] && return
 
 alias ls="ls --color=auto"
+alias gdb="gdb -q"
 
 # pretty print tsv
 alias catt="column -s $'\t' -t"
