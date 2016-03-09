@@ -29,6 +29,15 @@ syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
 "let loaded_matchparen = 1 " disable bracket matching
 
+" disable help
+nnoremap <F1> <nop>
+
+" disable Ex mode
+nnoremap Q <nop>
+
+" disable man page lookup
+nnoremap K <nop>
+
 " line numbers
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
