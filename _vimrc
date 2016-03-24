@@ -93,9 +93,9 @@ function FirefoxMode()
   " silent! nunmap <buffer> k
 endfunction
 
-" ctags for c++
-map <F8> :!~/.bin/generate-diagham-tags<CR>
-set tags+=~/.bin/diagham-tags
+"" ctags for c++
+"map <F8> :!~/.bin/generate-diagham-tags<CR>
+"set tags+=~/.bin/diagham-tags
 
 " asymptote
 augroup filetypedetect
