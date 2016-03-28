@@ -22,3 +22,5 @@
     default = matching
 [grep]
     lineNumber = true
+[merge]
+    ff = only
