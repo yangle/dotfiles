@@ -1,11 +1,13 @@
 " syntax highlighting
 colorscheme mycolors
 
-"" airplane mode
-""set background=light
-""colorscheme default
-""set guifont=Monospace\ 16
-""set mouse=
+" laptop
+if hostname() == 'orbifold'
+    "set background=light
+    set guifont=Monospace\ 12
+    "colorscheme default
+    "set mouse=
+endif
 
 " hide toolbar/menu
 set guioptions-=m  "remove menu bar
