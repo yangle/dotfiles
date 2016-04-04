@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # run command in a separate gnome-terminal and pause for key stroke
+
 # the input command must be quoted to avoid being split by bash
 # e.g. gnome-terminal-run "ls && echo lol"
 
-gnome-terminal --geometry=80x50+10+40 -x sh -c "{ echo \# \"$*\"; $*; } ; echo ; read -rn1 -p \"Press any key to exit\""
+XID=`xdotool getactivewindow`
+
+gnome-terminal --geometry=80x50+10+40 -x sh -c "{ echo \# \"$*\"; $*; } ; echo ; read -rn1 -p \"Press any key to exit\"; xdotool windowactivate $XID"
