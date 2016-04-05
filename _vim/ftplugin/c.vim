@@ -1,9 +1,5 @@
-"map <C-H> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
+" switch between header and source (using a.vim)
 map <C-H> :A<CR>
 
-" ctags generation
-function! UpdateTags()
-  :silent execute "!ctags -R --languages=C++ --c++-kinds=+pl --fields=+iaS --extra=+q ."
-  echohl StatusLine | echo "C/C++ tag updated" | echohl None
-endfunction
-nnoremap <F4> :call UpdateTags()<CR>
+set cinoptions+=g0 " do not indent member scope declarations
+set cinoptions+=(0,W4 " custom indent inside unclosed parentheses
