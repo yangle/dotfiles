@@ -14,6 +14,9 @@ gsettings set org.gnome.desktop.wm.keybindings minimize "['']"
 gsettings set org.gnome.shell.keybindings focus-active-notification "['']"
 gsettings set org.gnome.shell.keybindings toggle-message-tray "['']"
 
+# restrict Alt-Tab to current workspace
+gsettings set org.gnome.shell.app-switcher current-workspace-only true
+
 # mime association
 xdg-mime default zathura.desktop application/pdf
 
