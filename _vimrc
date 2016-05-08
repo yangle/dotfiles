@@ -37,6 +37,7 @@ nnoremap Q <nop>
 
 " disable man page lookup
 nnoremap K <nop>
+vnoremap K <nop>
 
 " line numbers
 set number
