@@ -4,34 +4,34 @@
 	ignore = untracked
 [submodule "_vim/bundle/cython"]
 	path = _vim/bundle/cython
-	url = git@github.com:yAngle/vim-cython.git
+	url = https://github.com/yangle/vim-cython.git
 [submodule "_vim/bundle/surround"]
 	path = _vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "_vim/bundle/buftabs"]
 	path = _vim/bundle/buftabs
-	url = git@github.com:yAngle/buftabs.git
+	url = https://github.com/yangle/buftabs.git
 [submodule "_vim/bundle/a"]
 	path = _vim/bundle/a
-	url = git@github.com:yAngle/a.vim.git
+	url = https://github.com/yangle/a.vim.git
 [submodule "_vim/bundle/asymptote"]
 	path = _vim/bundle/asymptote
 	url = https://github.com/hura/vim-asymptote.git
 [submodule "_vim/bundle/python-syntax"]
 	path = _vim/bundle/python-syntax
-	url = git@github.com:yAngle/python-syntax.git
+	url = https://github.com/yangle/python-syntax.git
 [submodule "_vim/bundle/indentpython"]
 	path = _vim/bundle/indentpython
 	url = https://github.com/vim-scripts/indentpython.vim.git
 [submodule "_vim/bundle/auctex"]
 	path = _vim/bundle/auctex
-	url = git@github.com:yAngle/auctex.vim.git
+	url = https://github.com/yangle/auctex.vim.git
 [submodule "_vim/bundle/markdown"]
 	path = _vim/bundle/markdown
-	url = git@github.com:yAngle/vim-markdown.git
+	url = https://github.com/yangle/vim-markdown.git
 [submodule "_vim/bundle/multiple-cursors"]
 	path = _vim/bundle/multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
 [submodule "gnome-shell-extensions"]
 	path = gnome-shell-extensions
-	url = git@github.com:yAngle/gnome-shell-extensions.git
+	url = https://github.com/yangle/gnome-shell-extensions.git
