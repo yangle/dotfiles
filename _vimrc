@@ -49,12 +49,6 @@ set hlsearch
 autocmd InsertEnter * :let @/=""
 autocmd InsertLeave * :let @/=""
 
-" Navigate over windows
-"noremap <C-J> <C-W>j
-"noremap <C-K> <C-W>k
-"noremap <C-H> <C-W>h
-"noremap <C-L> <C-W>l
-
 " tex filetype -- the attempt to judge by content will fail for those files without headers
 au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
@@ -67,17 +61,13 @@ let g:buftabs_in_statusline=1
 noremap <C-J> :bprev<CR>
 noremap <C-K> :bnext<CR>
 noremap <C-Q> :bd<CR>
-"noremap <C-j> :call Buftabs_show(expand('<abuf>'))<CR>
 
 "" ctags for c++
 "map <F8> :!~/.bin/generate-diagham-tags<CR>
 "set tags+=~/.bin/diagham-tags
 
 " asymptote
-augroup filetypedetect
-au BufNewFile,BufRead *.asy     setf asy
-augroup END
-filetype plugin on
+au BufRead,BufNewFile *.asy setlocal filetype=asy
 
 " python
 let python_highlight_all = 1
