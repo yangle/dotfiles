@@ -22,6 +22,7 @@ set wildmenu " show autocomplete multiple matches
 set title " set teminal title
 set nojoinspaces " single space after '.' when joining lines
 set foldlevel=99 " unfold all by default
+set spellcapcheck= " skip capitalization check
 
 set display+=lastline " partially display lastline even if it doesn't fit
 
@@ -59,8 +60,11 @@ au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
 au BufRead,BufNewFile *.sty setlocal spell filetype=tex
 
-" spellcheck for markdown
-autocmd FileType mkd setlocal spell
+" markdown settings
+autocmd FileType markdown setlocal spell
+let g:vim_markdown_new_list_item_indent = 0
+set conceallevel=2
+let g:vim_markdown_math = 1
 
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
