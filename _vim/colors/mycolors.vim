@@ -11,6 +11,7 @@ endif
 let colors_name = "mycolors"
 
 hi Normal ctermbg=235 ctermfg=White guifg=White guibg=grey15
+hi Conceal ctermbg=235 ctermfg=Yellow guifg=Yellow guibg=grey15
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg ctermbg=52 ctermfg=White guibg=Red guifg=White

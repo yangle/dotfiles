@@ -1,6 +1,3 @@
-" syntax highlighting
-colorscheme mycolors
-
 " laptop
 if hostname() == 'orbifold'
     "set background=light
