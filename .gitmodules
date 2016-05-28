@@ -28,7 +28,7 @@
 	url = https://github.com/yangle/auctex.vim.git
 [submodule "_vim/bundle/markdown"]
 	path = _vim/bundle/markdown
-	url = https://github.com/yangle/vim-markdown.git
+	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "_vim/bundle/multiple-cursors"]
 	path = _vim/bundle/multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
