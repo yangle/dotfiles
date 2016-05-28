@@ -60,12 +60,6 @@ au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
 au BufRead,BufNewFile *.sty setlocal spell filetype=tex
 
-" markdown settings
-autocmd FileType markdown setlocal spell
-let g:vim_markdown_new_list_item_indent = 0
-set conceallevel=2
-let g:vim_markdown_math = 1
-
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
 let g:buftabs_only_basename=1

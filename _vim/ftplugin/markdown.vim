@@ -1,13 +1,8 @@
-set linebreak
+set spell
+set textwidth=79
+noremap <buffer> <silent> Q gq$
 
-" move by display lines
-noremap <buffer> <silent> k gk
-noremap <buffer> <silent> j gj
-noremap <buffer> <silent> 0 g0
-noremap <buffer> <silent> $ g$
-
-" not with operator pending
-onoremap <buffer> <silent> k k
-onoremap <buffer> <silent> j j
-onoremap <buffer> <silent> 0 0
-onoremap <buffer> <silent> $ $
+" vim-markdown settings
+set conceallevel=2
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_math = 1
