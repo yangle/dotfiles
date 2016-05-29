@@ -5,7 +5,7 @@ call pathogen#helptags()
 "set lines=30 columns=95 " start size
 set nocp " non-compatible
 set bs=2 " backspace through leading spaces & linebreak
-set fo=cqrt " format for comments etc.
+set fo=cqrtj " format for comments etc.
 set ls=2 " always show status line
 set ww=<,>,h,l,[,] " move cursor through linebreaks
 set tabstop=8 " width of \t
