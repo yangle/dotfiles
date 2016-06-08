@@ -49,6 +49,12 @@ set hlsearch
 autocmd InsertEnter * :let @/=""
 autocmd InsertLeave * :let @/=""
 
+" always highlight 𝚃𝙾𝙳𝙾 & 𝙵𝙸𝚇𝙼𝙴
+augroup HighlightTODO
+    autocmd!
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
+augroup END
+
 " tex filetype -- the attempt to judge by content will fail for those files without headers
 au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
