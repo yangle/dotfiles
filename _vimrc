@@ -44,6 +44,10 @@ vnoremap K <nop>
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
+" retain selection after (un)indenting
+vnoremap > ><CR>gv
+vnoremap < <<CR>gv
+
 " highlight the search query word, disable highlight when entering insert mode
 set hlsearch
 autocmd InsertEnter * :let @/=""
