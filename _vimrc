@@ -72,6 +72,27 @@ noremap <C-J> :bprev<CR>
 noremap <C-K> :bnext<CR>
 noremap <C-Q> :bd<CR>
 
+" preserve window view when switching buffers
+autocmd BufLeave * call AutoSaveWinView()
+autocmd BufEnter * call AutoRestoreWinView()
+function! AutoSaveWinView() " Save current view settings on a per-window, per-buffer basis.
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+function! AutoRestoreWinView() " Restore current view settings.
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
 "" ctags for c++
 "map <F8> :!~/.bin/generate-diagham-tags<CR>
 "set tags+=~/.bin/diagham-tags
