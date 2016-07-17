@@ -1,0 +1,50 @@
+#!/usr/bin/env python2
+# -*- coding: utf8 -*-
+
+def get_npage(filename):
+    """get the number of pages for a pdf file"""
+    from sh import pdfinfo, grep
+    return int((grep(pdfinfo(filename), 'Pages')).rstrip('\n').split(' ')[-1])
+
+def get_size(filename, page):
+    """get the size of a given page for a pdf file"""
+    from sh import pdfinfo, grep
+    line = str(grep(grep(pdfinfo(filename, f=page, l=page), 'Page'), 'size'))
+    b = line.find(':') + len(': ')
+    e = line.find(' pts')
+    return map(float, line[b:e].split(' x '))
+
+from argh import arg
+@arg('filename', type=str, help='input pdf filename')
+@arg('-o', type=str, metavar='FILENAME', help='output pdf filename', default=None)
+def run(filename, o):
+    """resize pdf cover page"""
+    w, h = get_size(filename, 2)
+    n = get_npage(filename)
+
+    from os.path import basename, join
+    cover = join('/tmp', 'cover-' + basename(filename))
+    if o is None:
+        o = 'fitcover-' + basename(filename)
+
+    command = 'gs -o "%s" -sDEVICE=pdfwrite ' % cover
+    command += '-dDEVICEWIDTHPOINTS=%s -dDEVICEHEIGHTPOINTS=%s -dAutoRotatePages=/None -dPDFFitPage ' % (w, h)
+    command += '-dFirstPage=1 -dLastPage=1 "%s"' % filename
+
+    print command
+    from utils import execute
+    execute(command, choke=True)
+
+    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dAutoRotatePages=/None '
+    command += '-sOutputFile="%s" ' % o
+    command += '"%s" ' % cover
+    command += '-dFirstPage=2 -dLastPage=%d "%s"' % (n, filename)
+
+    print command
+    execute(command, choke=True)
+
+if __name__ == '__main__':
+    from argh.helpers import ArghParser
+    parser = ArghParser()
+    parser.set_default_command(run)
+    parser.dispatch()
