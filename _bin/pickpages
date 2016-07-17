@@ -31,7 +31,7 @@ def run(filename, o, l, p):
         else:
             o = 'p%s_%s' % (p, basename(filename))
 
-    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" ' % o
+    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" -dAutoRotatePages=/None ' % o
 
     if l: # http://stackoverflow.com/a/7507511
         command += '-sPAPERSIZE=letter -dFIXEDMEDIA -dPDFFitPage '

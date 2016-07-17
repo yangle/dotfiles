@@ -14,7 +14,8 @@ def joinpdf(f, filenames, output):
             print 'output "%s" already exits!' % output
             exit(1)
 
-    command = r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" "%s"' % (output, r'" "'.join(filenames))
+    command = r'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dAutoRotatePages=/None '
+    command += r'-sOutputFile="%s" "%s"' % (output, '" "'.join(filenames))
     print command
 
     from utils import execute
