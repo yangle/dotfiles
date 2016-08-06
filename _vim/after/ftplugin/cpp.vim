@@ -11,3 +11,6 @@ nnoremap <buffer> <silent> <F9> <Esc>:w<CR>:silent !gnome-terminal-run "clang++ 
 
 " match angle brackets: http://stackoverflow.com/a/12166498
 set matchpairs+=<:>
+
+" better indentation for lambda, http://stackoverflow.com/q/8062608
+setlocal cinoptions+=j1
