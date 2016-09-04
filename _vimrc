@@ -59,6 +59,9 @@ augroup HighlightTODO
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
 augroup END
 
+" workaround to suppress syntax warning for m[{1, 2}] in C++11
+let c_no_curly_error = 1
+
 " tex filetype -- the attempt to judge by content will fail for those files without headers
 au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
