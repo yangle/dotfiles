@@ -34,3 +34,23 @@
 .menubar:backdrop {
     background-image: linear-gradient(to bottom, @theme_bg_color);
 }
+
+
+/* match terminal tab height with line height */
+notebook tab {
+    min-height: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+notebook tab button {
+    min-height: 0;
+    min-width: 0;
+    padding: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+notebook button {
+    min-height: 0;
+    min-width: 0;
+    padding: 2px;
+}
