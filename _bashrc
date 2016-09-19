@@ -7,6 +7,9 @@ unset GREP_OPTIONS
 
 [ -e /opt/intel/composerxe/bin/compilervars.sh ] && source /opt/intel/composerxe/bin/compilervars.sh intel64
 
+# enable tab completion for tar on all types of files
+complete tar && compopt -o default tar
+
 # git
 __git_ps1 ()
 {
