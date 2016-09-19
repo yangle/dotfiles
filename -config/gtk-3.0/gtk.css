@@ -54,3 +54,12 @@ notebook button {
     min-width: 0;
     padding: 2px;
 }
+
+/* fix Firefox border color:
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1266914 */
+frame {
+    border-color: #a2a2a1;
+}
+separator {
+    color: #a2a2a1;
+}
