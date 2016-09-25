@@ -3,6 +3,15 @@
 # watching while changing
 # $ dconf watch /
 
+# list all schemas
+# $ gsettings list-schemas
+
+# check keys in a schema
+# $ gsettings list-recursively org.gnome.Terminal.Legacy.Settings
+
+# "Schema '...' is relocatable (path must be specified)"
+# use org.whatever.schema:/org/path/to/key/ -- see for example Disable F1 in Terminal
+
 # silence the extension version nonsense
 gsettings set org.gnome.shell disable-extension-version-validation "true"
 
@@ -30,6 +39,9 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/IMMod
 # Terminal
 gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+
+# Disable F1 in Terminal
+gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ help 'disabled'
 
 # Desktop
 gsettings set org.gnome.shell always-show-log-out true
