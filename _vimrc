@@ -59,6 +59,17 @@ augroup HighlightTODO
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
 augroup END
 
+" fix Alt-* in gnome terminal
+if !has('gui_running')
+    let c='a'
+    while c <= 'z'
+        exec "set <A-".c.">=\e".c
+        exec "imap \e".c." <A-".c.">"
+        let c = nr2char(1+char2nr(c))
+    endw
+    set ttimeout ttimeoutlen=50
+endif
+
 " workaround to suppress syntax warning for m[{1, 2}] in C++11
 let c_no_curly_error = 1
 
@@ -117,3 +128,4 @@ set t_Co=256
 set t_AB=[48;5;%dm
 set t_AF=[38;5;%dm
 colorscheme mycolors
+
