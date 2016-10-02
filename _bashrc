@@ -23,6 +23,7 @@ __git_ps1 ()
 
 alias ls="ls --color=auto"
 alias gdb="gdb -q"
+alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
 
