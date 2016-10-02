@@ -1,0 +1,5 @@
+set arrowstyle=long
+set showtgdbcommands
+set tabstop=4
+
+highlight SelectedLineNr cterm=reverse ctermfg=Yellow ctermbg=Black
