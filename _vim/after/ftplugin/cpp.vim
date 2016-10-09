@@ -16,4 +16,4 @@ set matchpairs+=<:>
 setlocal cinoptions+=j1
 
 " change [] to {} in current line
-command FixBraces :silent! s/\[/{/g <bar> :silent! s/\]/}/g
+command! FixBraces :silent! s/\[/{/g <bar> :silent! s/\]/}/g
