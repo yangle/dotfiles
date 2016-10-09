@@ -14,3 +14,6 @@ set matchpairs+=<:>
 
 " better indentation for lambda, http://stackoverflow.com/q/8062608
 setlocal cinoptions+=j1
+
+" change [] to {} in current line
+command FixBraces :silent! s/\[/{/g <bar> :silent! s/\]/}/g
