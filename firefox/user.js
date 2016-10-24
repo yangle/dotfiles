@@ -17,3 +17,5 @@ user_pref("network.dns.disablePrefetch", true);
 user_pref("network.proxy.socks_remote_dns", true);
 
 user_pref("browser.urlbar.autocomplete.enabled", false);
+
+user_pref("browser.sessionstore.max_tabs_undo", 50);
