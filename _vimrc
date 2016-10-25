@@ -44,6 +44,9 @@ vnoremap K <nop>
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
+" insert timestamp, like 2016/10/25 02:47:33 PM EDT
+inoremap <F12> <C-R>=strftime('%Y/%m/%d %X %Z')<CR>
+
 " retain selection after (un)indenting
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
