@@ -7,4 +7,4 @@
 
 XID=`xdotool getactivewindow`
 
-gnome-terminal --geometry=80x50+10+40 -x sh -c "{ echo \# \"$*\"; $*; } ; echo ; read -rn1 -p \"Press any key to exit\"; xdotool windowactivate $XID"
+gnome-terminal --geometry=80x50+10+40 -x sh -c "{ sleep 0.05; xdotool getactivewindow windowmove 50 80 windowsize 734 900; echo \# \"$*\"; $*; } ; echo ; read -rn1 -p \"Press any key to exit\"; xdotool windowactivate $XID"
