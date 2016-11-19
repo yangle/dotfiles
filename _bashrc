@@ -27,7 +27,10 @@ alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
 
-alias venv-activate=". .venv/bin/activate"
+venv-activate() {
+    # alias doesn't work: http://stackoverflow.com/a/13261212
+    . $(find-venv .)
+}
 
 # pretty print tsv
 alias catt="column -s $'\t' -t"
