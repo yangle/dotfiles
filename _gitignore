@@ -4,6 +4,7 @@
 .mypdflatexmk
 .mytexmk
 .tmpTeX
+.venv/
 *.pyc
 *.pyo
 doc/tags
