@@ -7,6 +7,9 @@ unset GREP_OPTIONS
 
 [ -e /opt/intel/composerxe/bin/compilervars.sh ] && source /opt/intel/composerxe/bin/compilervars.sh intel64
 
+# Check for an interactive session
+[ -z "$PS1" ] && return
+
 # enable tab completion for tar on all types of files
 complete tar && compopt -o default tar
 
@@ -18,14 +21,13 @@ __git_ps1 ()
 [ -e $HOME/.git-prompt.sh ] && source $HOME/.git-prompt.sh
 [ -e $HOME/.bash-completion-git ] && source $HOME/.bash-completion-git
 
-# Check for an interactive session
-[ -z "$PS1" ] && return
-
 alias ls="ls --color=auto"
 alias gdb="gdb -q"
 alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
+
+alias venv-activate=". .venv/bin/activate"
 
 # pretty print tsv
 alias catt="column -s $'\t' -t"
