@@ -31,6 +31,9 @@ venv-activate() {
     # alias doesn't work: http://stackoverflow.com/a/13261212
     . $(find-venv .)
 }
+p() {
+    bpython
+}
 
 # pretty print tsv
 alias catt="column -s $'\t' -t"
