@@ -27,9 +27,16 @@ alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
 
+# python virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 venv-activate() {
     # alias doesn't work: http://stackoverflow.com/a/13261212
     . $(find-venv .)
+    INVENV=$(python -c 'import sys; print ("1" if hasattr(sys, "real_prefix") else "0")')
+    if [ "$INVENV" = "1" ] ; then
+        export _OLD_VIRTUAL_PS1="$PS1"  # for deactivate()
+        PS1="\[\e[1;92m\][v] $PS1"
+    fi
 }
 p() {
     bpython
