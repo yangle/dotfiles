@@ -33,8 +33,8 @@ filetype plugin indent on " enable type-specific plugins
 " disable help
 nnoremap <F1> <nop>
 
-" disable Ex mode
-nnoremap Q <nop>
+" disable Ex mode; use Q for line formatting
+nnoremap Q gqq
 
 " disable man page lookup
 nnoremap K <nop>
