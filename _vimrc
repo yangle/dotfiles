@@ -122,6 +122,9 @@ let python_highlight_all = 1
 let python_version_2 = 1
 au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 
+" html / jinja
+autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
 " release Ctrl-C from SQL plugin
 let g:ftplugin_sql_omni_key = '<C-j>'
 
