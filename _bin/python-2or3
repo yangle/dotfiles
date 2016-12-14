@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import sys
+bp = getattr(sys, "base_prefix", sys.prefix) != sys.prefix
+rp = hasattr(sys, "real_prefix")
+
+two = True
+
+if bp or rp:
+    two = False  # in venv
+elif len(sys.argv) > 1:
+    with open(sys.argv[1]) as f:
+        shebang = f.readline()
+    if shebang.startswith('#!') and 'python2' not in shebang:
+        two = False
+
+print('python2' if two else 'python')
