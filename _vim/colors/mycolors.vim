@@ -54,4 +54,7 @@ hi Statement cterm=bold ctermfg=228
 hi Type cterm=bold ctermfg=82
 hi Ignore cterm=bold ctermfg=236
 
+" http://stackoverflow.com/a/13731714
+hi ColorColumn ctermbg=235 guibg=#2c2d27
+
 " vim: sw=2
