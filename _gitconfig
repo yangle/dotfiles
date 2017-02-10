@@ -19,7 +19,7 @@
     excludesfile = ~/.gitignore
     editor = vim
 [push]
-    default = matching
+    default = simple
 [grep]
     lineNumber = true
 [merge]
