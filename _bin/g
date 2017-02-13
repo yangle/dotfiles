@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+# adapted from http://unix.stackexchange.com/a/13474
+function upsearch () {
+    [[ / == "$PWD" ]] && exit 1
+    [[ -e "$1" ]] && return
+    [[ -e "misc/$1" ]] && cd misc && return
+    cd ..
+    upsearch "$1"
+}
+
+# vim session file (default to "session.vim")
+svim=${1:-session.vim}
+
+# search and cd to the folder containing the session file
+upsearch $svim
+session=$PWD/$svim
+
+# search and cd to the target folder for the session
+line=$(head -n 1 $session)
+[[ ${line:0:5} != "badd " ]] && exit 1
+first=${line:5}
+upsearch $first
+
+# open gvim
+gvim -geometry=115x72+20+40 $first -S $session
+sleep 0.05
+xdotool search --onlyvisible --class "gvim" windowmove 9999 40
