@@ -1,0 +1,2 @@
+eval $(ssh-agent) > /dev/null
+[[ -f ~/.bashrc ]] && . ~/.bashrc
