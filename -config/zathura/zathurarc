@@ -21,4 +21,7 @@ set highlight-active-color "#0DFF00"
 set highlight-color "#ED51D0"
 set highlight-transparency 0.7
 
+set render-loading false
+set render-loading-bg "#000000"
+
 map <C-w> quit
