@@ -22,7 +22,7 @@
 	url = https://github.com/yangle/python-syntax.git
 [submodule "_vim/bundle/indentpython"]
 	path = _vim/bundle/indentpython
-	url = https://github.com/vim-scripts/indentpython.vim.git
+	url = https://github.com/yangle/indentpython.vim.git
 [submodule "_vim/bundle/auctex"]
 	path = _vim/bundle/auctex
 	url = https://github.com/yangle/auctex.vim.git
