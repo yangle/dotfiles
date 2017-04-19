@@ -55,6 +55,7 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 # Nautilus
 gsettings set org.gnome.nautilus.preferences sort-directories-first true
+gsettings set org.gtk.settings.file-chooser sort-directories-first true
 gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small'
 gsettings set org.gnome.nautilus.list-view default-zoom-level 'small'
 
