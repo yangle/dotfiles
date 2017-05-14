@@ -38,3 +38,6 @@
 [submodule "_vim/bundle/jinja2"]
 	path = _vim/bundle/jinja2
 	url = git@github.com:lepture/vim-jinja.git
+[submodule "latex-to-unicode"]
+	path = latex-to-unicode
+	url = https://github.com/yangle/latex-to-unicode.git
