@@ -1,0 +1,1 @@
+../latex-to-unicode/latex-to-unicode.sh
