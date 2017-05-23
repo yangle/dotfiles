@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 
+import click
 import errno
 import os
 import os.path as op
@@ -57,13 +58,18 @@ def prepare_temp(base, temp):
                     raise
 
 
-from argh import arg
-@arg('filename', type=str, help='.tex filename')
-@arg('--temp', type=str, help='path for temporary file', default='.tmpTeX')
-@arg('--latex', action='store_true', help='use latex rather than pdflatex', default=False)
-@arg('-x', '--xelatex', action='store_true', help='use xelatex rather than pdflatex', default=False)
+@click.command(context_settings=dict(help_option_names=['-h', '--help']))
+@click.argument('filename', metavar='<paper.tex>',
+                type=click.Path(exists=True, file_okay=True, dir_okay=False))
+@click.option('--temp', metavar='<path>', default='.tmpTeX',
+              type=click.Path(resolve_path=True),
+              help='Path for temporary files', show_default=True)
+@click.option('--latex', is_flag=True,
+              help='Use latex rather than pdflatex')
+@click.option('-x', '--xelatex', is_flag=True,
+              help='Use xelatex rather than pdflatex')
 def run(filename, temp, latex, xelatex):
-    """compile LaTeX without littering"""
+    """Compile LaTeX without littering."""
     filename = find_master(filename)
 
     base = op.dirname(op.abspath(filename))
@@ -75,7 +81,7 @@ def run(filename, temp, latex, xelatex):
     if xelatex:
         mode = '-m xelatex'
 
-    command = r'rubber --into .tmpTeX -fsq %s "%s"' % (mode, filename)
+    command = r'rubber --into %s -fsq %s "%s"' % (temp, mode, filename)
     execute(command, choke=True)
 
     name = op.basename(op.splitext(filename)[0])
@@ -90,7 +96,4 @@ def run(filename, temp, latex, xelatex):
 
 
 if __name__ == '__main__':
-    from argh.helpers import ArghParser
-    parser = ArghParser()
-    parser.set_default_command(run)
-    parser.dispatch()
+    run()
