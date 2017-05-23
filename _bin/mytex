@@ -1,5 +1,31 @@
 #!/usr/bin/python2
 
+import errno
+import os
+import os.path as op
+import subprocess as sp
+import sys
+
+
+def execute(command, choke=False):
+    """execute command in current directory
+
+    choke = whether to choke on non-zero return code
+    """
+    p = sp.Popen([command], shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
+    stdout, stderr = p.communicate()
+
+    if choke and p.returncode != 0:
+        if len(stdout) > 0:
+            print stdout,
+        if len(stderr) > 0:
+            print stderr,
+
+        sys.exit(p.returncode)
+
+    return stdout, stderr, p.returncode
+
+
 def find_master(filename):
     """find the master .tex file"""
     with open(filename) as f:
@@ -11,28 +37,25 @@ def find_master(filename):
     else:
         return filename
 
-def prepare_temp(temp):
+
+def prepare_temp(base, temp):
     """create symlinks in temp folder"""
-    from utils import mkdir
-    mkdir(temp)
+    execute('mkdir -p "%s"' % temp)
 
-    from os.path import abspath, dirname, join
-    parent = dirname(abspath(temp))
-    from os import listdir, symlink, remove
-    from errno import EEXIST
-
-    for f in listdir(parent):
-        if f != temp and not any(f.endswith(ext) for ext in ('.pdf', '.aux', '.log', '.out')):
-            source = join(parent, f)
-            target = join(parent, temp, f)
+    skip_ext = ('.pdf', '.aux', '.log', '.out')
+    for f in os.listdir(base):
+        if f != temp and not any(f.endswith(ext) for ext in skip_ext):
+            source = op.join(base, f)
+            target = op.join(base, temp, f)
             try:
-                symlink(source, target)
+                os.symlink(source, target)
             except OSError, e:
-                if e.errno == EEXIST:
-                    remove(target)
-                    symlink(source, target)
+                if e.errno == errno.EEXIST:
+                    os.remove(target)
+                    os.symlink(source, target)
                 else:
                     raise
+
 
 from argh import arg
 @arg('filename', type=str, help='.tex filename')
@@ -42,7 +65,9 @@ from argh import arg
 def run(filename, temp, latex, xelatex):
     """compile LaTeX without littering"""
     filename = find_master(filename)
-    prepare_temp(temp)
+
+    base = op.dirname(op.abspath(filename))
+    prepare_temp(base, temp)
 
     mode = '-m pdftex'
     if latex:
@@ -50,16 +75,19 @@ def run(filename, temp, latex, xelatex):
     if xelatex:
         mode = '-m xelatex'
 
-    from utils import execute
     command = r'rubber --into .tmpTeX -fsq %s "%s"' % (mode, filename)
     execute(command, choke=True)
 
-    from os.path import join, basename, splitext
-    name = basename(splitext(filename)[0])
+    name = op.basename(op.splitext(filename)[0])
+    final = op.join(base, name + '.pdf')
+
     if latex:
-        execute('dvipdf %s %s' % (join(temp, name + '.dvi'), name + '.pdf'), choke=True)
+        dvi = op.join(temp, name + '.dvi')
+        execute('dvipdf "%s" "%s"' % (dvi, final), choke=True)
     else:
-        execute('cp "%s" .' % join(temp, name + '.pdf'), choke=True)
+        pdf = op.join(temp, name + '.pdf')
+        execute('cp "%s" "%s"' % (pdf, final), choke=True)
+
 
 if __name__ == '__main__':
     from argh.helpers import ArghParser
