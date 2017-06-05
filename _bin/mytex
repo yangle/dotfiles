@@ -68,7 +68,9 @@ def prepare_temp(base, temp):
               help='Use latex rather than pdflatex')
 @click.option('-x', '--xelatex', is_flag=True,
               help='Use xelatex rather than pdflatex')
-def run(filename, temp, latex, xelatex):
+@click.option('-u', '--unsafe', is_flag=True,
+              help="Call rubber with '--unsafe' flag")
+def run(filename, temp, latex, xelatex, unsafe):
     """Compile LaTeX without littering."""
     filename = find_master(filename)
 
@@ -80,6 +82,9 @@ def run(filename, temp, latex, xelatex):
         mode = ''
     if xelatex:
         mode = '-m xelatex'
+
+    if unsafe:
+        mode += ' --unsafe'
 
     command = r'rubber --into %s -fsq %s "%s"' % (temp, mode, filename)
     execute(command, choke=True)
