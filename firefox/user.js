@@ -9,6 +9,8 @@ user_pref("browser.pocket.enabled", false);
 user_pref("full-screen-api.approval-required", false);
 user_pref("dom.webnotifications.enabled", false);
 
+user_pref("media.block-autoplay-until-in-foreground", true);
+
 user_pref("privacy.donottrackheader.enabled", true);
 user_pref("browser.formfill.enable", false);
 user_pref("browser.cache.disk.enable", false);
