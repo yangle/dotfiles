@@ -5,6 +5,8 @@ export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH
 export PYTHONPATH=$HOME/.bin
 export TEXINPUTS=".:$HOME/Documents/Repository/:"
 
+export GPG_TTY=$(tty)
+
 # silence annoying warnings from grep
 unset GREP_OPTIONS
 
