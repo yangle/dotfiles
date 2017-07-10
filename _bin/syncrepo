@@ -18,9 +18,9 @@ CURRENT=`readlink archlinux`
 echo $TIMESTAMP
 echo $CURRENT
 
-if [ `hostname` = "conformal" ]; then
+if [ `hostname` = "poisson" ]; then
     HOST="http://mirrors.advancedhosters.com/archlinux"
-    SIZERANGE="--size-range=0-100000000" # 100M
+    #SIZERANGE="--size-range=0-100000000" # 100M
 fi
  
 [[ $CURRENT == $TIMESTAMP ]] || cp -al $CURRENT $TIMESTAMP
