@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+ssh p '$HOME/sandbox/server-conf/poisson/nginx/run-goaccess'
+scp p:/tmp/goaccess-nginx.html /tmp
+chromium --incognito /tmp/goaccess-nginx.html
