@@ -5,6 +5,7 @@
 .mytexmk
 .tmpTeX
 .venv/
+*.egg-info/
 *.pyc
 *.pyo
 doc/tags
