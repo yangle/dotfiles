@@ -1,86 +1,90 @@
 #!/usr/bin/env python2
 # -*- coding: utf8 -*-
 
+import os
+import os.path as op
+import subprocess as sp
+import sys
+import time
+
+
 def execute(args, cwd=None, casual=False):
     """execute a command"""
-    from subprocess import Popen, PIPE
-    p = Popen(args, shell=False, stdout=PIPE, stderr=PIPE, cwd=cwd)
+    p = sp.Popen(args, shell=False, stdout=sp.PIPE, stderr=sp.PIPE, cwd=cwd)
     stdo, stde = p.communicate()
     code = p.returncode
     if not casual:
-        assert len(stdo) == 0 and len(stde) == 0 and code == 0, (stdo, stde, code)
+        assert len(stdo) == 0 and len(stde) == 0 and code == 0, \
+            (stdo, stde, code)
     return stdo, stde, code
+
 
 def locate_bundles(root):
     """shallow-collect ./_* files and folders"""
-    from os import listdir
-    return [name for name in listdir(root) if name.startswith('_')]
+    return [name for name in os.listdir(root) if name.startswith('_')]
+
 
 def locate_singles(root):
-    """collect individual files inside ./-*, treating symlinks to folders as files"""
-    from os import listdir, walk
-    from os.path import join, islink
-
+    """collect individual files inside ./-*"""
+    # symlinks to folders are treated as files
     output = []
-    for path in listdir(root):
+    for path in os.listdir(root):
         if path.startswith('-'):
-            for dirpath, dirnames, filenames in walk(path):
-                output += [join(dirpath, filename) for filename in filenames]
-                output += filter(islink, [join(dirpath, dirname) for dirname in dirnames])
+            for d, dirnames, filenames in os.walk(path):
+                output += [op.join(d, filename) for filename in filenames]
+                output += filter(op.islink,
+                                 [op.join(d, dirname) for dirname in dirnames])
     return output
+
 
 def perform_backup(root, home, backup):
     """backup files and folders to be overwritten"""
-    from os.path import join
-    from time import strftime
-
     print 'Creating backup'
-    tarball = join(root, strftime('backup-%y%m%d.%H%M%S.tar.bz2'))
-    stdo, stde, code = execute(['tar', 'jcvf', tarball] + backup, cwd=home, casual=True)
+    tarball = op.join(root, time.strftime('backup-%y%m%d.%H%M%S.tar.bz2'))
+    stdo, stde, code = execute(['tar', 'jcvf', tarball] + backup,
+                               cwd=home, casual=True)
 
     if len(stde) > 0 or code != 0:
         print stdo
         print stde
         print 'Exit status %d' % code
 
-        from sys import exit
-        exit(code)
+        sys.exit(code)
 
     print 'Removing files to overwrite'
-    execute(['rm','-rf'] + backup, cwd=home)
+    execute(['rm', '-rf'] + backup, cwd=home)
+
 
 def create_symlinks(root, home, source, target):
     """create symlinks to $HOME"""
-    from os.path import join, dirname, basename
-
     print 'Creating symlinks'
     for raw, symlink in zip(source, target):
         print raw, '⇒', symlink
-        original = join(root, raw)
+        original = op.join(root, raw)
 
-        dname = dirname(symlink)
-        bname = basename(symlink)
+        dname = op.dirname(symlink)
+        bname = op.basename(symlink)
         if len(dname) > 0:
             execute(['mkdir', '-p', dname], cwd=home)
-            execute(['ln', '-s', original, bname], cwd=join(home, dname))
+            execute(['ln', '-s', original, bname], cwd=op.join(home, dname))
         else:
             execute(['ln', '-s', original, symlink], cwd=home)
 
-def main():
-    from os.path import dirname, abspath, expanduser
-    root = dirname(abspath(__file__))
-    home = expanduser('~')
 
-    from os.path import join, exists
+def main():
+    root = op.dirname(op.abspath(__file__))
+    home = op.expanduser('~')
+
     source = locate_bundles(root) + locate_singles(root)
 
     target = ['.' + path[1:] for path in source]
-    backup = [path for path in target if exists(join(home, path))]
+    backup = [path for path in target if op.exists(op.join(home, path))]
 
     if len(backup) > 0:
         perform_backup(root, home, backup)
 
     create_symlinks(root, home, source, target)
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
