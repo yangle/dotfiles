@@ -4,7 +4,7 @@ This is my collection of configurations and scripts.
 
 To clone the repository with all submodules into `~/.dotfiles`, run
 ```bash
-git clone --recursive git@github.com:yangle/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/yangle/dotfiles.git ~/.dotfiles
 ```
 
 To update all submodules, run
