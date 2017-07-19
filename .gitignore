@@ -6,3 +6,4 @@ _vim/doc/tags
 _vim/spell/en.utf-8.add.spl
 _bin/diagham-tags
 backup-*
+!_bin/backup-*
