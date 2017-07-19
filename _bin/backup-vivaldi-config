@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+TARBALL=/tmp/vivaldi-config-`date +"%Y%m%d-%H%M%S"`.tar.gz
+tar zcvf "$TARBALL" -C ~/.config/vivaldi Default
+scp "$TARBALL" p:~/backup/
+rm "$TARBALL"
