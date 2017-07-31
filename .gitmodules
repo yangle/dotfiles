@@ -41,3 +41,6 @@
 [submodule "latex-to-unicode"]
 	path = latex-to-unicode
 	url = https://github.com/yangle/latex-to-unicode.git
+[submodule "jupyter/jupyter-vim-binding"]
+	path = jupyter/jupyter-vim-binding
+	url = https://github.com/lambdalisue/jupyter-vim-binding.git
