@@ -6,3 +6,13 @@
     content: '';
     height: 50vh; /* 1vh = 1% of browser screen height */
 }
+
+/* markdown backtick <code> span */
+.rendered_html code {
+    border: 0;
+    border-radius: 4px;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    font-size: 100%;
+    padding: 2px 4px 2px 4px;
+}
