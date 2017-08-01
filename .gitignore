@@ -1,6 +1,7 @@
 *.swp
 *.swo
 *.pyc
+_jupyter/migrated
 _vim/.netrwhist
 _vim/doc/tags
 _vim/spell/en.utf-8.add.spl
