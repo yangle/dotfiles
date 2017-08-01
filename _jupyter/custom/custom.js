@@ -33,7 +33,7 @@ require([
           break;
 
         if (i == ilast) {
-          j = n - 1;
+          j = n; // one past the end
           break;
         }
 
