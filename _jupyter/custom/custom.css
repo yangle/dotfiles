@@ -1,0 +1,8 @@
+/* add half a screen of empty space at the bottom
+ * (making it possible to 'scroll past the bottom')
+ * see: https://github.com/jupyterlab/jupyterlab/pull/1696 */
+#notebook::after {
+    display: block;
+    content: '';
+    height: 50vh; /* 1vh = 1% of browser screen height */
+}
