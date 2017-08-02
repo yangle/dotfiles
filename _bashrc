@@ -61,6 +61,10 @@ p() {
     bpython
 }
 
+# default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 # pretty print tsv
 alias catt="column -s $'\t' -t"
 
