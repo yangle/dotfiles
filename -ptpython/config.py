@@ -33,7 +33,7 @@ def configure(repl):
     repl.show_meta_enter_message = True
 
     # Show completions. (NONE, POP_UP, MULTI_COLUMN or TOOLBAR)
-    repl.completion_visualisation = CompletionVisualisation.POP_UP
+    repl.completion_visualisation = CompletionVisualisation.MULTI_COLUMN
 
     # When CompletionVisualisation.POP_UP has been chosen, use this
     # scroll_offset in the completion menu.
@@ -55,14 +55,14 @@ def configure(repl):
     repl.wrap_lines = True
 
     # Mouse support.
-    repl.enable_mouse_support = True
+    repl.enable_mouse_support = False
 
     # Complete while typing. (Don't require tab before the
     # completion menu is shown.)
     repl.complete_while_typing = True
 
     # Vi mode.
-    repl.vi_mode = False
+    repl.vi_mode = True
 
     # Paste mode. (When True, don't insert whitespace after new line.)
     repl.paste_mode = False
@@ -94,7 +94,7 @@ def configure(repl):
     repl.enable_system_bindings = True
 
     # Ask for confirmation on exit.
-    repl.confirm_exit = True
+    repl.confirm_exit = False
 
     # Enable input validation. (Don't try to execute when the input contains
     # syntax errors.)
@@ -114,26 +114,32 @@ def configure(repl):
     """
 
     # Add custom key binding for PDB.
+    """
     @repl.add_key_binding(Keys.ControlB)
     def _(event):
         ' Pressing Control-B will insert "pdb.set_trace()" '
         event.cli.current_buffer.insert_text('\nimport pdb; pdb.set_trace()\n')
+    """
 
     # Typing ControlE twice should also execute the current command.
     # (Alternative for Meta-Enter.)
+    """
     @repl.add_key_binding(Keys.ControlE, Keys.ControlE)
     def _(event):
         b = event.current_buffer
         if b.accept_action.is_returnable:
             b.accept_action.validate_and_handle(event.cli, b)
+    """
 
 
     # Typing 'jj' in Vi Insert mode, should send escape. (Go back to navigation
     # mode.)
+    """
     @repl.add_key_binding('j', 'j', filter=ViInsertMode())
     def _(event):
         " Map 'jj' to Escape. "
         event.cli.input_processor.feed(KeyPress(Keys.Escape))
+    """
 
     """
     # Custom key binding for some simple autocorrection while typing.
