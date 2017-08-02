@@ -61,6 +61,10 @@ p() {
     [ -x "$(command -v ptpython2)" ] && ptpython2 || ptpython
 }
 
+# Jupyter
+alias jnotebook="env BROWSER=throwaway-vivaldi jupyter-notebook"
+alias jconsole="jupyter-console --kernel=python2 --existing"
+
 # default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
