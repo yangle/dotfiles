@@ -43,7 +43,7 @@ def configure(repl):
     repl.show_line_numbers = True
 
     # Show status bar.
-    repl.show_status_bar = True
+    repl.show_status_bar = False
 
     # When the sidebar is visible, also show the help text.
     repl.show_sidebar_help = True
@@ -83,7 +83,7 @@ def configure(repl):
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
-    repl.enable_auto_suggest = False
+    repl.enable_auto_suggest = True
 
     # Enable open-in-editor. Pressing C-X C-E in emacs mode or 'v' in
     # Vi navigation mode will open the input in the current editor.
