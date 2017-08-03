@@ -16,3 +16,11 @@
     font-size: 100%;
     padding: 2px 4px 2px 4px;
 }
+
+/* tooltip before/after "expand" */
+.smalltooltip {
+    height:250px;
+}
+.bigtooltip {
+    height:500px;
+}
