@@ -19,8 +19,10 @@
 
 /* tooltip before/after "expand" */
 .smalltooltip {
-    height:250px;
+    height: auto;
+    max-height: 250px;
 }
 .bigtooltip {
-    height:500px;
+    height: auto;
+    max-height: 500px;
 }
