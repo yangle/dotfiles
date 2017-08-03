@@ -1,6 +1,8 @@
 require([
   'nbextensions/vim_binding/vim_binding',
 ], function() {
+  if (window.CodeMirror == undefined)
+    return;
 
   // Redefine moveByCharacters to emulate ":set whichwrap=h,l,<,>,[,]"
   //
@@ -61,4 +63,32 @@ require([
     // console.log([cursor.line, cursor.ch, i, j, cm.doc.getLine(cursor.line).length, cm.doc.getLine(i).length]);
     return CodeMirror.Pos(i, j);
   });
+});
+
+
+// Reduce tooltip cycle to just 3 states: nothing, expanded, stuck
+require([
+  'base/js/namespace',
+  'nbextensions/vim_binding/vim_binding',
+  // Requiring vim_binding extension is a temporary hack to delay execution
+  // See: https://github.com/jupyter/notebook/issues/2499
+], function(Jupyter) {
+  var tt = Jupyter.notebook.tooltip;
+
+  tt.tabs_functions = [
+    function (cell, text, cursor) {
+      tt._request_tooltip(cell, text, cursor);
+      tt.expand();
+    },
+    function () {
+      tt.stick();
+    },
+    function (cell, text) {
+      // the explicit reset here is necessary due to the (normally concealed) off-by-one error at
+      // https://github.com/jupyter/notebook/blob/823e44729381c52cce3c2c1b26529447de544e64/notebook/static/notebook/js/tooltip.js#L231
+      tt.cancel_stick();
+      tt.remove_and_cancel_tooltip();
+      tt.reset_tabs_function (cell, text);
+    },
+  ];
 });
