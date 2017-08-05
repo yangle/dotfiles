@@ -81,7 +81,7 @@ require([
       tt.expand();
     },
     function () {
-      tt.stick();
+      tt.stick(20); // stick for 20 seconds
     },
     function (cell, text) {
       // the explicit reset here is necessary due to the (normally concealed) off-by-one error at
