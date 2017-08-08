@@ -4,6 +4,10 @@ require([
   if (window.CodeMirror == undefined)
     return;
 
+  // Bind '=' to smart indent ('==' is handled automatically)
+  CodeMirror.Vim.mapCommand('=', 'operator', 'indent', {indentRight: 'smart'}, {context: 'normal'});
+  CodeMirror.Vim.mapCommand('=', 'operator', 'indent', {indentRight: 'smart'}, {context: 'visual'});
+
   // Redefine moveByCharacters to emulate ":set whichwrap=h,l,<,>,[,]"
   //
   // (See CodeMirror/keymap/vim.js for its usage as well as original definition)
