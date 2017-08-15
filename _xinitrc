@@ -19,5 +19,7 @@ eval $(ssh-agent)
 # https://bbs.archlinux.org/viewtopic.php?pid=1265125#p1265125
 gnome-screensaver &
 
+redshift &
+
 exec gnome-session
 #exec gnome-session-cinnamon
