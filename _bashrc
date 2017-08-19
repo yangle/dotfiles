@@ -65,6 +65,8 @@ p() {
 alias jnotebook="env BROWSER=throwaway-vivaldi jupyter-notebook"
 alias jconsole="jupyter-console --kernel=python2 --existing"
 
+alias nx="(cd ~/sandbox/scratch/nx && venv-activate && ./check)"
+
 # default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
