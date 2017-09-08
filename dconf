@@ -12,6 +12,9 @@
 # "Schema '...' is relocatable (path must be specified)"
 # use org.whatever.schema:/org/path/to/key/ -- see for example Disable F1 in Terminal
 
+# "No such schema “org.gnome.shell.extensions....”"
+# run gnome-shell-extensions/compile-schemas as root
+
 # silence the extension version nonsense
 gsettings set org.gnome.shell disable-extension-version-validation true
 
@@ -90,6 +93,48 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '<Super>Pr
 
 # lock screen
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Primary><Alt>l'
+
+# openweather -- Dark Sky API key has to be set manually!
+gsettings set org.gnome.shell.extensions.openweather unit 'celsius'
+gsettings set org.gnome.shell.extensions.openweather translate-condition true
+gsettings set org.gnome.shell.extensions.openweather pressure-unit 'atm'
+gsettings set org.gnome.shell.extensions.openweather wind-direction true
+gsettings set org.gnome.shell.extensions.openweather decimal-places 0
+gsettings set org.gnome.shell.extensions.openweather show-text-in-panel true
+gsettings set org.gnome.shell.extensions.openweather days-forecast 3
+gsettings set org.gnome.shell.extensions.openweather show-comment-in-forecast true
+gsettings set org.gnome.shell.extensions.openweather weather-provider 'darksky.net'
+gsettings set org.gnome.shell.extensions.openweather wind-speed-unit 'mph'
+gsettings set org.gnome.shell.extensions.openweather position-in-panel 'center'
+
+# system-monitor
+gsettings set org.gnome.shell.extensions.system-monitor background '#555753ff'
+gsettings set org.gnome.shell.extensions.system-monitor compact-display true
+gsettings set org.gnome.shell.extensions.system-monitor show-tooltip true
+gsettings set org.gnome.shell.extensions.system-monitor icon-display false
+gsettings set org.gnome.shell.extensions.system-monitor memory-display false
+gsettings set org.gnome.shell.extensions.system-monitor disk-display true
+gsettings set org.gnome.shell.extensions.system-monitor cpu-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor memory-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor net-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor disk-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor cpu-graph-width 160
+gsettings set org.gnome.shell.extensions.system-monitor net-graph-width 160
+gsettings set org.gnome.shell.extensions.system-monitor disk-graph-width 160
+gsettings set org.gnome.shell.extensions.system-monitor disk-refresh-time 500
+gsettings set org.gnome.shell.extensions.system-monitor net-refresh-time 500
+gsettings set org.gnome.shell.extensions.system-monitor cpu-refresh-time 500
+gsettings set org.gnome.shell.extensions.system-monitor cpu-user-color '#00a3ffff'
+gsettings set org.gnome.shell.extensions.system-monitor cpu-system-color '#fce94fff'
+gsettings set org.gnome.shell.extensions.system-monitor cpu-iowait-color '#ff6700ff'
+gsettings set org.gnome.shell.extensions.system-monitor cpu-nice-color '#8ae234ff'
+gsettings set org.gnome.shell.extensions.system-monitor cpu-other-color '#ad7fa8ff'
+gsettings set org.gnome.shell.extensions.system-monitor net-down-color '#00a3ffff'
+gsettings set org.gnome.shell.extensions.system-monitor net-up-color '#ef2929ff'
+gsettings set org.gnome.shell.extensions.system-monitor net-uperrors-color '#fb74fbff'
+gsettings set org.gnome.shell.extensions.system-monitor net-collisions-color '#fce94fff'
+gsettings set org.gnome.shell.extensions.system-monitor disk-read-color '#00a3ffff'
+gsettings set org.gnome.shell.extensions.system-monitor disk-write-color '#ef2929ff'
 
 # Launchers
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/']"
