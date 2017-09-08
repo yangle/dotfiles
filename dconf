@@ -67,14 +67,6 @@ gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothi
 # Ctrl-Alt-Backspace kills X
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'terminate:ctrl_alt_bksp', 'ctrl:nocaps']"
 
-## Cinnamon
-#gsettings set org.nemo.desktop computer-icon-visible false
-#gsettings set org.nemo.desktop home-icon-visible false
-#gsettings set org.nemo.desktop trash-icon-visible false
-#gsettings set org.cinnamon.muffin overlay-key ''
-#gsettings set org.cinnamon desktop-effects false
-#gsettings set org.cinnamon desktop-layout 'flipped'
-
 # disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
 
