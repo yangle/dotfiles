@@ -54,7 +54,9 @@ gsettings set org.gnome.nautilus.desktop trash-icon-visible false
 gsettings set org.gnome.desktop.background show-desktop-icons true
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.privacy show-full-name-in-top-bar false
+gsettings set org.gnome.desktop.privacy remember-recent-files false
 gsettings set org.gnome.desktop.interface clock-show-seconds true
+gsettings set org.gnome.desktop.notifications show-banners false
 
 # Nautilus
 gsettings set org.gnome.nautilus.preferences sort-directories-first true
