@@ -57,6 +57,8 @@ gsettings set org.gnome.desktop.privacy show-full-name-in-top-bar false
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.notifications show-banners false
+gsettings set org.gnome.desktop.media-handling autorun-never true
+gsettings set org.gnome.desktop.search-providers disable-external true
 
 # Nautilus
 gsettings set org.gnome.nautilus.preferences sort-directories-first true
