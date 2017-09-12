@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# start Vivaldi in profile "vivaldi-sandbox"
+
+set -e
+
+OLD=~/.config/vivaldi
+NEW=~/.config/vivaldi-sandbox
+
+if [[ ! -d $NEW ]]; then
+    mkdir -p $NEW
+    OLDD=$OLD/Default
+    NEWD=$NEW/Default
+
+    mkdir -p $NEWD
+
+    cp $OLD/"First Run" $NEW/
+    cp $OLDD/Bookmarks $NEWD/
+    cp $OLDD/Favicons $NEWD/
+    cp $OLDD/Preferences $NEWD/
+
+    cp -r $OLDD/Extensions $NEWD/
+
+    cp -r $OLDD/"Local App Settings" $NEWD/ # theme
+    cp -r $OLDD/"Local Extension Settings" $NEWD/ # uBlock
+    cp -r $OLDD/"Local Storage" $NEWD/ # pinboard
+fi
+
+vivaldi-stable --user-data-dir=$NEW $1
