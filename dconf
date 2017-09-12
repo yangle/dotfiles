@@ -137,8 +137,8 @@ gsettings set org.gnome.shell.extensions.system-monitor net-down-color '#00a3fff
 gsettings set org.gnome.shell.extensions.system-monitor net-up-color '#ef2929ff'
 gsettings set org.gnome.shell.extensions.system-monitor net-uperrors-color '#fb74fbff'
 gsettings set org.gnome.shell.extensions.system-monitor net-collisions-color '#fce94fff'
-gsettings set org.gnome.shell.extensions.system-monitor disk-read-color '#00a3ffff'
-gsettings set org.gnome.shell.extensions.system-monitor disk-write-color '#ef2929ff'
+gsettings set org.gnome.shell.extensions.system-monitor disk-read-color '#ef2929ff'
+gsettings set org.gnome.shell.extensions.system-monitor disk-write-color '#00a3ffff'
 
 # Launchers
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/']"
