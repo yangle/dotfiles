@@ -13,6 +13,9 @@ xhost +localhost
 # somehow the setting through dconf does not persist through reboot
 setxkbmap -option ctrl:nocaps
 
+# map Ctrl press-and-release to Escape
+xcape -t 200 -e 'Control_L=Escape'
+
 eval $(ssh-agent)
 
 # lock screen fix for gnome 3.8 w/o gdm
