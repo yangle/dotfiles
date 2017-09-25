@@ -10,7 +10,9 @@
 }
 
 .ssd .titlebar:backdrop {
-    background-image: linear-gradient(to bottom, @theme_bg_color);
+    background-image: linear-gradient(to bottom,
+                                      @theme_bg_color,
+                                      @theme_bg_color);
 }
 
 .ssd .titlebar .button.titlebutton {
@@ -32,7 +34,9 @@
 }
 
 .menubar:backdrop {
-    background-image: linear-gradient(to bottom, @theme_bg_color);
+    background-image: linear-gradient(to bottom,
+                                      @theme_bg_color,
+                                      @theme_bg_color);
 }
 
 
