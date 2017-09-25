@@ -16,5 +16,6 @@ set guioptions-=T  "remove toolbar
 " cut/copy/paste using system clipboard
 vmap <CS-X> "+d
 vmap <CS-C> "+y
-imap <CS-V> <Esc>"+gpa
+" set an undo point before pasting: https://unix.stackexchange.com/a/117409
+imap <CS-V> <C-G>u<Esc>"+gpa
 
