@@ -1,0 +1,13 @@
+! ~/.Xmodmap is loaded by Fcitx (no need to call "xmodmap ~/.Xmodmap")
+! https://fcitx-im.org/wiki/FAQ#xmodmap_settings_being_overwritten
+!
+! This seems to be the *only* reliable way to get a persistent remap
+! -- It survives suspend+wake too!
+
+! Layout fixes for Microsoft Sculpt Ergonomic
+! Remap Home-End-PgUp-PgDn to Home-PgUp-PgDn-End
+keycode 115 = Prior
+keycode 112 = Next
+keycode 117 = End
+! "Windows" button on the Sculpt mouse
+keycode 134 = XF86Forward
