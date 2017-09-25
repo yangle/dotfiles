@@ -16,11 +16,6 @@ setxkbmap -option ctrl:nocaps
 # map Ctrl press-and-release to Escape
 xcape -t 200 -e 'Control_L=Escape'
 
-# layout fix for Microsoft Sculpt Ergonomic (see ~/.xkb for details)
-if lsusb | grep -q "Microsoft Corp. Wireless Receiver 1461C"; then
-    xkbcomp -w0 -I$HOME/.xkb $HOME/.xkb/keymap.xkb $DISPLAY
-fi
-
 eval $(ssh-agent)
 
 # lock screen fix for gnome 3.8 w/o gdm
