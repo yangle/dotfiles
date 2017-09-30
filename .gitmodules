@@ -50,3 +50,6 @@
 [submodule "_vim/bundle/vinegar"]
 	path = _vim/bundle/vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "_vim/bundle/gina"]
+	path = _vim/bundle/gina
+	url = https://github.com/lambdalisue/gina.vim.git
