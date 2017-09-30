@@ -25,6 +25,4 @@ first=${line:5}
 upsearch $first
 
 # open gvim
-gvim -geometry=115x72+20+40 $first -S $session
-sleep 0.05
-xdotool search --onlyvisible --class "gvim" windowmove 9999 40
+gvim -geometry=115x72+10000+40 $first -S $session &>/dev/null
