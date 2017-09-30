@@ -234,7 +234,9 @@ function! s:hlt(group, fg, ...)
                 \." cterm=".cstyle." ctermfg=".ctermfg." ctermbg=".ctermbg
 endfunction
 
-function! Syn()
+" get highlight groups of word under cursor
+" https://gist.github.com/mattsacks/1544768
+function! CheckSyn()
     for id in synstack(line("."), col("."))
         echo synIDattr(id, "name")
     endfor
@@ -249,6 +251,11 @@ call s:hlt("EndOfBuffer",   "LightSkyBlue1",    "Grey30",   "bold")
 call s:hlt("LineNr",        "SpringGreen4",     "Grey11",   "bold")
 call s:hlt("MatchParen",    "NONE",             "Cyan3",    "bold")
 call s:hlt("NonText",       "Red",              "Grey93",   "bold")
+call s:hlt("Pmenu",         "NONE",             "Magenta2")
+call s:hlt("PmenuSbar",     "NONE",             "Grey78")
+call s:hlt("PmenuSel",      "NONE",             "Grey42")
+call s:hlt("Visual",        "Grey30",           "Wheat1")
+call s:hlt("VisualNOS",     "NONE",             "NONE",     "underline,bold")
 
 call s:hlt("Comment",       "SkyBlue2")
 call s:hlt("Conditional",   "Orange1",          "NONE",     "bold")
@@ -264,6 +271,8 @@ call s:hlt("Repeat",        "LightPink1",       "NONE",     "bold")
 call s:hlt("Special",       "DarkOrange",       "NONE",     "bold")
 call s:hlt("SpellBad",      "NONE",             "NONE",     "undercurl",    "NONE",     "Red1")
 call s:hlt("Statement",     "LightGoldenrod1",  "NONE",     "bold")
-call s:hlt("String",        "LightPink1",       "NONE",     "bold")
+call s:hlt("String",        "LightCoral",       "NONE",     "bold")
 call s:hlt("Structure",     "SeaGreen2",        "NONE",     "bold")
 call s:hlt("Type",          "SkyBlue1",         "NONE",     "bold")
+
+call s:hlt("mkdCode",       "Plum1",            "NONE",     "bold")
