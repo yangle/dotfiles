@@ -260,9 +260,9 @@ call s:hlt("PmenuSel",      "NONE",             "Grey42")
 call s:hlt("Visual",        "Grey30",           "Wheat1")
 call s:hlt("VisualNOS",     "NONE",             "NONE",         "underline,bold")
 
-call s:hlt("StatusLine",    "Grey23",            "Grey82")
+call s:hlt("StatusLine",    "Grey3",            "Grey82")
 call s:hlt("BuftabsActive", "DarkSeaGreen1",    "DeepSkyBlue4", "bold")
-call s:hlt("BuftabsInact",  "Grey23",           "Grey82")
+call s:hlt("BuftabsInact",  "Grey3",            "Grey82")
 
 call s:hlt("Comment",       "SkyBlue2")
 call s:hlt("Conditional",   "Orange1",          "NONE",         "bold")
