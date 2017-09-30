@@ -84,8 +84,12 @@ au BufRead,BufNewFile *.sty setlocal spell filetype=tex
 
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
-let g:buftabs_only_basename=1
-let g:buftabs_in_statusline=1
+let g:buftabs_only_basename = 1
+let g:buftabs_in_statusline = 1
+let g:buftabs_marker_start = " "
+let g:buftabs_marker_end = " "
+let g:buftabs_active_highlight_group = "BuftabsActive"
+let g:buftabs_inactive_highlight_group = "BuftabsInact"
 noremap <C-J> :bprev<CR>
 noremap <C-K> :bnext<CR>
 noremap <C-Q> :bd<CR>
