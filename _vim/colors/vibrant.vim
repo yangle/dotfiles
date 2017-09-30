@@ -234,7 +234,10 @@ function! s:hlt(group, fg, ...)
                 \." cterm=".cstyle." ctermfg=".ctermfg." ctermbg=".ctermbg
 endfunction
 
-" get highlight groups of word under cursor
+" to check highlight definition of the word under cursor, run
+" :call CheckSyn()
+" :hi {group-name}
+"
 " https://gist.github.com/mattsacks/1544768
 function! CheckSyn()
     for id in synstack(line("."), col("."))
@@ -259,7 +262,7 @@ call s:hlt("VisualNOS",     "NONE",             "NONE",     "underline,bold")
 
 call s:hlt("Comment",       "SkyBlue2")
 call s:hlt("Conditional",   "Orange1",          "NONE",     "bold")
-call s:hlt("Constant",      "Magenta1",         "NONE",     "bold")
+call s:hlt("Constant",      "SandyBrown",       "NONE",     "bold")
 call s:hlt("Define",        "Magenta1",         "NONE",     "bold")
 call s:hlt("Exception",     "DarkOliveGreen1",  "NONE",     "bold")
 call s:hlt("Identifier",    "Aqua")
@@ -272,7 +275,7 @@ call s:hlt("Special",       "DarkOrange",       "NONE",     "bold")
 call s:hlt("SpellBad",      "NONE",             "NONE",     "undercurl",    "NONE",     "Red1")
 call s:hlt("Statement",     "LightGoldenrod1",  "NONE",     "bold")
 call s:hlt("String",        "LightCoral",       "NONE",     "bold")
-call s:hlt("Structure",     "SeaGreen2",        "NONE",     "bold")
-call s:hlt("Type",          "SkyBlue1",         "NONE",     "bold")
+call s:hlt("Structure",     "SkyBlue1",         "NONE",     "bold")
+call s:hlt("Type",          "SeaGreen2",        "NONE",     "bold")
 
 call s:hlt("mkdCode",       "Plum1",            "NONE",     "bold")
