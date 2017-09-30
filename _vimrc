@@ -23,7 +23,8 @@ set title " set teminal title
 set nojoinspaces " single space after '.' when joining lines
 set foldlevel=99 " unfold all by default
 set spellcapcheck= " skip capitalization check
-
+set list
+set listchars=tab:»\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set display+=lastline " partially display lastline even if it doesn't fit
 
 syntax on " syntax highlight
