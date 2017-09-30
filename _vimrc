@@ -115,10 +115,6 @@ function! AutoRestoreWinView() " Restore current view settings.
     endif
 endfunction
 
-"" ctags for c++
-"map <F8> :!~/.bin/generate-diagham-tags<CR>
-"set tags+=~/.bin/diagham-tags
-
 " asymptote
 au BufRead,BufNewFile *.asy setlocal filetype=asy
 
