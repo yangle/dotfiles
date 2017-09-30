@@ -122,10 +122,9 @@ endfunction
 " asymptote
 au BufRead,BufNewFile *.asy setlocal filetype=asy
 
-" python
+" python-syntax
 let python_highlight_all = 1
 let python_version_2 = 1
-au! FileType python setl nosmartindent " http://stackoverflow.com/a/2064318
 
 " html / jinja
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2

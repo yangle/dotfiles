@@ -2,6 +2,9 @@ noremap <buffer> <silent> <F9> <Esc>:w<CR>:!stty erase '^H'; . $(find-venv %); $
 " the stty trick:
 " http://objectmix.com/editors/242814-how-configure-backspace-when-executing-shell-external-command.html
 
+" http://stackoverflow.com/a/2064318
+setlocal nosmartindent
+
 " highlight lines longer than 79 chars
 " http://stackoverflow.com/a/13731714
 augroup colorcolumn_python
