@@ -94,6 +94,9 @@ noremap <C-J> :bprev<CR>
 noremap <C-K> :bnext<CR>
 noremap <C-Q> :bd<CR>
 
+" vinegar: hide dotfiles by default
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
 " preserve window view when switching buffers
 autocmd BufLeave * call AutoSaveWinView()
 autocmd BufEnter * call AutoRestoreWinView()
