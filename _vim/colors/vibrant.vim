@@ -41,7 +41,7 @@ function! s:ctermize(x11)
                 \ "DarkOliveGreen3": 149,
                 \ "DarkOrange": 208,
                 \ "DarkOrange3": 166,
-                \ "DarkRed": 88,
+                \ "DarkRed": 52,
                 \ "DarkSeaGreen": 108,
                 \ "DarkSeaGreen1": 193,
                 \ "DarkSeaGreen2": 157,
@@ -222,16 +222,48 @@ function! s:ctermize(x11)
 endfunction
 
 function! s:hlt(group, fg, ...)
-    let guifg = a:fg
-    let guibg = (a:0 >= 1) ? a:1 : "bg"
-    let style = (a:0 >= 2) ? a:2 : "NONE"
-
-    let ctermfg = s:ctermize(guifg)
-    let ctermbg = s:ctermize(guibg)
+    let guifg   = a:fg
+    let guibg   = (a:0 >= 1) ? a:1 : "NONE"
+    let gstyle  = (a:0 >= 2) ? a:2 : "NONE"
+    let cstyle  = (a:0 >= 3) ? a:3 : gstyle
+    let ctermfg = (a:0 >= 4) ? s:ctermize(a:4) : s:ctermize(guifg)
+    let ctermbg = (a:0 >= 5) ? s:ctermize(a:5) : s:ctermize(guibg)
 
     exe "highlight ".a:group
-                \." gui=".style." guifg=".guifg." guibg=".guibg
-                \." ctermfg=".ctermfg." ctermbg=".ctermbg
+                \." gui=".gstyle." guifg=".guifg." guibg=".guibg
+                \." cterm=".cstyle." ctermfg=".ctermfg." ctermbg=".ctermbg
 endfunction
 
-call s:hlt("Normal", "White", "Grey15")
+function! Syn()
+    for id in synstack(line("."), col("."))
+        echo synIDattr(id, "name")
+    endfor
+endfunction
+
+"          Group            guifg               guibg       gui             cterm       ctermfg     ctermbg 
+call s:hlt("Normal",        "White",            "Grey15")
+
+call s:hlt("ColorColumn",   "NONE",             "Grey19")
+call s:hlt("Cursor",        "Black",            "Green")
+call s:hlt("EndOfBuffer",   "LightSkyBlue1",    "Grey30",   "bold")
+call s:hlt("LineNr",        "SpringGreen4",     "Grey11",   "bold")
+call s:hlt("MatchParen",    "NONE",             "Cyan3",    "bold")
+call s:hlt("NonText",       "Red",              "Grey93",   "bold")
+
+call s:hlt("Comment",       "SkyBlue2")
+call s:hlt("Conditional",   "Orange1",          "NONE",     "bold")
+call s:hlt("Constant",      "Magenta1",         "NONE",     "bold")
+call s:hlt("Define",        "Magenta1",         "NONE",     "bold")
+call s:hlt("Exception",     "DarkOliveGreen1",  "NONE",     "bold")
+call s:hlt("Identifier",    "Aqua")
+call s:hlt("Include",       "Orchid1")
+call s:hlt("Number",        "IndianRed1",       "NONE",     "bold")
+call s:hlt("Operator",      "PaleVioletRed1",   "NONE",     "bold")
+call s:hlt("PreProc",       "HotPink")
+call s:hlt("Repeat",        "LightPink1",       "NONE",     "bold")
+call s:hlt("Special",       "DarkOrange",       "NONE",     "bold")
+call s:hlt("SpellBad",      "NONE",             "NONE",     "undercurl",    "NONE",     "Red1")
+call s:hlt("Statement",     "LightGoldenrod1",  "NONE",     "bold")
+call s:hlt("String",        "LightPink1",       "NONE",     "bold")
+call s:hlt("Structure",     "SeaGreen2",        "NONE",     "bold")
+call s:hlt("Type",          "SkyBlue1",         "NONE",     "bold")
