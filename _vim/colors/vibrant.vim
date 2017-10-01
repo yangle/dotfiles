@@ -259,6 +259,7 @@ call s:hlt("PmenuSbar",     "NONE",             "Grey78")
 call s:hlt("PmenuSel",      "NONE",             "Grey42")
 call s:hlt("Visual",        "Grey30",           "Wheat1")
 call s:hlt("VisualNOS",     "NONE",             "NONE",         "underline,bold")
+call s:hlt("SpecialKey",    "DeepPink4")  " for listchars 'nbsp', 'tab' and 'trail'
 
 call s:hlt("StatusLine",    "Grey3",            "Grey82")
 call s:hlt("BuftabsActive", "DarkSeaGreen1",    "DeepSkyBlue4", "bold")
