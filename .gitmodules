@@ -50,3 +50,6 @@
 [submodule "_vim/bundle/gina"]
 	path = _vim/bundle/gina
 	url = https://github.com/lambdalisue/gina.vim.git
+[submodule "_vim/bundle/fastex"]
+	path = _vim/bundle/fastex
+	url = https://github.com/yangle/fastex.vim.git
