@@ -7,8 +7,10 @@ setlocal nosmartindent
 
 " highlight lines longer than 79 chars
 " http://stackoverflow.com/a/13731714
+" for all python files regardless of extension
+" https://superuser.com/a/370621
 augroup colorcolumn_python
     au!
-    au BufWinEnter *.py let &colorcolumn=join(range(80,999),",")
-    au BufWinLeave *.py let &colorcolumn=""
+    au BufWinEnter * if &ft ==# 'python' | let &colorcolumn=join(range(80,999),",") | endif
+    au BufWinLeave * if &ft ==# 'python' | let &colorcolumn="" | endif
 augroup END
