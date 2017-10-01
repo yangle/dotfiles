@@ -283,3 +283,7 @@ call s:hlt("Structure",     "SkyBlue1",         "NONE",         "bold")
 call s:hlt("Type",          "SeaGreen2",        "NONE",         "bold")
 
 call s:hlt("mkdCode",       "Plum1",            "NONE",         "bold")
+
+" git: https://stackoverflow.com/a/30252926
+call s:hlt("diffAdded",     "SeaGreen2",        "NONE",         "bold")
+call s:hlt("diffRemoved",   "IndianRed1",       "NONE",         "bold")
