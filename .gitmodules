@@ -56,3 +56,6 @@
 [submodule "_vim/bundle/ack"]
 	path = _vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "_vim/bundle/qfenter"]
+	path = _vim/bundle/qfenter
+	url = https://github.com/yssl/QFEnter.git

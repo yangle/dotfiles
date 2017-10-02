@@ -105,6 +105,13 @@ if executable('ag')
     let g:ackprg = 'ag --vimgrep --silent'
 endif
 
+" QFEnter.vim
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.open = ['<CR>']
+let g:qfenter_keymap.open_keep = ['<C-CR>', '<2-LeftMouse>']
+let g:qfenter_keymap.cnext_keep = ['<C-Down>']
+let g:qfenter_keymap.cprev_keep = ['<C-Up>']
+
 " preserve window view when switching buffers
 autocmd BufLeave * call AutoSaveWinView()
 autocmd BufEnter * call AutoRestoreWinView()
