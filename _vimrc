@@ -49,7 +49,7 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 inoremap <C-L> <C-R>=strftime('%Y/%m/%d %X %Z')<CR><ESC>
 
 " begin an unformatted new line below cursor, if buffer is modifiable
-nnoremap <silent><expr> <CR>
+nmap <silent><expr> <CR>
     \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
 
 " highlight the search query word, disable highlight when entering insert mode
