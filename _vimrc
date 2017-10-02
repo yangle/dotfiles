@@ -48,9 +48,9 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " insert timestamp, like 2016/10/25 02:47:33 PM EDT
 inoremap <C-L> <C-R>=strftime('%Y/%m/%d %X %Z')<CR><ESC>
 
-" begin an unformatted new line below/above cursor
-nnoremap <silent> <CR> :set paste<CR>o<ESC>:set nopaste<CR>i
-nnoremap <silent> <S-CR> :set paste<CR>O<ESC>:set nopaste<CR>i
+" begin an unformatted new line below cursor, if buffer is modifiable
+nnoremap <silent><expr> <CR>
+    \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
 
 " highlight the search query word, disable highlight when entering insert mode
 set hlsearch
