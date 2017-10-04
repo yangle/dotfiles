@@ -146,7 +146,11 @@ autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabs
 " release Ctrl-C from SQL plugin
 let g:ftplugin_sql_omni_key = '<C-j>'
 
-"set term=rxvt-unicode # enables italics, but screen bleeds after exit vim
+" enable italics in terminal: https://askubuntu.com/a/514524
+set t_ZH=[3m
+set t_ZR=[23m
+
+" set colors
 set background=dark
 set t_Co=256
 set t_AB=[48;5;%dm
