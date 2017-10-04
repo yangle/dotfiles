@@ -12,10 +12,3 @@ endif
 set guioptions-=m  "remove menu bar
 set guioptions-=M  "a more extreme version, which does not source the menu script 
 set guioptions-=T  "remove toolbar
-
-" cut/copy/paste using system clipboard
-vmap <C-X> "+d
-vmap <C-C> "+y
-" set an undo point before pasting: https://unix.stackexchange.com/a/117409
-imap <C-V> <C-G>u<Esc>"+gpa
-

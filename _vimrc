@@ -42,6 +42,15 @@ nnoremap Q gqq
 nnoremap K <nop>
 vnoremap K <nop>
 
+" cut/copy/paste using system clipboard
+if has("clipboard")
+    vmap <C-X> "+d
+    vmap <C-C> "+y
+    " set an undo point before pasting:
+    " https://unix.stackexchange.com/a/117409
+    imap <C-V> <C-G>u<Esc>"+gpa
+endif
+
 " line numbers
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
