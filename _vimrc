@@ -26,6 +26,7 @@ set spellcapcheck= " skip capitalization check
 set list
 set listchars=tab:»\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set display+=lastline " partially display lastline even if it doesn't fit
+set mouse=a
 
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
