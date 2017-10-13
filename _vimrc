@@ -161,6 +161,12 @@ let g:ftplugin_sql_omni_key = '<C-j>'
 set t_ZH=[3m
 set t_ZR=[23m
 
+" enable strikethrough in terminal (since VIM 8.0.1038)
+" http://vim.1045645.n5.nabble.com/strikethrough-text-in-gvim-td5716612.html
+" https://bitbucket.org/k_takata/vim-ktakata-mq/commits/bdc114c8c5e11183b7b9415ce3e813a683768fa3?at=default
+set t_Ts=[9m
+set t_Te=[29m
+
 " set colors
 set background=dark
 set t_Co=256
