@@ -16,7 +16,7 @@ set expandtab " convert tab input to spaces
 set softtabstop=4
 set shiftwidth=4 " control the reindentation with < and >
 set incsearch " search while typing
-set pastetoggle=<F10> " Toggle paste/insert mode
+set pastetoggle=<S-F10> " Toggle paste/insert mode
 set wildmode=longest:full " autocomplete filenames to the longest possible
 set wildmenu " show autocomplete multiple matches
 set title " set teminal title
