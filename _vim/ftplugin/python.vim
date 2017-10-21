@@ -1,6 +1,10 @@
-noremap <buffer> <silent> <F9> <Esc>:w<CR>:!stty erase '^H'; . $(find-venv %); $(python-2or3 %) -u %<CR>
-" the stty trick:
-" http://objectmix.com/editors/242814-how-configure-backspace-when-executing-shell-external-command.html
+if has('terminal')
+    noremap <buffer> <silent> <F9> <Esc>:w<CR>:terminal python-with-venv %<CR>
+else
+    noremap <buffer> <silent> <F9> <Esc>:w<CR>:!stty erase '^H'; . $(find-venv %); $(python-2or3 %) -u %<CR>
+    " the stty trick:
+    " https://groups.google.com/forum/#!topic/comp.editors/I2hUinV-9ek
+endif
 
 " http://stackoverflow.com/a/2064318
 setlocal nosmartindent

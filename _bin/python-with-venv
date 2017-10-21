@@ -1,0 +1,4 @@
+#!/bin/bash
+
+. $(find-venv $1)
+$(python-2or3 $1) -u $1
