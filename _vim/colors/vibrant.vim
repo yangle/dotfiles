@@ -235,11 +235,11 @@ function! s:hlt(group, fg, ...)
 endfunction
 
 " to check highlight definition of the word under cursor, run
-" :call CheckSyn()
+" :call Syn()
 " :hi {group-name}
 "
 " https://gist.github.com/mattsacks/1544768
-function! CheckSyn()
+function! Syn()
     for id in synstack(line("."), col("."))
         echo synIDattr(id, "name")
     endfor
@@ -266,25 +266,28 @@ call s:hlt("BuftabsActive", "DarkSeaGreen1",    "DeepSkyBlue4", "bold")
 call s:hlt("BuftabsInact",  "Grey3",            "Grey82")
 
 call s:hlt("Comment",       "SkyBlue2")
-call s:hlt("Conditional",   "DarkOliveGreen2",  "NONE",         "bold")
+call s:hlt("Conditional",   "LightGoldenrod1",  "NONE",         "bold")
 call s:hlt("Constant",      "SandyBrown",       "NONE",         "bold")
 call s:hlt("Define",        "Magenta1",         "NONE",         "bold")
-call s:hlt("Exception",     "DarkOliveGreen1",  "NONE",         "bold")
+call s:hlt("Exception",     "LightGoldenrod1",  "NONE",         "bold")
 call s:hlt("Identifier",    "Aqua")
 call s:hlt("Include",       "Orchid1")
 call s:hlt("Number",        "IndianRed1",       "NONE",         "bold")
 call s:hlt("Operator",      "DeepPink1",        "NONE",         "bold")
 call s:hlt("PreProc",       "HotPink")
-call s:hlt("Repeat",        "DarkOliveGreen2",  "NONE",         "bold")
+call s:hlt("Repeat",        "LightGoldenrod1",  "NONE",         "bold")
 call s:hlt("Special",       "DarkOrange",       "NONE",         "bold")
-call s:hlt("SpellBad",      "NONE",             "NONE",         "undercurl",    "NONE",     "Red1")
+call s:hlt("SpellBad",      "NONE",             "NONE",         "undercurl",    "NONE",     "Thistle1")
 call s:hlt("Statement",     "LightGoldenrod1",  "NONE",         "bold")
 call s:hlt("String",        "LightCoral",       "NONE",         "bold")
 call s:hlt("Structure",     "SkyBlue1",         "NONE",         "bold")
 call s:hlt("Type",          "SeaGreen2",        "NONE",         "bold")
 
-call s:hlt("mkdCode",       "Plum1",            "NONE",         "bold")
+call s:hlt("mkdCode",       "PaleGreen3",       "NONE",         "bold")
 call s:hlt("htmlStrike",    "Grey54",           "NONE",         "strikethrough")
+call s:hlt("htmlH1",        "IndianRed1",       "NONE",         "bold")
+
+call s:hlt("texMathOper",   "LightYellow3",     "NONE",         "bold")
 
 " git: https://stackoverflow.com/a/30252926
 call s:hlt("diffAdded",     "SeaGreen2",        "NONE",         "bold")
