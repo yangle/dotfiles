@@ -264,6 +264,7 @@ call s:hlt("SpecialKey",    "DeepPink4")  " for listchars 'nbsp', 'tab' and 'tra
 call s:hlt("StatusLine",    "Grey3",            "Grey82")
 call s:hlt("BuftabsActive", "DarkSeaGreen1",    "DeepSkyBlue4", "bold")
 call s:hlt("BuftabsInact",  "Grey3",            "Grey82")
+call s:hlt("ScrollBar",     "DodgerBlue1",      "Grey82")
 
 call s:hlt("Comment",       "SkyBlue2")
 call s:hlt("Conditional",   "LightGoldenrod1",  "NONE",         "bold")
