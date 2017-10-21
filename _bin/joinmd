@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for md in "$@"; do
+    echo "<p style=\"text-align: right; color: #e34c26\"><i>$md</i></p>"
+    echo
+    cat $md
+    echo
+    echo "----"
+    echo
+done
