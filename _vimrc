@@ -92,6 +92,9 @@ au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
 au BufRead,BufNewFile *.sty setlocal spell filetype=tex
 
+" disable conceal for TeX (applies also to markdown)
+let g:tex_conceal = ""
+
 " buftabs  -- use :bd to close current buffer!
 set hidden " change buffer without saving
 let g:buftabs_only_basename = 1

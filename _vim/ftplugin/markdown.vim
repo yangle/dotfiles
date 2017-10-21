@@ -8,4 +8,3 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_conceal = 1 " enable conceal for links and fenced code blocks
 
 setlocal conceallevel=2 " enable conceal for links, etc
-let g:tex_conceal = "" " disable conceal for TeX
