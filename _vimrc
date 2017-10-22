@@ -175,7 +175,6 @@ if &term =~ "xterm\\|rxvt"
   let &t_SR = "\<Esc>]12;Lime\x7\<Esc>[3 q"
   " blinking block in normal mode
   let &t_EI = "\<Esc>]12;Lime\x7\<Esc>[1 q"
-  silent !echo -ne "\033]12;Lime\007"
   " reset cursor when vim exits
   autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
