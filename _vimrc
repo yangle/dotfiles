@@ -171,6 +171,8 @@ let g:ftplugin_sql_omni_key = '<C-j>'
 if &term =~ "xterm\\|rxvt"
   " blinking bar in insert mode
   let &t_SI = "\<Esc>]12;Lime\x7\<Esc>[5 q"
+  " blinking underline in replace mode
+  let &t_SR = "\<Esc>]12;Lime\x7\<Esc>[3 q"
   " blinking block in normal mode
   let &t_EI = "\<Esc>]12;Lime\x7\<Esc>[1 q"
   silent !echo -ne "\033]12;Lime\007"
