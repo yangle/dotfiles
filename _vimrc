@@ -166,6 +166,18 @@ autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabs
 " release Ctrl-C from SQL plugin
 let g:ftplugin_sql_omni_key = '<C-j>'
 
+" cursor in terminal vim
+" http://vim.wikia.com/wiki/Configuring_the_cursor
+if &term =~ "xterm\\|rxvt"
+  " blinking bar in insert mode
+  let &t_SI = "\<Esc>]12;Lime\x7\<Esc>[5 q"
+  " blinking block in normal mode
+  let &t_EI = "\<Esc>]12;Lime\x7\<Esc>[1 q"
+  silent !echo -ne "\033]12;Lime\007"
+  " reset cursor when vim exits
+  autocmd VimLeave * silent !echo -ne "\033]112\007"
+endif
+
 " enable italics in terminal: https://askubuntu.com/a/514524
 set t_ZH=[3m
 set t_ZR=[23m
