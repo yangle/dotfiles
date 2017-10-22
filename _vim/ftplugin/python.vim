@@ -9,6 +9,9 @@ endif
 " http://stackoverflow.com/a/2064318
 setlocal nosmartindent
 
+" suppress jedi's docstring popup
+setlocal completeopt-=preview
+
 " highlight lines longer than 79 chars
 " http://stackoverflow.com/a/13731714
 " for all python files regardless of extension

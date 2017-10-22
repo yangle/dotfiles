@@ -61,3 +61,6 @@
 [submodule "_vim/bundle/noscrollbar"]
 	path = _vim/bundle/noscrollbar
 	url = https://github.com/gcavallanti/vim-noscrollbar.git
+[submodule "_vim/bundle/jedi"]
+	path = _vim/bundle/jedi
+	url = https://github.com/davidhalter/jedi-vim.git

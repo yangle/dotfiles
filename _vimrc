@@ -154,6 +154,12 @@ au BufRead,BufNewFile *.asy setlocal filetype=asy
 let python_highlight_all = 1
 let python_version_2 = 1
 
+" jedi
+let g:jedi#popup_on_dot = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#force_py_version = 2
+let g:jedi#show_call_signatures_delay = 0
+
 " html / jinja
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
