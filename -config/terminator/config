@@ -34,4 +34,7 @@
   [[default]]
     background_color = "#ffffdd"
     background_image = None
+    cursor_color = "#00ff00"
     foreground_color = "#000000"
+    scrollback_infinite = True
+    word_chars = "-A-Za-z0-9,./?%&#:_~"
