@@ -20,6 +20,7 @@
   switch_to_tab_9 = <Alt>9
   ungroup_all = None
   ungroup_tab = None
+  help = None
 [layouts]
   [[default]]
     [[[child1]]]
