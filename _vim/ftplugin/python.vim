@@ -12,6 +12,10 @@ setlocal nosmartindent
 " suppress jedi's docstring popup
 setlocal completeopt-=preview
 
+" workaround for jedi call signature
+" https://github.com/davidhalter/jedi-vim/issues/632
+setlocal nowrap
+
 " highlight lines longer than 79 chars
 " http://stackoverflow.com/a/13731714
 " for all python files regardless of extension
