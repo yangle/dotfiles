@@ -6,7 +6,7 @@ import sys
 
 def find_venv(filename):
     """find a venv activate script in a parent directory"""
-    path = op.abspath(filename)
+    path = op.realpath(op.abspath(filename))
     while path != '/':
         activate = op.join(path, '.venv/bin/activate')
         if op.isfile(activate):
