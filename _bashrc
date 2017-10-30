@@ -58,7 +58,11 @@ EOF
     fi
 }
 p() {
-    [ -x "$(command -v bpython2)" ] && bpython2 || bpython
+    if [ -x "$(command -v bpython)" ]; then
+        bpython
+    else
+        bpython2
+    fi
 }
 
 # Jupyter
