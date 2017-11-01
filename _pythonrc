@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+
+import os
+import os.path as op
+
+import numpy as np
+import sh
+
+
+def _len(x):
+    """Like len(), but more robust"""
+    if isinstance(x, np.ndarray):
+        return x.shape
+
+    try:
+        iter(x)
+        try:
+            return len(x)
+        except TypeError:  # generators
+            return len(list(x))
+    except:  # not iterable
+        return None
+
+
+def pp(x):
+    """Pretty print x"""
+    import subprocess
+
+    # show type and length / shape
+    length = _len(x)
+    if length is None:
+        print type(x)
+    else:
+        print '%s, %s %s>' % (
+            str(type(x))[:-1],
+            'shape' if isinstance(x, np.ndarray) else 'length',
+            length
+        )
+
+    # TODO: Somehow show size info for nested structure?
+    # like: list<15>[1, 2, ...]??
+
+    # pretty print
+    nrow, ncol = map(int, subprocess.check_output(['stty', 'size']).split())
+
+    printoptions = np.get_printoptions()
+    np.set_printoptions(precision=3, threshold=30, linewidth=ncol)
+    try:
+        from IPython.lib.pretty import pprint
+        pprint(x, max_seq_length=10, max_width=ncol)
+    except ImportError:
+        from pprint import pprint
+        pprint(x, width=ncol)
+    finally:
+        np.set_printoptions(**printoptions)
