@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
 import os
@@ -7,27 +8,24 @@ import numpy as np
 import sh
 
 
-def _len(x):
-    """Like len(), but more robust"""
-    if isinstance(x, np.ndarray):
-        return x.shape
-
-    try:
-        iter(x)
-        try:
-            return len(x)
-        except TypeError:  # generators
-            return len(list(x))
-    except:  # not iterable
-        return None
-
-
 def pp(x):
     """Pretty print x"""
     import subprocess
 
     # show type and length / shape
-    length = _len(x)
+    if isinstance(x, np.ndarray):
+        length = x.shape
+    else:
+        try:
+            iter(x)
+            try:
+                length = len(x)
+            except TypeError:  # generators
+                print x
+                return
+        except:  # not iterable
+            length = None
+
     if length is None:
         print type(x)
     else:
