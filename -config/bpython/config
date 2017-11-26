@@ -35,8 +35,11 @@ color_scheme = my
 
 [keyboard]
 help =
-pastebin = F8
+pastebin =
 save = C-s
+
+[cli]
+suggestion_width = 1.0
 
 [curtsies]
 
