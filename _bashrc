@@ -61,9 +61,9 @@ EOF
 }
 p() {
     if [ -x "$(command -v bpython)" ]; then
-        bpython
+        bpython "$@"
     else
-        bpython2
+        bpython2 "$@"
     fi
 }
 
