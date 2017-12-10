@@ -63,7 +63,7 @@
 	url = https://github.com/gcavallanti/vim-noscrollbar.git
 [submodule "_vim/bundle/jedi"]
 	path = _vim/bundle/jedi
-	url = https://github.com/davidhalter/jedi-vim.git
+	url = https://github.com/yangle/jedi-vim.git
 [submodule "_vim/bundle/tabular"]
 	path = _vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
