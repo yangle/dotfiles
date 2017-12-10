@@ -160,6 +160,8 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#force_py_version = 2
 let g:jedi#show_call_signatures_delay = 0
+let g:jedi#goto_command = ""
+let g:jedi#goto_assignments_command = "<leader>d"
 
 " html / jinja
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
