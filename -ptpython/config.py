@@ -10,6 +10,12 @@ from prompt_toolkit.keys import Keys
 from pygments.token import Token
 
 from ptpython.layout import CompletionVisualisation
+from ptpython.style import default_ui_style
+
+default_ui_style.update({
+    Token.Prompt: 'bold #008800',
+    Token.Docstring: '#222222',
+})
 
 __all__ = (
     'configure',
@@ -26,7 +32,7 @@ def configure(repl):
     repl.show_signature = True
 
     # Show docstring (bool).
-    repl.show_docstring = False
+    repl.show_docstring = True
 
     # Show the "[Meta+Enter] Execute" message when pressing [Enter] only
     # inserts a newline instead of executing the code.
@@ -76,10 +82,7 @@ def configure(repl):
     # History Search.
     # When True, going back in history will filter the history on the records
     # starting with the current input. (Like readline.)
-    # Note: When enable, please disable the `complete_while_typing` option.
-    #       otherwise, when there is a completion available, the arrows will
-    #       browse through the available completions instead of the history.
-    repl.enable_history_search = False
+    repl.enable_history_search = True
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
@@ -91,7 +94,7 @@ def configure(repl):
 
     # Enable system prompt. Pressing meta-! will display the system prompt.
     # Also enables Control-Z suspend.
-    repl.enable_system_bindings = True
+    repl.enable_system_bindings = False
 
     # Ask for confirmation on exit.
     repl.confirm_exit = False
