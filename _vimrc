@@ -71,6 +71,9 @@ autocmd InsertLeave * :let @/=""
 " Disable mouse click in insert mode: https://stackoverflow.com/a/23078776
 " (Clicking causes jedi signature display to corrupt undo history.)
 inoremap <LeftMouse> <Nop>
+inoremap <2-LeftMouse> <Nop>
+inoremap <3-LeftMouse> <Nop>
+inoremap <4-LeftMouse> <Nop>
 
 " always highlight 𝚃𝙾𝙳𝙾 & 𝙵𝙸𝚇𝙼𝙴
 augroup HighlightTODO
