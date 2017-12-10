@@ -68,6 +68,10 @@ set hlsearch
 autocmd InsertEnter * :let @/=""
 autocmd InsertLeave * :let @/=""
 
+" Disable mouse click in insert mode: https://stackoverflow.com/a/23078776
+" (Clicking causes jedi signature display to corrupt undo history.)
+inoremap <LeftMouse> <Nop>
+
 " always highlight 𝚃𝙾𝙳𝙾 & 𝙵𝙸𝚇𝙼𝙴
 augroup HighlightTODO
     autocmd!
