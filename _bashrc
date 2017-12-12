@@ -60,10 +60,10 @@ EOF
     fi
 }
 p() {
-    if [ -x "$(command -v bpython)" ]; then
-        bpython "$@"
+    if [ -x "$(command -v ptpython)" ]; then
+        ptpython "$@"
     else
-        bpython2 "$@"
+        ptpython2 "$@"
     fi
 }
 
