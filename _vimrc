@@ -52,6 +52,9 @@ if has("clipboard")
     imap <C-V> <C-G>u<Esc>"+gpa
 endif
 
+" search for visual selection
+vnoremap // y/<C-R>"<CR>
+
 " line numbers
 set number
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
