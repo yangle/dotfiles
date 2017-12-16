@@ -50,6 +50,7 @@ if has("clipboard")
     " set an undo point before pasting:
     " https://unix.stackexchange.com/a/117409
     imap <C-V> <C-G>u<Esc>"+gpa
+    imap <S-Insert> <C-G>u<Esc>"+gpa
 endif
 
 " search for visual selection
