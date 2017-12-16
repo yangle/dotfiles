@@ -67,3 +67,6 @@
 [submodule "_vim/bundle/tabular"]
 	path = _vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "_vim/bundle/ale"]
+	path = _vim/bundle/ale
+	url = https://github.com/w0rp/ale.git
