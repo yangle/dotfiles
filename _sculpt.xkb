@@ -1,0 +1,24 @@
+# Layout fixes for Microsoft Sculpt Ergonomic
+# Remap Home-End-PgUp-PgDn to Home-PgUp-PgDn-End
+# Remap Windows mouse button to XF86Forward
+#
+# https://unix.stackexchange.com/q/202883
+# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
+
+xkb_keymap {
+xkb_keycodes { include "evdev+aliases(qwerty)" };
+xkb_types { include "complete" };
+xkb_compatibility { include "complete" };
+xkb_symbols {
+    include "pc+us+us:2+inet(evdev)"
+    include "capslock(ctrl_modifier)"
+    include "ctrl(nocaps)"
+    include "terminate(ctrl_alt_bksp)"
+
+    override key <PGUP> {         [            Next ] };
+    override key  <END> {         [           Prior ] };
+    override key <PGDN> {         [             End ] };
+    override key <RWIN> {         [     XF86Forward ] };
+};
+xkb_geometry { include "pc(pc105)" };
+};
