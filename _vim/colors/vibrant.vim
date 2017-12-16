@@ -295,3 +295,5 @@ call s:hlt("diffAdded",     "SeaGreen2",        "NONE",         "bold")
 call s:hlt("diffRemoved",   "IndianRed1",       "NONE",         "bold")
 
 call s:hlt("ALEErrorLine",  "NONE",             "NONE",         "strikethrough")
+call s:hlt("ALEWarningLine","NONE",             "NONE",         "strikethrough")
+call s:hlt("ALEWarning",    "NONE")

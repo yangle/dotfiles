@@ -10,4 +10,5 @@
 # E731: do not assign a lambda expression, use a def
 # F401: module imported but unused
 # F841: local variable name is assigned to but never used
-ignore = C901,E222,E241,E251,E265,E303,E402,E501,E731,F401,F841
+# W293: blank line contains whitespace
+ignore = C901,E222,E241,E251,E265,E303,E402,E501,E731,F401,F841,W293
