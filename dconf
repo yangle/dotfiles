@@ -72,7 +72,8 @@ gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action 'nothi
 
 # Caps Lock -> Ctrl
 # Ctrl-Alt-Backspace kills X
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'terminate:ctrl_alt_bksp', 'ctrl:nocaps']"
+# Remap navigation keys for Microsoft Sculpt
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'terminate:ctrl_alt_bksp', 'ctrl:nocaps', 'sculpt:sculpt_navkeys']"
 
 # disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
