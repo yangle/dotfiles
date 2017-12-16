@@ -10,7 +10,8 @@ set -e
 cd $HOME/mirror
 mkdir -p log
 
-HOST="http://mirror.umd.edu/archlinux"
+HOST="http://arch.mirror.constant.com"
+#SIZERANGE="--size-range=0-100000000" # 100M
 SIZERANGE=""
 TIMESTAMP=`date +"%Y%m%d"`
 LOGSTAMP=`date +"%Y%m%d-%H%M%S"`
@@ -18,11 +19,6 @@ CURRENT=`readlink archlinux`
 echo $TIMESTAMP
 echo $CURRENT
 
-if [ `hostname` = "poisson" ]; then
-    HOST="http://mirrors.advancedhosters.com/archlinux"
-    #SIZERANGE="--size-range=0-100000000" # 100M
-fi
- 
 [[ $CURRENT == $TIMESTAMP ]] || cp -al $CURRENT $TIMESTAMP
 
 trickle -sd 5000 lftp $HOST -e "
@@ -39,4 +35,3 @@ bye
 
 rm archlinux
 ln -s $TIMESTAMP archlinux
-
