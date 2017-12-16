@@ -293,3 +293,5 @@ call s:hlt("texMathOper",   "LightYellow3",     "NONE",         "bold")
 " git: https://stackoverflow.com/a/30252926
 call s:hlt("diffAdded",     "SeaGreen2",        "NONE",         "bold")
 call s:hlt("diffRemoved",   "IndianRed1",       "NONE",         "bold")
+
+call s:hlt("ALEErrorLine",  "NONE",             "NONE",         "strikethrough")

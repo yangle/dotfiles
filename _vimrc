@@ -173,6 +173,13 @@ let g:jedi#show_call_signatures_delay = 0
 let g:jedi#goto_command = ""
 let g:jedi#goto_assignments_command = "<leader>d"
 
+" ale
+let g:ale_linters = {'python': ['flake8']}
+let g:ale_virtualenv_dir_names = ['.venv']
+let g:ale_set_signs = 0
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+
 " html / jinja
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
