@@ -1,5 +1,6 @@
 [flake8]
 # C901: method is too complex
+# E221: multiple spaces before operator
 # E222: multiple spaces after operator
 # E241: multiple spaces after ‘,’
 # E251: unexpected spaces around keyword / parameter equals
@@ -11,4 +12,4 @@
 # F401: module imported but unused
 # F841: local variable name is assigned to but never used
 # W293: blank line contains whitespace
-ignore = C901,E222,E241,E251,E265,E303,E402,E501,E731,F401,F841,W293
+ignore = C901,E221,E222,E241,E251,E265,E303,E402,E501,E731,F401,F841,W293
