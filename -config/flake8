@@ -5,7 +5,9 @@
 # E251: unexpected spaces around keyword / parameter equals
 # E265: block comment should start with ‘# ‘
 # E303: too many blank lines (3)
+# E402: module level import not at top of file
+# E501: line too long
 # E731: do not assign a lambda expression, use a def
 # F401: module imported but unused
 # F841: local variable name is assigned to but never used
-ignore = C901,E222,E241,E251,E265,E303,E731,F401,F841
+ignore = C901,E222,E241,E251,E265,E303,E402,E501,E731,F401,F841
