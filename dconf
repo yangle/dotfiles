@@ -114,7 +114,7 @@ gsettings set org.gnome.shell.extensions.openweather position-in-panel 'center'
 
 # system-monitor
 gsettings set org.gnome.shell.extensions.system-monitor background '#555753ff'
-gsettings set org.gnome.shell.extensions.system-monitor compact-display true
+gsettings set org.gnome.shell.extensions.system-monitor compact-display false
 gsettings set org.gnome.shell.extensions.system-monitor show-tooltip true
 gsettings set org.gnome.shell.extensions.system-monitor icon-display false
 gsettings set org.gnome.shell.extensions.system-monitor memory-display false
