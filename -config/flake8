@@ -9,7 +9,11 @@
 # E402: module level import not at top of file
 # E501: line too long
 # E731: do not assign a lambda expression, use a def
+# E741: do not use variables named ‘l’, ‘O’, or ‘I’
+# E742: do not define classes named ‘l’, ‘O’, or ‘I’
+# E743: do not define functions named ‘l’, ‘O’, or ‘I’
 # F401: module imported but unused
 # F841: local variable name is assigned to but never used
 # W293: blank line contains whitespace
-ignore = C901,E221,E222,E241,E251,E265,E303,E402,E501,E731,F401,F841,W293
+# W391: line at end of file
+ignore = C901,E221,E222,E241,E251,E265,E303,E402,E501,E731,E741,E742,E743,F401,F841,W293,W391
