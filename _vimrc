@@ -119,6 +119,10 @@ noremap <C-J> :bprev<CR>
 noremap <C-K> :bnext<CR>
 noremap <C-Q> :bd<CR>
 
+" easymotion
+let g:EasyMotion_do_mapping = 0
+map F <Plug>(easymotion-s)
+
 " vinegar: hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
