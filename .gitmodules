@@ -70,3 +70,6 @@
 [submodule "_vim/bundle/ale"]
 	path = _vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "_vim/bundle/easymotion"]
+	path = _vim/bundle/easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
