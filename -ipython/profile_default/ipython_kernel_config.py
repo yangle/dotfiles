@@ -6,3 +6,6 @@ c.InteractiveShell.automagic = False
 
 ## The part of the banner to be printed before the profile
 c.InteractiveShell.banner1 = ''
+
+## Do not insert blank line before a prompt
+c.InteractiveShell.separate_in = ''
