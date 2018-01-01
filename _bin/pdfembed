@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Embed missing "standard fonts" in pdf.
+# This fixes the missing summation signs in almost *all* JMLR articles.
+#
+# The dependence on acroread is unfortunately but necessary. The following
+# ghostscript-only alternatives do not seem to work any more:
+# https://stackoverflow.com/a/13131101
+# https://stackoverflow.com/a/10282269
+#
+# See also: https://www.prepressure.com/pdf/basics/fonts
+
+set -e
+
+tmp_ps=`mktemp --suffix .ps`
+acroread -toPostScript -pairs "$1" "$tmp_ps"
+ps2pdf "$tmp_ps" "${1%.pdf}-embed.pdf"
+rm "$tmp_ps"
