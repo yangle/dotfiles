@@ -1,0 +1,21 @@
+stackoverflow.com##.hero-container.s-hero
+en.wikipedia.org###frb-inline
+
+www.dictionary.com##.carousel
+www.dictionary.com##.editorial-content-feed
+www.dictionary.com###fly-out
+www.dictionary.com##.link
+www.dictionary.com##main
+www.dictionary.com##.right-rail-container
+www.dictionary.com##.survey
+www.thesaurus.com##main
+www.thesaurus.com###synonyms-0 > .editorial-content-feed
+
+! LinkedIn login
+www.linkedin.com###advocate-modal
+www.linkedin.com##body:style(overflow: visible !important)
+
+! Stupid "People also search for" pop-up
+! https://redd.it/7ws3do
+www.google.com##div[class*="explore-main"]
+www.google.com##div[class*="exp-outline"]
