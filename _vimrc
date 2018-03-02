@@ -49,8 +49,8 @@ if has("clipboard")
     vmap <C-C> "+y
     " set an undo point before pasting:
     " https://unix.stackexchange.com/a/117409
-    imap <C-V> <C-G>u<Esc>"+pa
-    imap <S-Insert> <C-G>u<Esc>"+pa
+    imap <C-V> <C-G>u<C-R><C-O>+
+    imap <S-Insert> <C-G>u<C-R><C-O>+
 endif
 
 " search for visual selection
