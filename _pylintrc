@@ -54,3 +54,7 @@ enable=
     cell-var-from-loop,
     redefined-outer-name,
     useless-else-on-loop,
+
+[REPORTS]
+report=no
+score=no
