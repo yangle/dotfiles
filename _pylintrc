@@ -1,0 +1,56 @@
+[MASTER]
+jobs=4
+
+# https://pylint.readthedocs.io/en/latest/technical_reference/features.html
+[MESSAGES CONTROL]
+disable=all
+enable=
+    # Basic checker
+    confusing-with-statement,
+    dangerous-default-value,
+    lost-exception,
+    return-in-init,
+    undefined-loop-variable,
+
+    # Class checker
+    assigning-non-slot,
+    bad-classmethod-argument,
+    bad-staticmethod-argument,
+    no-method-argument,
+    no-self-argument,
+    unexpected-special-method-signature,
+
+    # Miscellaneous checker
+    invalid-encoded-data,
+
+    # Newstyle checker
+    old-style-class,
+
+    # Refactoring checker
+    inconsistent-return-statements,
+    trailing-comma-tuple,
+
+    # String checker
+    bad-format-character,
+    bad-format-string,
+    bad-str-strip-call,
+    format-combined-specification,
+    missing-format-argument-key,
+    mixed-format-string,
+    too-few-format-args,
+    too-many-format-args,
+    truncated-format-string,
+    unused-format-string-argument,
+
+    # Typecheck checker
+    assignment-from-no-return,
+    no-value-for-parameter,
+    redundant-keyword-arg,
+    repeated-keyword,
+    too-many-function-args,
+    unexpected-keyword-arg,
+
+    # Variables checker
+    cell-var-from-loop,
+    redefined-outer-name,
+    useless-else-on-loop,
