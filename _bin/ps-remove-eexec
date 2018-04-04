@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Remove the "eexec" section from a postscript file, so that ps2pdf doesn't
+# throw the stupid error:
+# "This PostScript file was created from an encrypted PDF file.
+# Redistilling encrypted PDF is not permitted."
+#
+# See: https://superuser.com/a/425381
+
+if [ $# -lt 1 ]
+then
+    echo "Usage: $(basename $0) encrypted.ps"
+    exit 1
+fi
+
+sed -i '/^mark currentfile eexec$/,/^cleartomark$/{d}' "$1"
