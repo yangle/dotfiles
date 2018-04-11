@@ -17,5 +17,8 @@ www.linkedin.com##body:style(overflow: visible !important)
 
 ! Stupid "People also search for" pop-up
 ! https://redd.it/7ws3do
-www.google.com##div[class*="explore-main"]
-www.google.com##div[class*="exp-outline"]
+! https://redd.it/8alry4
+google.*##div[class*="explore-main"]
+google.*##div[class*="exp-outline"]
+google.*##div[jsl][data-ved]:if(h4:has-text(People also search for))
+google.*##.exp-outline
