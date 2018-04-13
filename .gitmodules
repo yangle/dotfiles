@@ -73,3 +73,6 @@
 [submodule "_vim/bundle/easymotion"]
 	path = _vim/bundle/easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "_vim/bundle/inline-edit"]
+	path = _vim/bundle/inline-edit
+	url = https://github.com/yangle/inline_edit.vim.git
