@@ -43,14 +43,44 @@ nnoremap Q gqq
 nnoremap K <nop>
 vnoremap K <nop>
 
+" strip '>>> ' prompts from system clipboard and write to register p
+function! StripPrompt()
+    if (&ft != 'markdown') && (&ft != 'python')
+        let @p = @+
+        return
+    endif
+
+    let lines = []
+    let had_prompt = 0
+    for line in split(@+, "\n")
+        if (line =~ '^>>> ') || (had_prompt && (line =~ '^... '))
+            call add(lines, strpart(line, 4))
+            let had_prompt = 1
+        else
+            if had_prompt
+                call add(lines, "________")
+            endif
+
+            call add(lines, line)
+            let had_prompt = 0
+        endif
+    endfor
+
+    let @p = join(lines, "\n")
+endfunction
+
 " cut/copy/paste using system clipboard
 if has("clipboard")
-    vmap <C-X> "+d
-    vmap <C-C> "+y
+    vnoremap <C-X> "+d
+    vnoremap <C-C> "+y
+
     " set an undo point before pasting:
     " https://unix.stackexchange.com/a/117409
-    imap <C-V> <C-G>u<C-R><C-O>+
-    imap <S-Insert> <C-G>u<C-R><C-O>+
+    inoremap <C-V> <C-G>u<C-R><C-O>+
+    inoremap <S-Insert> <C-G>u<C-R><C-O>+
+
+    " strip prompts and paste
+    inoremap <C-B> <C-O>:call StripPrompt()<CR><C-G>u<C-R><C-O>p
 endif
 
 " search for visual selection
