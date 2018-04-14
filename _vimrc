@@ -53,7 +53,7 @@ function! StripPrompt()
     let lines = []
     let had_prompt = 0
     for line in split(@+, "\n")
-        if (line =~ '^>>> ') || (had_prompt && (line =~ '^... '))
+        if (line =~ '^>>> ') || (had_prompt && (line =~ '^\.\.\. '))
             call add(lines, strpart(line, 4))
             let had_prompt = 1
         else
