@@ -76,3 +76,6 @@
 [submodule "_vim/bundle/inline-edit"]
 	path = _vim/bundle/inline-edit
 	url = https://github.com/yangle/inline_edit.vim.git
+[submodule "_vim/bundle/targets"]
+	path = _vim/bundle/targets
+	url = https://github.com/wellle/targets.vim.git
