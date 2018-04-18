@@ -149,7 +149,7 @@ noremap <C-Q> :bd<CR>
 " inline-edit
 nnoremap <leader>e :InlineEdit<cr>
 xnoremap <leader>e :InlineEdit<cr>
-let g:inline_edit_autowrite = 1
+let g:inline_edit_autowrite = 0
 let g:inline_edit_new_buffer_command = 'enew'
 
 " easymotion
