@@ -155,7 +155,6 @@ nnoremap <leader>e :InlineEdit<cr>
 xnoremap <leader>e :InlineEdit<cr>
 let g:inline_edit_autowrite = 0
 let g:inline_edit_new_buffer_command = 'enew'
-let g:inline_edit_proxy_type = 'scratch'
 
 " easymotion
 let g:EasyMotion_do_mapping = 0
