@@ -153,6 +153,7 @@ noremap <C-Q> :bd<CR>
 " inline-edit
 nnoremap <leader>e :InlineEdit<cr>
 xnoremap <leader>e :InlineEdit<cr>
+nnoremap <C-H> :w<CR><C-^>
 let g:inline_edit_autowrite = 0
 let g:inline_edit_new_buffer_command = 'enew'
 
