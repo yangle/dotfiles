@@ -29,6 +29,9 @@ set listchars=tab:»\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set display+=lastline " partially display lastline even if it doesn't fit
 set mouse=a
 
+" suffixes to ignore (taken from archlinux.vim; affects netrw/vinegar)
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
+
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
 "let loaded_matchparen = 1 " disable bracket matching
