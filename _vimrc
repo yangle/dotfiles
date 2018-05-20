@@ -48,7 +48,7 @@ vnoremap K <nop>
 
 " fix all the things!
 " https://github.com/fatih/vim-go/issues/1447
-nnoremap <silent> <C-L> :nohlsearch<CR>:setl nolist nospell<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
+nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
 
 " strip '>>> ' prompts from system clipboard and write to register p
 function! StripPrompt()
