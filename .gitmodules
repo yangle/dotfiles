@@ -79,3 +79,6 @@
 [submodule "_vim/bundle/targets"]
 	path = _vim/bundle/targets
 	url = https://github.com/wellle/targets.vim.git
+[submodule "_vim/bundle/repeat"]
+	path = _vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
