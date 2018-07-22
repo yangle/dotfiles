@@ -1,16 +1,9 @@
 stackoverflow.com##.hero-container.s-hero
 en.wikipedia.org###frb-inline
 
-www.dictionary.com##aside
-www.dictionary.com##.carousel
-www.dictionary.com##.editorial-content-feed
-www.dictionary.com###fly-out
-www.dictionary.com##.link
-www.dictionary.com##.right-rail-container
-www.dictionary.com##.survey
-www.thesaurus.com##aside
-www.thesaurus.com##main
-www.thesaurus.com###synonyms-0 > .editorial-content-feed
+dictionary.com##aside
+dictionary.com##article
+thesaurus.com##aside
 
 ! LinkedIn login
 www.linkedin.com###advocate-modal
