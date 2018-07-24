@@ -4,6 +4,7 @@ en.wikipedia.org###frb-inline
 dictionary.com##aside
 dictionary.com##article
 thesaurus.com##aside
+thesaurus.com##article
 
 ! LinkedIn login
 www.linkedin.com###advocate-modal
