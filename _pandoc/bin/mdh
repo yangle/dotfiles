@@ -1,0 +1,46 @@
+#!/bin/bash
+
+usage() {
+    cat <<EOF
+Renders a markdown file to html using pandoc
+
+Usage:
+    $1 /path/to/input.md  # generates /path/to/input.html
+    $1 /path/to/input.md /another/path/to/output.html
+EOF
+}
+
+input="$1"
+if [[ ! -e "$input" ]]; then  # shows usage when $input doesn't exist
+    usage $(basename "$0")
+    exit 1
+fi
+
+output="$2"
+if [[ -z "$output" ]]; then
+    output="${input%.*}".html
+fi
+
+bundle="$HOME/.pandoc/bundle"
+filters="$HOME/.pandoc/filters"
+templates="$HOME/.pandoc/templates"
+
+# https://stackoverflow.com/a/31926346
+export hljs="$bundle/highlightjs/build"
+hljs_incl=`envsubst < "$templates/html/highlightjs.html"`
+
+mtime=$(stat -c %Y "$input")
+timestamp="$(date +"%Y/%m/%d %H:%M:%S" -d @$mtime)"
+
+pandoc --standalone --from markdown --to html \
+    --metadata pagetitle="$input" \
+    --template report \
+    --css "$templates/html/pandoc.css" \
+    --mathjax="$bundle/mathjax/MathJax.js?config=TeX-AMS_CHTML-full" \
+    -H "$templates/html/mathjax.html" \
+    --filter "$filters/eqref" \
+    --no-highlight \
+    --css "$hljs/styles/atom-one-light.min.css" \
+    -V include-after="$hljs_incl" \
+    -V timestamp="$timestamp" \
+    "$input" > "$output"
