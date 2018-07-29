@@ -1,0 +1,28 @@
+#!/bin/bash
+
+usage() {
+    cat <<EOF
+Renders a markdown file to pdf using pandoc
+
+Usage:
+    $1 /path/to/input.md  # generates /path/to/input.pdf
+    $1 /path/to/input.md /another/path/to/output.pdf
+EOF
+}
+
+input="$1"
+if [[ ! -e "$input" ]]; then  # shows usage when $input doesn't exist
+    usage $(basename "$0")
+    exit 1
+fi
+
+output="$2"
+if [[ -z "$output" ]]; then
+    output="${input%.*}".pdf
+fi
+
+pandoc --from markdown --to latex \
+    --filter ~/.pandoc/filters/pygments \
+    --template report \
+    -H ~/.pandoc/templates/latex/pygments_style.tex \
+    "$input" -o "$output"
