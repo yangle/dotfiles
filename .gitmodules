@@ -37,9 +37,6 @@
 [submodule "_jupyter/nbextensions/vim_binding"]
 	path = _jupyter/nbextensions/vim_binding
 	url = https://github.com/yangle/jupyter-vim-binding.git
-[submodule "mdh"]
-	path = mdh
-	url = https://github.com/yangle/mdh.git
 [submodule "_vim/bundle/vinegar"]
 	path = _vim/bundle/vinegar
 	url = https://github.com/tpope/vim-vinegar.git
