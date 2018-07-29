@@ -91,3 +91,6 @@
 [submodule "_pandoc/bundle/highlightjs"]
 	path = _pandoc/bundle/highlightjs
 	url = https://github.com/highlightjs/cdn-release
+[submodule "_pandoc/bundle/mathjax"]
+	path = _pandoc/bundle/mathjax
+	url = https://github.com/mathjax/MathJax.git
