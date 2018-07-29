@@ -252,6 +252,85 @@ $if(numbersections)$
 $else$
 \setcounter{secnumdepth}{0}
 $endif$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Customizations %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{color}
+\usepackage{titlesec}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+
+% Custom commands.
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\providecommand{\vb}[2][]{\texttt{#1\detokenize{#2}}}
+\providecommand{\red}[1]{{\color{red} #1}}
+
+% \updateenvironment: Either newenvironment or renewenvironment.
+% https://tex.stackexchange.com/a/20691
+\makeatletter
+\def\updateenvironment{\@star@or@long\update@environment}
+\def\update@environment#1{%
+        \@ifundefined{#1}%
+                {\def\reserved@a{\newenvironment{#1}}}%
+                {\def\reserved@a{\renewenvironment{#1}}}%
+        \reserved@a
+}
+\makeatother
+
+% Number h1-h3 (incl. subsubsection).
+\setcounter{secnumdepth}{3}
+
+% Show \subsubsection header as "run-in" (similar to \paragraph).
+% https://stackoverflow.com/a/3215544
+% https://tex.stackexchange.com/a/137194
+\newcommand{\addperiod}[1]{#1.}
+\titleformat{\subsubsection}[runin]
+{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{\addperiod}
+\titlespacing*{\subsubsection}{0pt}{.2ex plus .1ex minus .2ex}{.5em}
+
+% Reset \subsubsection counter without \subsection.
+% https://tex.stackexchange.com/a/127970
+\makeatletter
+\@addtoreset{subsubsection}{section}
+\makeatother
+
+% Add equation numbering to pygments-based code blocks.
+% This is to be used in conjunction with pandoc-pygments. In particular, the
+% formatted content should be wrapped in BVerbatim so that \centering can be
+% applied. The "\par\vspace" hacks emulate the vertical spacing surrounding
+% true equations, and "\dimexpr...-\parskip" is needed because pandoc always
+% insert double linebreaks around a code block. Wrapping "\arabic{equation}" in
+% a zero-width "[r]" box ensures that the main content is correctly centered.
+% https://tex.stackexchange.com/a/289170
+% https://stackoverflow.com/a/27159300
+% https://tex.stackexchange.com/a/112314
+% https://tex.stackexchange.com/a/122197
+% https://tex.stackexchange.com/a/224989
+% https://tex.stackexchange.com/a/21305
+% http://www.personal.ceu.hu/tex/spacebox.htm
+\newsavebox\fakeequationbox
+\newenvironment{FakeEquation}[1][]{%
+\refstepcounter{equation}\label{#1}%
+\par\vspace{\dimexpr\abovedisplayskip-\parskip}%
+\begin{lrbox}{\fakeequationbox}\begin{minipage}{\columnwidth}%
+\centering}{%
+\end{minipage}\end{lrbox}%
+\hfill\makebox[0pt]{\usebox{\fakeequationbox}}%
+\hfill\makebox[0pt][r]{(\arabic{equation})}%
+\par\vspace{\dimexpr\belowdisplayskip-\parskip}}
+
+% Add equation numbering to pandoc-native (i.e., not pygments) code blocks.
+% Use BVerbatim environment for Highlighting so that \centering can be applied.
+\updateenvironment{Shaded}{\begin{FakeEquation}}{\end{FakeEquation}}
+\DefineVerbatimEnvironment{Highlighting}{BVerbatim}{commandchars=\\\{\}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 $if(beamer)$
 $else$
 $if(subparagraph)$
