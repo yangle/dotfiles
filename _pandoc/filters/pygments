@@ -1,0 +1,61 @@
+#!/usr/bin/env python2
+
+from pandocfilters import toJSONFilter, RawBlock
+from pygments import highlight, lexers, formatters
+
+
+def pygments(key, value, fmt, meta):
+    r"""
+    Apply pygments syntax highlighting to code blocks
+
+    Optionally, wrap a fenced code block marked as "equation" inside a
+    FakeEquation environment, so that
+
+        ```{.python .equation label=eq:func}
+        def func():
+            pass
+        ```
+
+    will (in effect) become
+
+        \begin{equation}
+        \label{eq:func}
+        ...
+        \end{equation}
+    """
+    if key != 'CodeBlock':
+        return None
+
+    # Parse markdown fenced block header like "{.python .equation}".
+    # http://pandoc.org/MANUAL.html#extension-fenced_code_attributes
+    (_, classes, attrs), code = value
+    as_equation = 'equation' in classes
+
+    for lang in classes:
+        try:
+            lexer = lexers.get_lexer_by_name(lang)
+            break
+        except Exception:
+            pass
+    else:
+        try:
+            lexer = lexers.guess_lexer(code)
+        except Exception:
+            lexer = lexers.TextLexer()
+
+    # Use BVerbatim so that \centering can be applied.
+    # https://tex.stackexchange.com/a/122197
+    formatter = formatters.get_formatter_by_name(fmt, envname='BVerbatim')
+    output = highlight(code, lexer, formatter)
+
+    # Add a FakeEquation wrapper (defined in report.latex template).
+    if fmt == 'latex' and as_equation:
+        label = dict(attrs).get('label', '')
+        template = r'\begin{FakeEquation}[%s]%s\end{FakeEquation}'
+        output = template % (label, output)
+
+    return [RawBlock(fmt, output)]
+
+
+if __name__ == "__main__":
+    toJSONFilter(pygments)
