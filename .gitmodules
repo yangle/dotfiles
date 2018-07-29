@@ -88,3 +88,6 @@
 [submodule "_pandoc/bundle/pandocfilters"]
 	path = _pandoc/bundle/pandocfilters
 	url = https://github.com/jgm/pandocfilters.git
+[submodule "_pandoc/bundle/highlightjs"]
+	path = _pandoc/bundle/highlightjs
+	url = https://github.com/highlightjs/cdn-release
