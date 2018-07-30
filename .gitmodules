@@ -52,9 +52,6 @@
 [submodule "_vim/bundle/qfenter"]
 	path = _vim/bundle/qfenter
 	url = https://github.com/yssl/QFEnter.git
-[submodule "_vim/bundle/kno"]
-	path = _vim/bundle/kno
-	url = https://github.com/yangle/kno.vim.git
 [submodule "_vim/bundle/noscrollbar"]
 	path = _vim/bundle/noscrollbar
 	url = https://github.com/gcavallanti/vim-noscrollbar.git
