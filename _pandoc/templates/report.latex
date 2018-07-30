@@ -415,7 +415,7 @@ $if(institute)$
 \providecommand{\institute}[1]{}
 \institute{$for(institute)$$institute$$sep$ \and $endfor$}
 $endif$
-\date{$date$}
+\date{$if(date)$$date$$else$\today$endif$}
 $if(beamer)$
 $if(titlegraphic)$
 \titlegraphic{\includegraphics{$titlegraphic$}}
