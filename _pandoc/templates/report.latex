@@ -258,9 +258,13 @@ $endif$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{color}
+\usepackage{geometry}
 \usepackage{titlesec}
 \usepackage{verbatim}
 \usepackage{fancyvrb}
+
+% Use wide page.
+\geometry{textwidth=6.5in, top=1.0in, bottom=1.0in}
 
 % Custom commands.
 \DeclareMathOperator*{\argmin}{argmin}
