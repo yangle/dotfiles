@@ -29,7 +29,7 @@ def pygments(key, value, fmt, meta):
     # Parse markdown fenced block header like "{.python .equation}".
     # http://pandoc.org/MANUAL.html#extension-fenced_code_attributes
     (_, classes, attrs), code = value
-    as_equation = 'equation' in classes
+    as_equation = (fmt == 'latex') and 'equation' in classes
 
     for lang in classes:
         try:
@@ -38,18 +38,17 @@ def pygments(key, value, fmt, meta):
         except Exception:
             pass
     else:
-        try:
-            lexer = lexers.guess_lexer(code)
-        except Exception:
-            lexer = lexers.TextLexer()
+        lexer = lexers.TextLexer()
 
-    # Use BVerbatim so that \centering can be applied.
+    # Use "BVerbatim" in equation mode so that \centering can be applied.
+    # Otherwise, use the plain "Verbatim" to allow page breaks.
     # https://tex.stackexchange.com/a/122197
-    formatter = formatters.get_formatter_by_name(fmt, envname='BVerbatim')
+    envname = 'BVerbatim' if as_equation else 'Verbatim'
+    formatter = formatters.get_formatter_by_name(fmt, envname=envname)
     output = highlight(code, lexer, formatter)
 
     # Add a FakeEquation wrapper (defined in report.latex template).
-    if fmt == 'latex' and as_equation:
+    if as_equation:
         label = dict(attrs).get('label', '')
         template = r'\begin{FakeEquation}[%s]%s\end{FakeEquation}'
         output = template % (label, output)
