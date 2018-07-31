@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-from pandocfilters import toJSONFilter, RawBlock
+from pandocfilters import toJSONFilter, RawBlock, RawInline
 from pygments import highlight, lexers, formatters
 
 
@@ -23,7 +23,7 @@ def pygments(key, value, fmt, meta):
         ...
         \end{equation}
     """
-    if key != 'CodeBlock':
+    if key not in ('Code', 'CodeBlock'):
         return None
 
     # Parse markdown fenced block header like "{.python .equation}".
@@ -53,7 +53,8 @@ def pygments(key, value, fmt, meta):
         template = r'\begin{FakeEquation}[%s]%s\end{FakeEquation}'
         output = template % (label, output)
 
-    return [RawBlock(fmt, output)]
+    cls = RawInline if key == 'Code' else RawBlock
+    return [cls(fmt, output)]
 
 
 if __name__ == "__main__":
