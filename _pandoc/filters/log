@@ -1,0 +1,19 @@
+#!/usr/bin/env python2
+
+import os
+from pandocfilters import toJSONFilter
+
+
+def log(key, value, fmt, meta):
+    with open(os.environ.get('PANDOC_LOG', 'z.log'), 'a') as f:
+        print >> f, 'key   =', repr(key)
+        print >> f, 'value =', repr(value)
+        print >> f, 'fmt   =', repr(fmt)
+        print >> f, 'meta  =', repr(meta)
+        print >> f, ''
+
+    return None
+
+
+if __name__ == "__main__":
+    toJSONFilter(log)
