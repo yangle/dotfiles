@@ -36,16 +36,11 @@ html=${input%.*}.html
 pdf=${input%.*}.pdf
 shown=false
 
-echo "Watching $input"
+echo "[$(date +'%Y%m%d %H:%M:%S')] Watching $input"
 while true; do
-    if [[ "$_arg_pdf" == "on" ]]; then
-        $mdp "$input" "$pdf"
-        echo "Rendered $pdf"
-    fi
-
     if [[ "$_arg_html" == "on" ]]; then
-        $mdh "$input" "$html"
-        echo "Rendered $html"
+        $mdh "$input" -o "$html"
+        echo "[$(date +'%Y%m%d %H:%M:%S')] Rendered $html"
 
         if [[ $shown == false ]]; then
             "$_arg_browser" "$html" &>/dev/null &
@@ -59,6 +54,11 @@ while true; do
                 --class "$_arg_browser" windowfocus key 'F5'
             xdotool windowfocus $active_window
         fi
+    fi
+
+    if [[ "$_arg_pdf" == "on" ]]; then
+        $mdp "$input" -o "$pdf"
+        echo "[$(date +'%Y%m%d %H:%M:%S')] Rendered $pdf"
     fi
 
     inotifywait -qq -e CLOSE_WRITE "$input"
