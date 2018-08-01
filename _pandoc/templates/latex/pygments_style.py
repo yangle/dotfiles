@@ -99,7 +99,7 @@ class OneLightStyle(Style):
         String.Heredoc:         "",
         String.Interpol:        ONE_LIGHT['hue_2'],
         String.Other:           "",
-        String.Regex:           ONE_LIGHT['hue_2'],
+        String.Regex:           "%s bold" % ONE_LIGHT['mono_2'],
         String.Single:          "",
         String.Symbol:          ONE_LIGHT['hue_2'],
 
