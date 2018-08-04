@@ -363,6 +363,13 @@ $endif$
 $for(header-includes)$
 $header-includes$
 $endfor$
+
+% Workaround for -H overriding yaml "header-includes".
+% https://github.com/jgm/pandoc/issues/3139
+$for(header-extras)$
+$header-extras$
+$endfor$
+
 $if(lang)$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
