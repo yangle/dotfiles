@@ -263,6 +263,7 @@ $endif$
 \usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{graphicx,grffile}
+\usepackage{multirow}
 
 % Use wide page.
 \geometry{textwidth=6.5in, top=1.0in, bottom=1.0in}
