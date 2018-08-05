@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Print $cwd of the current active window.
+# Adapted from https://gist.github.com/ctemplin/3c626af969c67e51d805
+
+id=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
+wm_class=$(xprop -id $id | grep 'WM_CLASS(STRING)')
+if [[ $wm_class =~ (gnome|mate|xfce4)-terminal ]]
+    then
+        name=$(xprop -id $id | grep '_NET_WM_NAME' | cut -d'"' -f2 | cut -d" " -f4);
+        echo $(echo "$name" | cut -d':' -f2- | sed "s|~|$HOME|" )
+    else
+        pid=$(xprop -id $id | grep '_NET_WM_PID(CARDINAL)' | cut -d'=' -f2)
+        echo $(pwdx $pid | cut -d':' -f2 | cut -d' ' -f2)
+fi
