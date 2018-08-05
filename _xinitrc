@@ -10,6 +10,9 @@ fi
 
 xhost +localhost
 
+# Set cursor size, etc.
+xrdb ~/.Xresources
+
 # Caps Lock -> Ctrl
 # Ctrl-Alt-Backspace kills X
 # Remap navigation keys for Microsoft Sculpt
