@@ -28,5 +28,8 @@ eval $(ssh-agent)
 
 redshift &
 
-exec gnome-session
-#exec gnome-session-cinnamon
+# Pretend to be gnome so that xdg-* works properly.
+export DE="gnome"
+
+exec i3
+#exec gnome-session
