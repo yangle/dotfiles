@@ -46,12 +46,11 @@ bindsym $mod+c split h
 bindsym $mod+v split v
 
 # Split and open terminal.
-bindsym Ctrl+Shift+o split v; exec $term
-bindsym Ctrl+Shift+e split h; exec $term
+bindsym $mod+o split v; exec $term
+bindsym $mod+i split h; exec $term
 
 # Enter fullscreen mode for the focused container.
 bindsym $mod+f fullscreen toggle
-bindsym Ctrl+Shift+x fullscreen toggle
 
 # Change container layout.
 bindsym $mod+w layout tabbed
