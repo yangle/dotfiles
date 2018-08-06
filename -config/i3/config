@@ -104,6 +104,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bar {
     position top
     status_command i3blocks
+    wheel_up_cmd nop
+    wheel_down_cmd nop
 }
 
 # Make floating workspaces.
