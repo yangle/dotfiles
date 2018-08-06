@@ -3,11 +3,6 @@ axes.unicode_minus  : False         # unicode minus sign is utterly ugly
 font.size           : 10.0
 patch.linewidth     : 0.5           # edge width of pie charts
 
-font.family         : serif         # produces CMR10, CMMI10, etc
-font.sans-serif     : Computer Modern Sans Serif
-font.serif          : Computer Modern Roman
-font.monospace      : Computer Modern Typewriter
-
 text.usetex         : true
 text.latex.preamble : \usepackage{parskip},\usepackage{bbold}
     # parskip:  noindent, correct centering of axis labels
