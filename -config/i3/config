@@ -103,8 +103,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bar {
     position top
     status_command i3blocks
-    wheel_up_cmd nop
-    wheel_down_cmd nop
+    bindsym button4 nop
+    bindsym button5 nop
 }
 
 # Make floating workspaces.
@@ -114,6 +114,7 @@ for_window [workspace="9"] floating enable
 
 # Floating windows.
 for_window [class="Zathura"] floating enable
+for_window [class="Zeal"] floating enable
 
 # Citrix settings.
 assign [class="^Wfica"] 10
