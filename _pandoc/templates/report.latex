@@ -274,6 +274,12 @@ $endif$
 \providecommand{\vb}[2][]{\texttt{#1\detokenize{#2}}}
 \providecommand{\red}[1]{{\color{red} #1}}
 
+% Support coalescing footnotes through \footnoteref{fn:label}.
+% https://tex.stackexchange.com/a/35044
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+
 % \updateenvironment: Either newenvironment or renewenvironment.
 % https://tex.stackexchange.com/a/20691
 \makeatletter
