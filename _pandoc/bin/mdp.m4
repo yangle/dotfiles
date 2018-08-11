@@ -23,6 +23,7 @@ if [[ -z "$_arg_output" ]]; then
 fi
 
 cmd=(pandoc --from markdown --to latex \
+    -V tables -V graphics \
     --template report \
     "$_arg_input" -o "$_arg_output")
 
