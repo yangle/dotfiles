@@ -262,7 +262,6 @@ $endif$
 \usepackage{titlesec}
 \usepackage{verbatim}
 \usepackage{fancyvrb}
-\usepackage{graphicx,grffile}
 \usepackage{multirow}
 
 % Use wide page.
