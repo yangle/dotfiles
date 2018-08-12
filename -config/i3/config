@@ -119,7 +119,6 @@ for_window [workspace="8"] floating enable
 for_window [workspace="9"] floating enable
 
 # Floating windows.
-for_window [class="Zathura"] floating enable
 for_window [class="Zeal"] floating enable
 
 # Citrix settings.
