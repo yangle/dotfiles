@@ -29,6 +29,9 @@ focus_follows_mouse no
 # Do not wrap around screen boundaries when changing focus.
 focus_wrapping no
 
+# Move current window to another container selected by mouse input.
+bindsym --release $mod+Shift+e exec --no-startup-id i3-move
+
 # Move focused window.
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down

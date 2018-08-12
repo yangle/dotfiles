@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Move current window to another i3 container selected by mouse input.
+#
+# This is possible because i3 "floating disable" sends the current floating
+# window to the most recently activated container.
+
+id_current=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
+id_target=$(xwininfo | grep 'xwininfo: Window id:' | cut -d' ' -f4)
+
+i3-msg '[id="'$id_current'"] floating enable'
+i3-msg '[id="'$id_target'"] focus'
+i3-msg '[id="'$id_current'"] focus; floating disable'
