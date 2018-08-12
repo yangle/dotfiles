@@ -1,4 +1,4 @@
-set $mod Mod4
+set $mod Mod1
 set $term gnome-terminal --working-directory="`xcwd`"
 
 # Font for window titles.
@@ -108,7 +108,6 @@ bar {
 }
 
 # Make floating workspaces.
-for_window [workspace="7"] floating enable
 for_window [workspace="8"] floating enable
 for_window [workspace="9"] floating enable
 
@@ -119,3 +118,18 @@ for_window [class="Zeal"] floating enable
 # Citrix settings.
 assign [class="^Wfica"] 10
 for_window [class="^Wfica"] border none
+
+# Passthrough mode for workspace "10", with all $mod bindings disabled.
+mode "Passthrough Mode" {
+    bindsym Mod4+1 mode "default"; workspace "1"
+    bindsym Mod4+2 mode "default"; workspace "2"
+    bindsym Mod4+3 mode "default"; workspace "3"
+    bindsym Mod4+4 mode "default"; workspace "4"
+    bindsym Mod4+5 mode "default"; workspace "5"
+    bindsym Mod4+6 mode "default"; workspace "6"
+    bindsym Mod4+7 mode "default"; workspace "7"
+    bindsym Mod4+8 mode "default"; workspace "8"
+    bindsym Mod4+9 mode "default"; workspace "9"
+    bindsym Mod4+0 mode "default"
+}
+bindsym Mod4+0 mode "Passthrough Mode"; workspace "10"
