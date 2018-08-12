@@ -28,6 +28,13 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+# Date Time
+#
+[time]
+command=date '+%Y/%m/%d %H:%M'
+interval=5
+min_width=1050
+
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
@@ -40,6 +47,8 @@ min_width=00.00%
 # Network
 [bandwidth]
 interval=1
+align=center
+min_width="IN 1.2K OUT 3.4K"
 
 # Volume indicator
 #
@@ -49,10 +58,4 @@ interval=1
 [volume]
 label=♪
 instance=Master
-interval=5
-
-# Date Time
-#
-[time]
-command=date '+%Y/%m/%d %H:%M'
 interval=5
