@@ -68,8 +68,9 @@ bindsym $mod+Shift+space floating toggle
 # Change focus between tiling / floating windows.
 bindsym $mod+space focus mode_toggle
 
-# Focus the parent container.
+# Focus the parent/child container.
 bindsym $mod+a focus parent
+bindsym $mod+d focus child
 
 # Switch to a workspace.
 bindsym $mod+1 workspace "1"
