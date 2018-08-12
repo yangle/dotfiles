@@ -23,6 +23,10 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# Change focus by scrolling.
+bindsym --whole-window --border $mod+button4 focus left
+bindsym --whole-window --border $mod+button5 focus right
+
 # Do not let focus follow mouse.
 focus_follows_mouse no
 
