@@ -18,4 +18,5 @@
 # F841: local variable name is assigned to but never used
 # W293: blank line contains whitespace
 # W391: line at end of file
-ignore = C901,E201,E202,E221,E222,E241,E251,E265,E303,E402,E501,E731,E741,E742,E743,F401,F841,W293,W391
+# W503: line break before binary operator
+ignore = C901,E201,E202,E221,E222,E241,E251,E265,E303,E402,E501,E731,E741,E742,E743,F401,F841,W293,W391,W503
