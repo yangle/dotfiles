@@ -96,9 +96,8 @@ bindsym $mod+Shift+8 move container to workspace "8"; workspace "8"
 bindsym $mod+Shift+9 move container to workspace "9"; workspace "9"
 bindsym $mod+Shift+0 move container to workspace "10"; workspace "10"
 
-# Quick paste.
+# Set up target for quick paste.
 bindsym $mod+Shift+p mark --toggle "paste target"
-bindsym $mod+p exec xkeys "paste target" ctrl+shift+v Return
 
 # Lock screen.
 bindsym Ctrl+Mod1+l exec i3lock -c 000000
