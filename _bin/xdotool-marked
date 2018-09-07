@@ -1,20 +1,18 @@
 #!/bin/bash
 
-# Send keys to a marked window in i3.
-# Usage: xkeys target_mark key [key] ...
+# Call xdotool on a marked window in i3.
+# Usage: xdotool-marked <target_mark> ...
 
 target_mark="$1"
 shift
-keys=("$@")
+commands=("$@")
 
 # Make sure target_mark actually exists
 if i3-msg -t get_marks | grep "\"$target_mark\""; then
     i3-msg 'mark "_current"'
     i3-msg "[con_mark=\"$target_mark\"] focus"
 
-    # Necessary to wait a bit before sending keys.
-    sleep 0.3
-    xdotool key --clearmodifiers "${keys[@]}"
+    xdotool "${commands[@]}"
 
     i3-msg '[con_mark="_current"] focus'
     i3-msg 'unmark "_current"'
