@@ -76,9 +76,9 @@ function! StripPrompt()
     let @p = join(lines, "\n")
 endfunction
 
-" cut/copy/paste using system clipboard
+" copy/paste using system clipboard
 if has("clipboard")
-    vnoremap <C-X> "+d
+    vnoremap <silent> <C-X> "+y:call system("xdotool-marked 'paste target' key --clearmodifiers ctrl+shift+v Return")<CR>
     vnoremap <C-C> "+y
 
     " set an undo point before pasting:
