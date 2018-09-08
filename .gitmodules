@@ -88,3 +88,6 @@
 [submodule "_pandoc/bundle/mathjax"]
 	path = _pandoc/bundle/mathjax
 	url = https://github.com/mathjax/MathJax.git
+[submodule "_vim/bundle/sideways"]
+	path = _vim/bundle/sideways
+	url = https://github.com/AndrewRadev/sideways.vim.git
