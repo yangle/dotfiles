@@ -164,6 +164,10 @@ let g:inline_edit_new_buffer_command = 'enew'
 let g:EasyMotion_do_mapping = 0
 map F <Plug>(easymotion-s)
 
+" sideways
+nnoremap gh :SidewaysLeft<cr>
+nnoremap gl :SidewaysRight<cr>
+
 " vinegar: hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
