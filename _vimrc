@@ -78,7 +78,7 @@ endfunction
 
 " copy/paste using system clipboard
 if has("clipboard")
-    vnoremap <silent> <C-X> "+y:call system("xdotool-marked 'paste target' key --clearmodifiers ctrl+shift+v sleep 0.05 key Return")<CR>
+    vnoremap <silent> <C-X> "+y:call system("xdotool-marked 'paste target' key --clearmodifiers ctrl+shift+v sleep 0.1 key Return")<CR>
     vnoremap <C-C> "+y
 
     " set an undo point before pasting:
