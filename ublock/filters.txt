@@ -6,6 +6,8 @@ dictionary.com##article
 thesaurus.com##aside
 thesaurus.com##article
 
+stackexchange.com##._fixed
+
 ! LinkedIn login
 www.linkedin.com###advocate-modal
 www.linkedin.com##body:style(overflow: visible !important)
