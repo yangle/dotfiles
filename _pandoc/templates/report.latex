@@ -270,6 +270,8 @@ $endif$
 % Custom commands.
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\Tr}{Tr}
 \providecommand{\vb}[2][]{\texttt{#1\detokenize{#2}}}
 \providecommand{\red}[1]{{\color{red} #1}}
 
