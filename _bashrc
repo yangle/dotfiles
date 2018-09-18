@@ -33,6 +33,7 @@ alias gdb="gdb -q"
 alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
+alias gsl="git stash list --pretty=format:'%C(yellow)%h %Cred%ad %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
 
 # python virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
