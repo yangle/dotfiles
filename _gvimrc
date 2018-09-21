@@ -1,14 +1,13 @@
-" laptop
 if hostname() == 'orbifold'
     "set background=light
     set guifont=Monospace\ 12
     "colorscheme default
     "set mouse=
-else
+elseif hostname() =~ 'gauge\|dragon'
     set guifont=Monospace\ 11
 endif
 
 " hide toolbar/menu
 set guioptions-=m  "remove menu bar
-set guioptions-=M  "a more extreme version, which does not source the menu script 
+set guioptions-=M  "a more extreme version, which does not source the menu script
 set guioptions-=T  "remove toolbar
