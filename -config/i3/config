@@ -100,7 +100,7 @@ bindsym $mod+Shift+0 move container to workspace "10"; workspace "10"
 bindsym $mod+Shift+p mark --toggle "paste target"
 
 # Lock screen.
-bindsym Ctrl+Mod1+l exec i3lock -c 000000
+bindsym Ctrl+Shift+$mod+l exec i3lock -c 000000
 
 # Reload the configuration file.
 bindsym $mod+Shift+c reload
