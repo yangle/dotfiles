@@ -69,7 +69,7 @@ p() {
 }
 
 # Jupyter
-alias jnotebook="env BROWSER=throwaway-vivaldi jupyter-notebook"
+alias jnotebook="env BROWSER=blotter jupyter-notebook"
 alias jconsole="jupyter-console --kernel=python2 --existing"
 
 alias nx="(cd ~/sandbox/scratch/nx && venv-activate && ./check)"
