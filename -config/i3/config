@@ -99,6 +99,10 @@ bindsym $mod+Shift+0 move container to workspace "10"; workspace "10"
 # Set up target for quick paste.
 bindsym $mod+Shift+p mark --toggle "paste target"
 
+# Set up a container to collect matplotlib windows.
+bindsym $mod+Shift+m mark --toggle "matplotlib"
+for_window [class="(?i)matplotlib"] move window to mark "matplotlib"
+
 # Lock screen.
 bindsym Ctrl+Shift+$mod+l exec i3lock -c 000000
 
