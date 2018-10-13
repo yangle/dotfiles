@@ -84,6 +84,9 @@ bindsym $mod+8 workspace "8"
 bindsym $mod+9 workspace "9"
 bindsym $mod+0 workspace "10"
 
+# Automatic back-and-forth when switching workspace.
+workspace_auto_back_and_forth yes
+
 # Move focused container to a workspace, and switch to that worksspace.
 bindsym $mod+Shift+1 move container to workspace "1"; workspace "1"
 bindsym $mod+Shift+2 move container to workspace "2"; workspace "2"
