@@ -76,9 +76,6 @@
 [submodule "_vim/bundle/repeat"]
 	path = _vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "_vim/bundle/rootignore"]
-	path = _vim/bundle/rootignore
-	url = https://github.com/octref/RootIgnore.git
 [submodule "_pandoc/bundle/pandocfilters"]
 	path = _pandoc/bundle/pandocfilters
 	url = https://github.com/jgm/pandocfilters.git
