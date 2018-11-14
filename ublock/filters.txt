@@ -8,6 +8,8 @@ thesaurus.com##article
 
 stackexchange.com##._fixed
 
+arxiv.org###bib-main
+
 ! LinkedIn login
 www.linkedin.com###advocate-modal
 www.linkedin.com##body:style(overflow: visible !important)
@@ -15,7 +17,10 @@ www.linkedin.com##body:style(overflow: visible !important)
 ! Stupid "People also search for" pop-up
 ! https://redd.it/7ws3do
 ! https://redd.it/8alry4
+! https://redd.it/8m239z
 google.*##div[class*="explore-main"]
 google.*##div[class*="exp-outline"]
 google.*##div[jsl][data-ved]:if(h4:has-text(People also search for))
 google.*##.exp-outline
+google.*##[style="display: block; opacity: 1;"]
+google.*##[data-hveid]>div:style(height: auto !important)
