@@ -9,6 +9,7 @@ thesaurus.com##article
 stackexchange.com##._fixed
 
 arxiv.org###bib-main
+arxiv.org###cu-identity
 
 ! LinkedIn login
 www.linkedin.com###advocate-modal
