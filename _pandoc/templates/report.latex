@@ -263,6 +263,7 @@ $endif$
 \usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{multirow}
+\usepackage{pifont}
 
 % Use wide page.
 \geometry{textwidth=6.5in, top=1.0in, bottom=1.0in}
@@ -273,6 +274,7 @@ $endif$
 \DeclareMathOperator*{\sign}{sign}
 \DeclareMathOperator*{\Tr}{Tr}
 \providecommand{\vb}[2][]{\texttt{#1\detokenize{#2}}}
+\providecommand{\bk}[1]{\left\langle{}#1\right\rangle}
 \providecommand{\red}[1]{{\color{red} #1}}
 
 % Support coalescing footnotes through \footnoteref{fn:label}.
