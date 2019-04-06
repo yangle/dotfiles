@@ -116,13 +116,21 @@ case "$PS1_NAME" in
         PS1='\[\e[1;31m\]\h \[\e[1;35m\]\w\[\e[1;36m\]$(__git_ps1 " [%s]") \[\e[0;33m\]\$ \[\e[0m\]';;
 esac
 
+# Adapted from /etc/profile.d/vte.sh,
+# but without the "777;notify;Command completed;" nonsense.
+__vte_prompt_command() {
+  local pwd='~'
+  [ "$PWD" != "$HOME" ] && pwd=${PWD/#$HOME\//\~\/}
+  printf "\033]0;%s:%s\007%s" "${HOSTNAME%%.*}" "${pwd}"
+}
+
 if test "$TERM" = "xterm" -o \
         "$TERM" = "xterm-color" -o \
         "$TERM" = "xterm-256color" -o \
         "$TERM" = "rxvt" -o \
         "$TERM" = "rxvt-unicode" -o \
         "$TERM" = "xterm-xfree86"; then
-    PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}\007"'
+    PROMPT_COMMAND="__vte_prompt_command"
     export PROMPT_COMMAND
 fi
 
@@ -135,5 +143,3 @@ if type "register-python2-argcomplete" > /dev/null 2>&1; then
 fi
 
 [ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
-
-[ -e /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
