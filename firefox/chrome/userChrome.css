@@ -1,0 +1,11 @@
+/* Hide tab bar
+ * https://github.com/Timvde/UserChrome-Tweaks/tree/master/tabs */
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* Hide sidebar header
+ * https://github.com/eoger/tabcenter-redux/wiki/Custom-CSS-Tweaks#hide-sidebar-header */
+#sidebar-box #sidebar-header {
+  visibility: collapse;
+}
