@@ -1,13 +1,13 @@
 {
   "load_extensions": {
     "vim_binding/vim_binding": true
-  }, 
+  },
   "Notebook": {
     "Header": false
-  }, 
+  },
   "CodeCell": {
     "cm_config": {
-      "autoCloseBrackets": false, 
+      "autoCloseBrackets": false,
       "lineNumbers": true
     }
   }
