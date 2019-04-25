@@ -28,6 +28,7 @@ set list
 set listchars=tab:»\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set display+=lastline " partially display lastline even if it doesn't fit
 set mouse=a
+set signcolumn=no " hide the gutter
 
 " suffixes to ignore (taken from archlinux.vim; affects netrw/vinegar)
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
