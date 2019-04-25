@@ -296,4 +296,5 @@ call s:hlt("diffRemoved",   "IndianRed1",       "NONE",         "bold")
 
 call s:hlt("ALEErrorLine",  "NONE",             "NONE",         "bold,italic")
 call s:hlt("ALEWarningLine","NONE",             "NONE",         "bold,italic")
-call s:hlt("ALEWarning",    "NONE")
+call s:hlt("ALEError",      "NONE",             "NONE",         "undercurl",    "NONE",     "LightCoral")
+call s:hlt("ALEWarning",    "NONE",             "NONE",         "undercurl",    "NONE",     "LightCoral")
