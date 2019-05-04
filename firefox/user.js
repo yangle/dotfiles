@@ -1,3 +1,5 @@
+user_pref("app.normandy.enabled", false); // https://news.ycombinator.com/item?id=19825581
+user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("beacon.enabled", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.cache.disk.enable", false);
