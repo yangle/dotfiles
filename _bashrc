@@ -1,5 +1,11 @@
 export HISTFILESIZE=
 export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+
+# Protect history against truncation.
+# https://stackoverflow.com/a/19533853
+# https://superuser.com/q/575479
+export HISTFILE=~/.bash_eternal_history
 
 export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH
 export PYTHONPATH=$HOME/.bin
