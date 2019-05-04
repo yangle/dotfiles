@@ -1,6 +1,6 @@
-/* Hide tab bar
- * https://github.com/Timvde/UserChrome-Tweaks/tree/master/tabs */
-#TabsToolbar {
+/* Hide tab bar, but show it if menu bar is visible
+ * https://github.com/eoger/tabcenter-redux/wiki/Custom-CSS-Tweaks */
+#toolbar-menubar[inactive="true"] + #TabsToolbar {
   visibility: collapse !important;
 }
 
