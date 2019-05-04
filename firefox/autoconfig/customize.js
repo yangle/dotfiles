@@ -12,3 +12,8 @@ Services.obs.addObserver(function (aSubject, aTopic, aData) {
   chromeWindow.document.getElementById("key_search").remove();
   chromeWindow.document.getElementById("key_search2").remove();
 }, "browser-delayed-startup-finished", false);
+
+// Disable telemetry.
+// https://github.com/The-OP/Fox/issues/156
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1422689
+lockPref("toolkit.telemetry.enabled", false);

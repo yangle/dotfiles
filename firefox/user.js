@@ -1,6 +1,7 @@
 user_pref("app.normandy.enabled", false); // https://news.ycombinator.com/item?id=19825581
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("beacon.enabled", false);
+user_pref("breakpad.reportUrl", "");
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.cache.disk.enable", false);
 user_pref("browser.download.dir", "/tmp");
@@ -8,16 +9,23 @@ user_pref("browser.download.folderList", 2);
 user_pref("browser.download.panel.shown", true);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.formfill.enable", false);
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.enabled", false);
+user_pref("browser.ping-centre.telemetry", false);
 user_pref("browser.pocket.enabled", false);
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.search.update", false);
+user_pref("browser.send_pings", false);
 user_pref("browser.sessionstore.max_tabs_undo", 50);
 user_pref("browser.sessionstore.warnOnQuit", true);
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 3);
 user_pref("browser.tabs.insertAfterCurrent", true);
 user_pref("browser.urlbar.autocomplete.enabled", false);
+user_pref("datareporting.healthreport.uploadEnabled", false);
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
+user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 0);
 user_pref("devtools.chrome.enabled", true); // enable Browser Console command line
 user_pref("dom.webnotifications.enabled", false);
 user_pref("full-screen-api.approval-required", false);
@@ -34,4 +42,16 @@ user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.microphone", 2);
 user_pref("places.history.expiration.max_pages", 1000); // keep only 1000 pages in history
 user_pref("privacy.donottrackheader.enabled", true);
+user_pref("toolkit.telemetry.archive.enabled", false);
+user_pref("toolkit.telemetry.bhrPing.enabled", false);
+user_pref("toolkit.telemetry.ecosystemtelemetry.enabled", false);
+user_pref("toolkit.telemetry.enabled", false);
+user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
+user_pref("toolkit.telemetry.hybridContent.enabled", false);
+user_pref("toolkit.telemetry.newProfilePing.enabled", false);
+user_pref("toolkit.telemetry.prioping.enabled", "");
+user_pref("toolkit.telemetry.server", "");
+user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
+user_pref("toolkit.telemetry.unified", false);
+user_pref("toolkit.telemetry.updatePing.enabled", false);
 user_pref("xpinstall.signatures.required", false); // don't bother with extension signing
