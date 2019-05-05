@@ -28,6 +28,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 0);
 user_pref("devtools.chrome.enabled", true); // enable Browser Console command line
 user_pref("dom.webnotifications.enabled", false);
+user_pref("extensions.update.enabled", false);
 user_pref("full-screen-api.approval-required", false);
 user_pref("geo.enabled", false);
 user_pref("loop.enabled", false);
