@@ -46,9 +46,6 @@
 [submodule "_vim/bundle/fastex"]
 	path = _vim/bundle/fastex
 	url = https://github.com/yangle/fastex.vim.git
-[submodule "_vim/bundle/ack"]
-	path = _vim/bundle/ack
-	url = https://github.com/yangle/ack.vim.git
 [submodule "_vim/bundle/qfenter"]
 	path = _vim/bundle/qfenter
 	url = https://github.com/yangle/QFEnter.git
