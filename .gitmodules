@@ -51,7 +51,7 @@
 	url = https://github.com/yangle/ack.vim.git
 [submodule "_vim/bundle/qfenter"]
 	path = _vim/bundle/qfenter
-	url = https://github.com/yssl/QFEnter.git
+	url = https://github.com/yangle/QFEnter.git
 [submodule "_vim/bundle/noscrollbar"]
 	path = _vim/bundle/noscrollbar
 	url = https://github.com/gcavallanti/vim-noscrollbar.git

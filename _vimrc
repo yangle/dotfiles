@@ -176,7 +176,6 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
 let g:ackhighlight = 1
-cnoreabbrev A Ack
 if executable('ag')
     let g:ackprg = 'ag --vimgrep --silent'
 endif
@@ -185,8 +184,8 @@ endif
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.open = ['<CR>']
 let g:qfenter_keymap.open_keep = ['<Space>', '<2-LeftMouse>']
-let g:qfenter_keymap.cnext_keep = ['<C-Down>']
-let g:qfenter_keymap.cprev_keep = ['<C-Up>']
+let g:qfenter_keymap.cnext_keep = ['J']
+let g:qfenter_keymap.cprev_keep = ['K']
 
 " preserve window view when switching buffers
 autocmd BufLeave * call AutoSaveWinView()
