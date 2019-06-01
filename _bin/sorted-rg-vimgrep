@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Sort by hand because 'rg --sort-files' disables all parallelism.
+# https://stackoverflow.com/a/3193769
+rg --vimgrep --smart-case "$@" | sort -t: -k1,1 -k2,2g -k3,3g

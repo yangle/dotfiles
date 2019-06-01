@@ -85,3 +85,6 @@
 [submodule "_vim/bundle/sideways"]
 	path = _vim/bundle/sideways
 	url = https://github.com/AndrewRadev/sideways.vim.git
+[submodule "_vim/bundle/ripgrep"]
+	path = _vim/bundle/ripgrep
+	url = https://github.com/yangle/vim-ripgrep.git

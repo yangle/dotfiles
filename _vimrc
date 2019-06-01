@@ -172,6 +172,10 @@ nnoremap gl :SidewaysRight<cr>
 " vinegar: hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
+" ripgrep
+let g:rg_command = "sorted-rg-vimgrep"
+let g:rg_highlight = 1
+
 " QFEnter.vim
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.open = ['<CR>']

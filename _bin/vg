@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Quote individual arguments: https://stackoverflow.com/a/12985353
+args=$(printf "'%s' " "${@}")
+view -c ":Rg $args"
