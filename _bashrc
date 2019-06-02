@@ -18,8 +18,6 @@ export GPG_TTY=$(tty)
 # silence annoying warnings from grep
 unset GREP_OPTIONS
 
-[ -e /opt/intel/composerxe/bin/compilervars.sh ] && source /opt/intel/composerxe/bin/compilervars.sh intel64
-
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
@@ -138,14 +136,6 @@ if test "$TERM" = "xterm" -o \
         "$TERM" = "xterm-xfree86"; then
     PROMPT_COMMAND="__vte_prompt_command"
     export PROMPT_COMMAND
-fi
-
-if type "register-python2-argcomplete" > /dev/null 2>&1; then
-    eval "$(register-python2-argcomplete rr)"
-    eval "$(register-python2-argcomplete mc)"
-    eval "$(register-python2-argcomplete jack)"
-    eval "$(register-python2-argcomplete d-monroe)"
-    eval "$(register-python2-argcomplete d-st)"
 fi
 
 [ -e /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
