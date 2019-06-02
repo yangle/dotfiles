@@ -147,9 +147,34 @@ let g:buftabs_marker_start = " "
 let g:buftabs_marker_end = " "
 let g:buftabs_active_highlight_group = "BuftabsActive"
 let g:buftabs_inactive_highlight_group = "BuftabsInact"
-noremap <C-J> :bprev<CR>
-noremap <C-K> :bnext<CR>
-noremap <C-Q> :bd<CR>
+noremap <silent> <C-J> :call ChangeBuffer("prev")<CR>
+noremap <silent> <C-K> :call ChangeBuffer("next")<CR>
+noremap <silent> <C-Q> :call ChangeBuffer("delete")<CR>
+function! ChangeBuffer(direction)
+    " Delete all phantom buffers created by netrw.
+    " (netrw always creates two buffers, one listed and one not,
+    " and the listed buffer would mess up buftabs if not deleted.)
+    let l:b = 1
+    while(l:b <= bufnr('$'))
+        if buflisted(l:b) && getbufvar(l:b, "netrw_browser_active")
+            execute ":bdelete " . l:b
+        endif
+        let l:b = l:b + 1
+    endwhile
+
+    " When there are multiple open windows and the current buffer is either
+    " unlisted or unmodifiable, one likely just wants to close the popup.
+    let l:curr = bufnr('%')
+    let l:special =
+        \ winnr('$') >= 2 &&
+        \ (!buflisted(l:curr) || !getbufvar(l:curr, "&modifiable"))
+
+    if l:special || a:direction == "delete"
+        execute ":bdelete"
+    else
+        execute a:direction == "next" ? ":bnext" : ":bprev"
+    endif
+endfunction
 
 " Configure inline-edit.
 nnoremap <leader>e :InlineEdit<cr>
