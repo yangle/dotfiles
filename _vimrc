@@ -1,41 +1,42 @@
+set nocp
+
 " pathogen
 execute pathogen#infect()
 call pathogen#helptags()
 
-"set lines=30 columns=95 " start size
-set nocp " non-compatible
-set bs=2 " backspace through leading spaces & linebreak
-set fo=cqrtj " format for comments etc.
-set ls=2 " always show status line
-set ww=<,>,h,l,[,] " move cursor through linebreaks
-set tabstop=8 " width of \t
 set autochdir " cd to current file
 set autoindent " pass indentation of the current line to the new line
-set smartindent " indent after { and noindent before #
+set backspace=2 " backspace through leading spaces & linebreak
+set display+=lastline " partially display lastline even if it doesn't fit
 set expandtab " convert tab input to spaces
-set softtabstop=4
-set shiftwidth=4 " control the reindentation with < and >
-set incsearch " search while typing
-set pastetoggle=<S-F10> " Toggle paste/insert mode
-set wildignore+=*.pyc,*.pyo,*.egg-info " hide from completion
-set wildmode=longest:full " autocomplete filenames to the longest possible
-set wildmenu " show autocomplete multiple matches
-set title " set teminal title
-set nojoinspaces " single space after '.' when joining lines
 set foldlevel=99 " unfold all by default
-set spellcapcheck= " skip capitalization check
+set formatoptions=cqrtj " format for comments etc.
+set hlsearch
+set incsearch " search while typing
+set laststatus=2 " always show status line
 set list
 set listchars=tab:»\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-set display+=lastline " partially display lastline even if it doesn't fit
 set mouse=a
+set nojoinspaces " single space after '.' when joining lines
+set number
+set pastetoggle=<S-F10> " Toggle paste/insert mode
+set shiftwidth=4 " control the reindentation with < and >
 set signcolumn=no " hide the gutter
+set smartindent " indent after { and noindent before #
+set softtabstop=4
+set spellcapcheck= " skip capitalization check
+set tabstop=8 " width of \t
+set title " set teminal title
+set whichwrap=<,>,h,l,[,] " move cursor through linebreaks
+set wildignore+=*.pyc,*.pyo,*.egg-info " hide from completion
+set wildmenu " show autocomplete multiple matches
+set wildmode=longest:full " autocomplete filenames to the longest possible
 
 " suffixes to ignore (taken from archlinux.vim; affects netrw/vinegar)
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
 
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
-"let loaded_matchparen = 1 " disable bracket matching
 
 " disable help
 nnoremap <F1> <nop>
@@ -94,16 +95,11 @@ endif
 " search for visual selection
 vnoremap // y/<C-R>"<CR>
 
-" line numbers
-set number
-nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-
 " begin an unformatted new line below cursor, if buffer is modifiable
 nmap <silent><expr> <CR>
     \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
 
-" highlight the search query word, disable highlight when entering insert mode
-set hlsearch
+" unset search highlight when entering/leaving insert mode
 autocmd InsertEnter * :let @/=""
 autocmd InsertLeave * :let @/=""
 
