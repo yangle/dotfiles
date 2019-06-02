@@ -4,7 +4,6 @@ set nocp
 execute pathogen#infect()
 call pathogen#helptags()
 
-set autochdir " cd to current file
 set autoindent " pass indentation of the current line to the new line
 set backspace=2 " backspace through leading spaces & linebreak
 set breakindent " visually indent wrapped lines
@@ -168,6 +167,9 @@ nnoremap gl :SidewaysRight<cr>
 
 " vinegar: hide dotfiles by default
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+" get rid of the lingering netrw buffer
+" https://github.com/tpope/vim-vinegar/issues/13
+let g:netrw_fastbrowse = 0
 
 " ripgrep
 let g:rg_command = "sorted-rg-vimgrep"
