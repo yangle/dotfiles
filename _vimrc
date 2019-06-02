@@ -1,6 +1,6 @@
 set nocp
 
-" pathogen
+" Pathogen.
 execute pathogen#infect()
 call pathogen#helptags()
 
@@ -11,6 +11,7 @@ set display+=lastline " partially display lastline even if it doesn't fit
 set expandtab " convert tab input to spaces
 set foldlevel=99 " unfold all by default
 set formatoptions=cqrtj " format for comments etc.
+set hidden " change buffer without saving
 set hlsearch
 set incsearch " search while typing
 set laststatus=2 " always show status line
@@ -38,21 +39,21 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
 
-" disable help
+" Disable help.
 nnoremap <F1> <nop>
 
-" disable Ex mode; use Q for line formatting
+" Disable Ex mode; use Q for line formatting.
 nnoremap Q gqq
 
-" disable man page lookup
+" Disable man page lookup.
 nnoremap K <nop>
 vnoremap K <nop>
 
-" fix all the things!
+" Fix all the things!
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
 
-" strip '>>> ' prompts from system clipboard and write to register p
+" Strip '>>> ' prompts from system clipboard and write to register p.
 function! StripPrompt()
     if (&ft != 'markdown') && (&ft != 'python')
         let @p = @+
@@ -78,28 +79,28 @@ function! StripPrompt()
     let @p = join(lines, "\n")
 endfunction
 
-" copy/paste using system clipboard
+" Copy/paste using system clipboard.
 if has("clipboard")
     vnoremap <silent> <C-X> "+y:call system("xdotool-marked 'paste target' key --clearmodifiers ctrl+shift+v sleep 0.1 key Return")<CR>
     vnoremap <C-C> "+y
 
-    " set an undo point before pasting:
+    " Set an undo point before pasting:
     " https://unix.stackexchange.com/a/117409
     inoremap <C-V> <C-G>u<C-R><C-O>+
     inoremap <S-Insert> <C-G>u<C-R><C-O>+
 
-    " strip prompts and paste
+    " Strip prompts and paste.
     inoremap <C-B> <C-O>:call StripPrompt()<CR><C-G>u<C-R><C-O>p
 endif
 
-" search for visual selection
+" Search for visual selection.
 vnoremap // y/<C-R>"<CR>
 
-" begin an unformatted new line below cursor, if buffer is modifiable
+" Begin an unformatted new line below cursor, if buffer is modifiable.
 nmap <silent><expr> <CR>
     \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
 
-" unset search highlight when entering/leaving insert mode
+" Unset search highlight when entering/leaving insert mode.
 autocmd InsertEnter * :let @/=""
 autocmd InsertLeave * :let @/=""
 
@@ -110,13 +111,13 @@ inoremap <2-LeftMouse> <Nop>
 inoremap <3-LeftMouse> <Nop>
 inoremap <4-LeftMouse> <Nop>
 
-" always highlight 𝚃𝙾𝙳𝙾 & 𝙵𝙸𝚇𝙼𝙴
+" Always highlight 𝚃𝙾𝙳𝙾 & 𝙵𝙸𝚇𝙼𝙴.
 augroup HighlightTODO
     autocmd!
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
 augroup END
 
-" fix Alt-* in gnome terminal
+" Fix Alt-* in gnome terminal.
 if !has('gui_running')
     let c='a'
     while c <= 'z'
@@ -127,19 +128,19 @@ if !has('gui_running')
     set ttimeout ttimeoutlen=50
 endif
 
-" workaround to suppress syntax warning for m[{1, 2}] in C++11
+" Workaround to suppress syntax warning for m[{1, 2}] in C++11.
 let c_no_curly_error = 1
 
-" tex filetype -- the attempt to judge by content will fail for those files without headers
+" Tex filetype -- the attempt to judge by content will fail for those files
+" without headers.
 au BufRead,BufNewFile *.tex setlocal spell filetype=tex
 au BufRead,BufNewFile *.cls setlocal spell filetype=tex
 au BufRead,BufNewFile *.sty setlocal spell filetype=tex
 
-" disable conceal for TeX (applies also to markdown)
+" Disable conceal for TeX (applies also to markdown).
 let g:tex_conceal = ""
 
-" buftabs  -- use :bd to close current buffer!
-set hidden " change buffer without saving
+" Configure buftabs.
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 1
 let g:buftabs_marker_start = " "
@@ -150,51 +151,53 @@ noremap <C-J> :bprev<CR>
 noremap <C-K> :bnext<CR>
 noremap <C-Q> :bd<CR>
 
-" inline-edit
+" Configure inline-edit.
 nnoremap <leader>e :InlineEdit<cr>
 xnoremap <leader>e :InlineEdit<cr>
 nnoremap <C-H> :w<CR><C-^>
 let g:inline_edit_autowrite = 0
 let g:inline_edit_new_buffer_command = 'enew'
 
-" easymotion
+" Configure easymotion.
 let g:EasyMotion_do_mapping = 0
 map F <Plug>(easymotion-s)
 
-" sideways
+" Configure sideways.
 nnoremap gh :SidewaysLeft<cr>
 nnoremap gl :SidewaysRight<cr>
 
-" vinegar: hide dotfiles by default
+" Configure vinegar: hide dotfiles by default.
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-" get rid of the lingering netrw buffer
+" Get rid of the lingering netrw buffer.
 " https://github.com/tpope/vim-vinegar/issues/13
 let g:netrw_fastbrowse = 0
 
-" fugitive
+" Configure fugitive.
 nnoremap <leader>g :Gstatus<CR>
 
-" ripgrep
+" Configure ripgrep.
 let g:rg_command = "sorted-rg-vimgrep"
 let g:rg_highlight = 1
 
-" QFEnter.vim
+" Configure qfenter.
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.open = ['<CR>']
 let g:qfenter_keymap.open_keep = ['<Space>', '<2-LeftMouse>']
 let g:qfenter_keymap.cnext_keep = ['J']
 let g:qfenter_keymap.cprev_keep = ['K']
 
-" preserve window view when switching buffers
+" Preserve window view when switching buffers.
 autocmd BufLeave * call AutoSaveWinView()
 autocmd BufEnter * call AutoRestoreWinView()
-function! AutoSaveWinView() " Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    " Save current view settings on a per-window, per-buffer basis.
     if !exists("w:SavedBufView")
         let w:SavedBufView = {}
     endif
     let w:SavedBufView[bufnr("%")] = winsaveview()
 endfunction
-function! AutoRestoreWinView() " Restore current view settings.
+function! AutoRestoreWinView()
+    " Restore current view settings.
     let buf = bufnr("%")
     if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
         let v = winsaveview()
@@ -206,14 +209,14 @@ function! AutoRestoreWinView() " Restore current view settings.
     endif
 endfunction
 
-" asymptote
+" Configure asymptote.
 au BufRead,BufNewFile *.asy setlocal filetype=asy
 
-" python-syntax
+" Configure python-syntax.
 let python_highlight_all = 1
 let python_version_2 = 1
 
-" jedi
+" Configure jedi.
 let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#force_py_version = 2
@@ -221,7 +224,7 @@ let g:jedi#show_call_signatures_delay = 0
 let g:jedi#goto_command = ""
 let g:jedi#goto_assignments_command = "<leader>d"
 
-" ale
+" Configure ale.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'cpp': ['clang']}
 let g:ale_virtualenv_dir_names = ['.venv']
@@ -229,36 +232,36 @@ let g:ale_set_signs = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
-" html / jinja
+" Configure html.
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" release Ctrl-C from SQL plugin
+" Release Ctrl-C from SQL plugin.
 let g:ftplugin_sql_omni_key = '<C-j>'
 
-" cursor in terminal vim
+" Fancy cursor in terminal vim.
 " http://vim.wikia.com/wiki/Configuring_the_cursor
 if &term =~ "xterm\\|rxvt"
-  " blinking bar in insert mode
+  " Blinking bar in insert mode.
   let &t_SI = "\<Esc>]12;Lime\x7\<Esc>[5 q"
-  " blinking underline in replace mode
+  " Blinking underline in replace mode.
   let &t_SR = "\<Esc>]12;Lime\x7\<Esc>[3 q"
-  " blinking block in normal mode
+  " Blinking block in normal mode.
   let &t_EI = "\<Esc>]12;Lime\x7\<Esc>[1 q"
-  " reset cursor when vim exits
+  " Reset cursor when vim exits.
   autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
 
-" enable italics in terminal: https://askubuntu.com/a/514524
+" Enable italics in terminal: https://askubuntu.com/a/514524
 set t_ZH=[3m
 set t_ZR=[23m
 
-" enable strikethrough in terminal (since VIM 8.0.1038)
+" Enable strikethrough in terminal (since VIM 8.0.1038)
 " http://vim.1045645.n5.nabble.com/strikethrough-text-in-gvim-td5716612.html
 " https://bitbucket.org/k_takata/vim-ktakata-mq/commits/bdc114c8c5e11183b7b9415ce3e813a683768fa3?at=default
 set t_Ts=[9m
 set t_Te=[29m
 
-" set colors
+" Set colors.
 set background=dark
 set t_Co=256
 set t_AB=[48;5;%dm
