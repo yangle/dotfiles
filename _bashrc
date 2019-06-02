@@ -97,6 +97,15 @@ if echo hello|grep --color=auto l >/dev/null 2>&1; then
     export GREP_COLORS="ms=01;37;41:mc=01;31:sl=:cx=:fn=4;34:ln=32:bn=32:se=1;31"
 fi
 
+# bat
+export BAT_THEME="GitHub"
+
+# fzf
+[ -e $HOME/.fzf-key-bindings.bash ] && source $HOME/.fzf-key-bindings.bash
+command -v bfs >/dev/null && export FZF_ALT_C_COMMAND="bfs -type d"
+export FZF_CTRL_T_COMMAND='rg --files --follow 2>/dev/null'
+export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} || (bat -p --color=always {} || cat {}) 2>/dev/null"'
+
 # PS1
 PS1_NAME="home"
 [ -e $HOME/.ps1-name ] && source $HOME/.ps1-name

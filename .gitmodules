@@ -85,3 +85,6 @@
 [submodule "_vim/bundle/fugitive"]
 	path = _vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/yangle/fzf.git
