@@ -82,3 +82,6 @@
 [submodule "_vim/bundle/ripgrep"]
 	path = _vim/bundle/ripgrep
 	url = https://github.com/yangle/vim-ripgrep.git
+[submodule "_vim/bundle/fugitive"]
+	path = _vim/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive

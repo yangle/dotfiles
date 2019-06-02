@@ -171,6 +171,9 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " https://github.com/tpope/vim-vinegar/issues/13
 let g:netrw_fastbrowse = 0
 
+" fugitive
+nnoremap <leader>g :Gstatus<CR>
+
 " ripgrep
 let g:rg_command = "sorted-rg-vimgrep"
 let g:rg_highlight = 1
