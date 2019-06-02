@@ -7,6 +7,7 @@ call pathogen#helptags()
 set autochdir " cd to current file
 set autoindent " pass indentation of the current line to the new line
 set backspace=2 " backspace through leading spaces & linebreak
+set breakindent " visually indent wrapped lines
 set display+=lastline " partially display lastline even if it doesn't fit
 set expandtab " convert tab input to spaces
 set foldlevel=99 " unfold all by default
