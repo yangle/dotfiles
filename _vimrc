@@ -198,7 +198,15 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_fastbrowse = 0
 
 " Configure fugitive.
-nnoremap <leader>g :Gstatus<CR>
+nnoremap <leader>g :call FindFugitive()<CR>:Gstatus<CR>
+" Follow symlinks to find git_dir.
+" Call detect() every time instead of using the :file hack.
+" https://github.com/tpope/vim-fugitive/issues/147#issuecomment-66858701
+function! FindFugitive()
+    if !exists('b:git_dir')
+        call fugitive#detect(fnameescape(resolve(expand('%:p'))))
+    endif
+endfunction
 
 " Configure ripgrep.
 let g:rg_command = "sorted-rg-vimgrep"
