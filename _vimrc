@@ -165,11 +165,20 @@ function! ChangeBuffer(direction)
     " When there are multiple open windows and the current buffer is either
     " unlisted or unmodifiable, one likely just wants to close the popup.
     let l:curr = bufnr('%')
-    let l:special =
+    let l:is_popup =
         \ winnr('$') >= 2 &&
         \ (!buflisted(l:curr) || !getbufvar(l:curr, "&modifiable"))
 
-    if l:special || a:direction == "delete"
+    " Closing the GV window should also close the commit window.
+    let l:is_two_pane_gv =
+        \ winnr('$') == 2 &&
+        \ getbufvar(l:curr, "&filetype") == "GV" &&
+        \ getbufvar(winbufnr(winnr('$')), "fugitive_type") == "commit"
+
+    if l:is_two_pane_gv
+        execute ":bdelete"
+        execute ":bdelete"
+    elseif l:is_popup || a:direction == "delete"
         execute ":bdelete"
     else
         execute a:direction == "next" ? ":bnext" : ":bprev"

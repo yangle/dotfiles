@@ -88,3 +88,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/yangle/fzf.git
+[submodule "_vim/bundle/gv"]
+	path = _vim/bundle/gv
+	url = https://github.com/yangle/gv.vim.git
