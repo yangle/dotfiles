@@ -19,6 +19,7 @@ set list
 set listchars=tab:»\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set mouse=a
 set nojoinspaces " single space after '.' when joining lines
+set nomodeline " modeline is a security risk
 set number
 set pastetoggle=<S-F10> " Toggle paste/insert mode
 set shiftwidth=4 " control the reindentation with < and >
