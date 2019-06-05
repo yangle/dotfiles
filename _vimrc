@@ -53,6 +53,10 @@ nnoremap Q gqq
 nnoremap K <nop>
 vnoremap K <nop>
 
+" Move to the first/last non-blank character of the line.
+noremap H ^
+noremap L g_
+
 " Fix all the things!
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
