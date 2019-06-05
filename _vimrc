@@ -4,6 +4,7 @@ set nocp
 execute pathogen#infect()
 call pathogen#helptags()
 
+set autochdir " cd to the folder containing the current file
 set autoindent " pass indentation of the current line to the new line
 set backspace=2 " backspace through leading spaces & linebreak
 set breakindent " visually indent wrapped lines
