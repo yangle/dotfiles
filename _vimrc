@@ -187,7 +187,11 @@ function! ChangeBuffer(direction)
         \ getbufvar(l:curr, "&filetype") == "GV" &&
         \ getbufvar(winbufnr(winnr('$')), "fugitive_type") == "commit"
 
-    if l:is_two_pane_gv
+    " Command line window from 'q:' requires a hacky handling.
+    " https://vi.stackexchange.com/a/14316
+    if bufname('%') == "[Command Line]"
+        execute ":quit"
+    elseif l:is_two_pane_gv
         execute ":bdelete"
         execute ":bdelete"
     elseif l:is_popup || a:direction == "delete"
