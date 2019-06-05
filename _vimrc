@@ -99,6 +99,14 @@ endif
 " Search for visual selection.
 vnoremap // y/<C-R>"<CR>
 
+" Always vertically center the search result.
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
 " Begin an unformatted new line below cursor, if buffer is modifiable.
 nmap <silent><expr> <CR>
     \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
