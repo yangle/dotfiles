@@ -14,6 +14,7 @@ set expandtab " convert tab input to spaces
 set foldlevel=99 " unfold all by default
 set formatoptions=cqrtj " format for comments etc.
 set hidden " change buffer without saving
+set history=10000 " remember more command line history
 set hlsearch
 set incsearch " search while typing
 set laststatus=2 " always show status line
