@@ -4,6 +4,11 @@ require([
   if (window.CodeMirror == undefined)
     return;
 
+  // Move to the first non-blank / last character of the line.
+  // (Moving to the last *non-blank* by "g_" is not supported by CodeMirror.)
+  CodeMirror.Vim.map('H', '^');
+  CodeMirror.Vim.map('L', '$');
+
   // Bind '=' to smart indent ('==' is handled automatically)
   CodeMirror.Vim.mapCommand('=', 'operator', 'indent', {indentRight: 'smart'}, {context: 'normal'});
   CodeMirror.Vim.mapCommand('=', 'operator', 'indent', {indentRight: 'smart'}, {context: 'visual'});
