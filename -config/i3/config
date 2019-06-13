@@ -116,7 +116,6 @@ bar {
 }
 
 # Make floating workspaces.
-for_window [workspace="8"] floating enable
 for_window [workspace="9"] floating enable
 
 # Floating windows.
