@@ -46,6 +46,9 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+# Open another terminal in the current container.
+bindsym $mod+semicolon exec $term
+
 # Split and open terminal.
 bindsym $mod+o split v; exec $term
 bindsym $mod+i split h; exec $term
