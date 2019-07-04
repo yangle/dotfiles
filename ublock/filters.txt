@@ -3,6 +3,7 @@ en.wikipedia.org###frb-inline
 
 dictionary.com##aside
 dictionary.com##article
+dictionary.com##[class*="TrendingWords"]
 thesaurus.com##aside
 thesaurus.com##article
 
