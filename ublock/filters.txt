@@ -6,6 +6,7 @@ dictionary.com##article
 dictionary.com##[class*="TrendingWords"]
 thesaurus.com##aside
 thesaurus.com##article
+thesaurus.com##div[class*="ModalContainer"]
 
 stackexchange.com##._fixed
 
