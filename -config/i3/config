@@ -1,5 +1,8 @@
 set $mod Mod1
-set $term gnome-terminal --working-directory="`xcwd`"
+
+# Open a terminal in the current directory.
+# Quote escaping: https://github.com/i3/i3/issues/2374#issuecomment-225955359
+set $term "cd \\"`xcwd`\\"; termite &"
 
 # Font for window titles.
 font pango:DejaVu Sans Mono 10

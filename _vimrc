@@ -296,7 +296,7 @@ let g:ftplugin_sql_omni_key = '<C-j>'
 
 " Fancy cursor in terminal vim.
 " http://vim.wikia.com/wiki/Configuring_the_cursor
-if &term =~ "xterm\\|rxvt"
+if &term =~ "xterm\\|rxvt\\|vte"
   " Blinking bar in insert mode.
   let &t_SI = "\<Esc>]12;Lime\x7\<Esc>[5 q"
   " Blinking underline in replace mode.

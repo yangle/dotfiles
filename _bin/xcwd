@@ -1,15 +1,31 @@
 #!/bin/bash
 
 # Print $cwd of the current active window.
-# Adapted from https://gist.github.com/ctemplin/3c626af969c67e51d805
+# https://gist.github.com/ctemplin/3c626af969c67e51d805
+# https://gist.github.com/viking/5851049
 
-id=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
-wm_class=$(xprop -id $id | grep 'WM_CLASS(STRING)')
-if [[ $wm_class =~ (gnome|mate|xfce4)-terminal ]]
-    then
-        name=$(xprop -id $id | grep '_NET_WM_ICON_NAME' | cut -d'"' -f2 | cut -d" " -f4);
-        echo $(echo "$name" | cut -d':' -f2- | sed "s|~|$HOME|" )
-    else
-        pid=$(xprop -id $id | grep '_NET_WM_PID(CARDINAL)' | cut -d'=' -f2)
-        echo $(pwdx $pid | cut -d':' -f2 | cut -d' ' -f2)
+# Identify the active window.
+id=$(xprop -root | grep '^_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
+wm_pid=$(xprop -id $id | grep '^_NET_WM_PID(CARDINAL)' | cut -d'=' -f2)
+
+# Get the PID of the last child process, skipping threads.
+last_child=$(pstree -Aalnp $wm_pid | grep -E -v '\-\{.*?\},' | tail -n 1)
+pid=$(echo $last_child | cut -d',' -f 2 | cut -d' ' -f 1)
+
+# Find the working directory.
+cwd=$(pwdx $pid | cut -d':' -f2 | cut -d' ' -f2)
+
+# If the active window is a terminal, try extracting an alternative $cwd from
+# _NET_WM_ICON_NAME (set by PROMPT_COMMAND in .bashrc). This is often more
+# preferrable because it preserves the original symlink.
+wm_class=$(xprop -id $id | grep '^WM_CLASS(STRING)')
+if [[ $wm_class =~ (termite|(gnome|mate|xfce4)-terminal) ]]; then
+    name=$(xprop -id $id | grep '^_NET_WM_ICON_NAME' | cut -d'"' -f2);
+    alt_cwd=$(echo "$name" | cut -d':' -f2- | sed "s|~|$HOME|")
+    if [[ -z $cwd ]] || [[ $cwd == $(realpath "$alt_cwd" 2>/dev/null) ]]; then
+        cwd=$alt_cwd
+    fi
 fi
+
+# If $cwd is empty or does not exists, fall back to $HOME.
+[[ -d $cwd ]] && echo $cwd || echo $HOME
