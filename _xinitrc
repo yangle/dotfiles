@@ -21,9 +21,6 @@ setxkbmap -option "terminate:ctrl_alt_bksp,ctrl:nocaps,sculpt:sculpt_navkeys"
 # Increase key repeat speed (default is "660 25").
 xset r rate 400 35
 
-# map Ctrl press-and-release to Escape
-xcape -t 200 -e 'Control_L=Escape'
-
 eval $(ssh-agent)
 
 redshift &
