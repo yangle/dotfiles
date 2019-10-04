@@ -43,6 +43,7 @@ user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.microphone", 2);
 user_pref("places.history.expiration.max_pages", 1000); // keep only 1000 pages in history
 user_pref("privacy.donottrackheader.enabled", true);
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("toolkit.telemetry.archive.enabled", false);
 user_pref("toolkit.telemetry.bhrPing.enabled", false);
 user_pref("toolkit.telemetry.ecosystemtelemetry.enabled", false);
