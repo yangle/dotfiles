@@ -29,3 +29,9 @@ google.*##div[jsl][data-ved]:if(h4:has-text(People also search for))
 google.*##.exp-outline
 google.*##[style="display: block; opacity: 1;"]
 google.*##[data-hveid]>div:style(height: auto !important)
+
+old.reddit.com##.commentsignupbar
+old.reddit.com##.infobar
+old.reddit.com##.read-next-container
+old.reddit.com##.seo-comments
+old.reddit.com##.seo-comments-recommendations
