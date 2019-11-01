@@ -14,6 +14,7 @@ arxiv.org###bib-main
 arxiv.org###cu-identity
 arxiv.org##footer
 arxiv.org##.endorsers > .help
+arxiv.org##a:style(font-weight: normal !important)
 
 ! LinkedIn login
 www.linkedin.com###advocate-modal
