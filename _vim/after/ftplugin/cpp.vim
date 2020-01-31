@@ -15,5 +15,8 @@ set matchpairs+=<:>
 " better indentation for lambda, http://stackoverflow.com/q/8062608
 setlocal cinoptions+=j1
 
+" Use clang-format for reformatting.
+setlocal equalprg=clang-format\ -style=google
+
 " change [] to {} in current line
 command! FixBraces :silent! s/\[/{/g <bar> :silent! s/\]/}/g
