@@ -91,3 +91,6 @@
 [submodule "_vim/bundle/gv"]
 	path = _vim/bundle/gv
 	url = https://github.com/yangle/gv.vim.git
+[submodule "_vim/bundle/cpp-indent"]
+	path = _vim/bundle/cpp-indent
+	url = https://github.com/yangle/cpp-indent.vim.git
