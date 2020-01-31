@@ -1,5 +1,10 @@
 stackoverflow.com##.hero-container.s-hero
+
+en.wikipedia.org###frb
 en.wikipedia.org###frb-inline
+en.wikipedia.org###frb-nag
+en.wikipedia.org##.frb-link
+en.wikipedia.org##.frb-rml-enabled.frb-nag.frb
 
 dictionary.com##aside
 dictionary.com##article
