@@ -106,15 +106,6 @@ fi
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-# bat
-export BAT_THEME="GitHub"
-
-# fzf
-[ -e $HOME/.fzf-key-bindings.bash ] && source $HOME/.fzf-key-bindings.bash
-command -v bfs >/dev/null && export FZF_ALT_C_COMMAND="bfs -type d"
-export FZF_CTRL_T_COMMAND='rg --files --follow 2>/dev/null'
-export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} || (bat -p --color=always {} || cat {}) 2>/dev/null"'
-
 # PS1
 PS1_NAME="home"
 [ -e $HOME/.ps1-name ] && source $HOME/.ps1-name
