@@ -11,3 +11,4 @@
 *.pyo
 doc/tags
 gmon.out
+compile_commands.json
