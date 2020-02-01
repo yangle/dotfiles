@@ -94,6 +94,3 @@
 [submodule "_vim/bundle/cpp-indent"]
 	path = _vim/bundle/cpp-indent
 	url = https://github.com/yangle/cpp-indent.vim.git
-[submodule "_vim/bundle/cpp-enhanced-highlight"]
-	path = _vim/bundle/cpp-enhanced-highlight
-	url = https://github.com/octol/vim-cpp-enhanced-highlight.git

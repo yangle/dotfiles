@@ -266,14 +266,6 @@ endfunction
 " Configure asymptote.
 au BufRead,BufNewFile *.asy setlocal filetype=asy
 
-" Configure cpp-enhanced-highlight.
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_posix_standard = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_no_function_highlight = 1
-
 " Configure python-syntax.
 let python_highlight_all = 1
 let python_version_2 = 1
