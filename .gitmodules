@@ -84,7 +84,7 @@
 	url = https://github.com/yangle/vim-ripgrep.git
 [submodule "_vim/bundle/fugitive"]
 	path = _vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive
+	url = https://github.com/yangle/vim-fugitive.git
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/yangle/fzf.git
