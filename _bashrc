@@ -24,6 +24,9 @@ unset GREP_OPTIONS
 # enable tab completion for tar on all types of files
 complete tar && compopt -o default tar
 
+# Enable tab completion for make targets.
+complete -W "`make -qp 2>/dev/null | sed -n -E 's/^([^.#\s][^:=]*)(:$|:\s+.*$)/\1/p' | sort -u`" make
+
 # git
 __git_ps1 ()
 {
