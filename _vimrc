@@ -283,6 +283,7 @@ let g:jedi#goto_stubs_command = ""
 " Configure ale.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'cpp': ['clang']}
+let g:ale_c_parse_makefile = 1
 let g:ale_virtualenv_dir_names = ['.venv']
 let g:ale_set_signs = 0
 let g:ale_lint_on_text_changed = 'normal'
