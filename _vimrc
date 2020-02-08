@@ -292,6 +292,11 @@ let g:ale_lint_on_insert_leave = 1
 " Configure html.
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+" Teach % about html tags.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
 " Release Ctrl-C from SQL plugin.
 let g:ftplugin_sql_omni_key = '<C-j>'
 
