@@ -61,27 +61,50 @@ noremap L g_
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
 
-" Strip '>>> ' prompts from system clipboard and write to register p.
-function! StripPrompt()
+" Clean up the system desktop clipboard (register +) and write to register p,
+" stripping '>>> ' Python prompts and trailing spaces, and reindenting to the
+" local indentation level at the cursor.
+function! PythonClipboard()
     if (&ft != 'markdown') && (&ft != 'python')
         let @p = @+
         return
     endif
 
-    let lines = []
-    let had_prompt = 0
-    for line in split(@+, "\n")
-        if (line =~ '^>>> ') || (had_prompt && (line =~ '^\.\.\. '))
-            call add(lines, strpart(line, 4))
-            let had_prompt = 1
-        else
-            if had_prompt
-                call add(lines, "________")
-            endif
+    " Determine the indentation level based on the cursor position.
+    " Cannot just use col('.') here because when the indentation comes from
+    " indentexpr, after <C-O> the line remains empty and col('.') remains 0,
+    " even though the cursor is drawn with an indentation. As a workaround,
+    " use getcurpos()[4] (aka 'curswant') to infer the drawn cursor position.
+    let actual_col = col('.')
+    let apparent_col = getcurpos()[4] - 1
+    let current_indent = repeat(' ', apparent_col)
+    let already_indented = (actual_col == apparent_col)
 
-            call add(lines, line)
-            let had_prompt = 0
+    let lines = []
+    let is_prompt = 1
+    let is_first_line = 1
+    for raw_line in split(@+, "\n")
+
+        " Strip trailing spaces.
+        let line = substitute(raw_line, '^\(.\{-}\)\s*$', '\1', '')
+
+        " Strip prompts until hitting the first non-prompt line.
+        if is_prompt && raw_line =~ '^\(>>>\|\.\.\.\) '
+            let line = strpart(line, 4)
+        else
+            " Show a separator if there were prompt lines.
+            if is_prompt && !is_first_line
+                call add(lines, current_indent . "________")
+            endif
+            let is_prompt = 0
         endif
+
+        " Reindent to current_indent. Skip the first line if already indented.
+        let line = (len(line) > 0 && !(is_first_line && already_indented))
+            \ ? (current_indent . line) : line
+        let is_first_line = 0
+
+        call add(lines, line)
     endfor
 
     let @p = join(lines, "\n")
@@ -98,7 +121,7 @@ if has("clipboard")
     inoremap <S-Insert> <C-G>u<C-R><C-O>+
 
     " Strip prompts and paste.
-    inoremap <C-B> <C-O>:call StripPrompt()<CR><C-G>u<C-R><C-O>p
+    inoremap <C-B> <C-O>:call PythonClipboard()<CR><C-G>u<C-R><C-O>p
 endif
 
 " Search for visual selection.
