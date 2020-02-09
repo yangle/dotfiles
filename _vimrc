@@ -225,7 +225,7 @@ nnoremap <leader>g :call FindFugitive()<CR>:Gstatus<CR>
 " https://github.com/tpope/vim-fugitive/issues/147#issuecomment-66858701
 function! FindFugitive()
     if !exists('b:git_dir')
-        call fugitive#detect(fnameescape(resolve(expand('%:p'))))
+        call FugitiveDetect(fnameescape(resolve(expand('%:p'))))
     endif
 endfunction
 
