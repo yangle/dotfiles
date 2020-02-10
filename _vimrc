@@ -296,7 +296,6 @@ let python_version_2 = 1
 " Configure jedi.
 let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#force_py_version = 2
 let g:jedi#show_call_signatures_delay = 0
 let g:jedi#completions_command = ""
 let g:jedi#goto_command = "<leader>d"
