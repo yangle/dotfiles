@@ -57,6 +57,16 @@ vnoremap K <nop>
 noremap H ^
 noremap L g_
 
+" Command wrapper that preserves the current window view.
+function! WithViewPreserved(command)
+    let w = winsaveview()
+    execute a:command
+    call winrestview(w)
+endfunction
+
+" Reformat the whole file.
+nnoremap <silent> <leader>= :silent call WithViewPreserved("normal gg=G")<CR>
+
 " Fix all the things!
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
