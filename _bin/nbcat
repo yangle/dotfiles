@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Extract input from Jupyter notebook(s).
+
+jq --join-output \
+    '
+    .cells
+
+    # Skip empty cells and triple-quote non-code cells.
+    | map(
+        select((.source | length) > 0)
+        | if .cell_type == "code" then
+            .source
+        else
+            ["\"\"\"\n"] + .source + ["\n\"\"\""]
+        end + ["\n\n\n"]
+    )
+
+    # Unwrap two levels.
+    | .[][]
+    ' $@
