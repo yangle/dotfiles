@@ -300,8 +300,8 @@ endfunction
 au BufRead,BufNewFile *.asy setlocal filetype=asy
 
 " Configure python-syntax.
-let python_highlight_all = 1
-let python_version_2 = 1
+let g:python_highlight_space_errors = 0
+let g:python_highlight_all = 1
 
 " Configure jedi.
 let g:jedi#popup_on_dot = 0

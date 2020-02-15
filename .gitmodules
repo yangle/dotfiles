@@ -13,9 +13,6 @@
 [submodule "_vim/bundle/asymptote"]
 	path = _vim/bundle/asymptote
 	url = https://github.com/hura/vim-asymptote.git
-[submodule "_vim/bundle/python-syntax"]
-	path = _vim/bundle/python-syntax
-	url = https://github.com/yangle/python-syntax.git
 [submodule "_vim/bundle/indentpython"]
 	path = _vim/bundle/indentpython
 	url = https://github.com/yangle/indentpython.vim.git
@@ -91,3 +88,6 @@
 [submodule "_vim/bundle/cpp-indent"]
 	path = _vim/bundle/cpp-indent
 	url = https://github.com/yangle/cpp-indent.vim.git
+[submodule "_vim/bundle/python-syntax"]
+	path = _vim/bundle/python-syntax
+	url = https://github.com/vim-python/python-syntax.git
