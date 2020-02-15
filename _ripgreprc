@@ -1,1 +1,6 @@
 --smart-case
+
+# Search Jupyter notebooks through nbcat.
+# Note that *.ipynb must NOT be quoted - ripgreprc is NOT a shell.
+--pre=nbcat
+--pre-glob=*.ipynb
