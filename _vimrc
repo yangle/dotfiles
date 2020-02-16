@@ -71,6 +71,10 @@ nnoremap <silent> <leader>= :silent call WithViewPreserved("normal gg=G")<CR>
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
 
+" Paste the most recent yank (not counting delete).
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+
 " Clean up the system desktop clipboard (register +) and write to register p,
 " stripping '>>> ' Python prompts and trailing spaces, and reindenting to the
 " local indentation level at the cursor.
