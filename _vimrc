@@ -59,6 +59,9 @@ noremap L g_
 
 " Command wrapper that preserves the current window view.
 function! WithViewPreserved(command)
+    " Manully insert an undo block that preserves the current cursor position.
+    " https://github.com/rhysd/vim-clang-format/pull/55
+    silent execute "noautocmd normal! ii\<esc>\"_x"
     let w = winsaveview()
     execute a:command
     call winrestview(w)
