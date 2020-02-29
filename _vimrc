@@ -148,10 +148,6 @@ vnoremap // y/<C-R>"<CR>
 nmap <silent><expr> <CR>
     \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
 
-" Unset search highlight when entering/leaving insert mode.
-autocmd InsertEnter * :let @/=""
-autocmd InsertLeave * :let @/=""
-
 " Disable mouse click in insert mode: https://stackoverflow.com/a/23078776
 " (Clicking causes jedi signature display to corrupt undo history.)
 inoremap <LeftMouse> <Nop>
