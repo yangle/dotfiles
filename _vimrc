@@ -43,6 +43,12 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 syntax on " syntax highlight
 filetype plugin indent on " enable type-specific plugins
 
+" Auto-reload and disable editing in view/gview.
+if v:progname =~ '.*view'
+    set autoread
+    set nomodifiable
+endif
+
 " Disable help.
 nnoremap <F1> <nop>
 
