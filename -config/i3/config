@@ -82,9 +82,8 @@ bindsym $mod+6 workspace "6"
 bindsym $mod+7 workspace "7"
 bindsym $mod+8 workspace "8"
 bindsym $mod+9 workspace "9"
-bindsym $mod+0 workspace "10"
 
-# Move focused container to a workspace, and switch to that worksspace.
+# Move focused container to a workspace, and switch to that workspace.
 bindsym $mod+Shift+1 move container to workspace "1"; workspace "1"
 bindsym $mod+Shift+2 move container to workspace "2"; workspace "2"
 bindsym $mod+Shift+3 move container to workspace "3"; workspace "3"
@@ -94,7 +93,6 @@ bindsym $mod+Shift+6 move container to workspace "6"; workspace "6"
 bindsym $mod+Shift+7 move container to workspace "7"; workspace "7"
 bindsym $mod+Shift+8 move container to workspace "8"; workspace "8"
 bindsym $mod+Shift+9 move container to workspace "9"; workspace "9"
-bindsym $mod+Shift+0 move container to workspace "10"; workspace "10"
 
 # Set up target for quick paste.
 bindsym $mod+Shift+p mark --toggle "paste target"
@@ -132,17 +130,8 @@ for_window [title="Browser Console"] floating enable
 assign [class="^Wfica"] 10
 for_window [class="^Wfica"] border none
 
-# Passthrough mode for workspace "10", with all $mod bindings disabled.
+# Passthrough mode for workspace "10".
 mode "Passthrough Mode" {
-    bindsym Mod4+1 mode "default"; workspace "1"
-    bindsym Mod4+2 mode "default"; workspace "2"
-    bindsym Mod4+3 mode "default"; workspace "3"
-    bindsym Mod4+4 mode "default"; workspace "4"
-    bindsym Mod4+5 mode "default"; workspace "5"
-    bindsym Mod4+6 mode "default"; workspace "6"
-    bindsym Mod4+7 mode "default"; workspace "7"
-    bindsym Mod4+8 mode "default"; workspace "8"
-    bindsym Mod4+9 mode "default"; workspace "9"
-    bindsym Mod4+0 mode "default"
+    bindsym $mod+0 mode "default"; workspace back_and_forth
 }
-bindsym Mod4+0 mode "Passthrough Mode"; workspace "10"
+bindsym $mod+0 mode "Passthrough Mode"; workspace "10"
