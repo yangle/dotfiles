@@ -94,11 +94,15 @@ bindsym $mod+Shift+7 move container to workspace "7"; workspace "7"
 bindsym $mod+Shift+8 move container to workspace "8"; workspace "8"
 bindsym $mod+Shift+9 move container to workspace "9"; workspace "9"
 
+# Vim-style marks.
+bindsym $mod+m exec i3-input -F 'mark --add --toggle %s' -l 1 -P 'Mark: '
+bindsym $mod+apostrophe exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Jump: '
+
 # Set up target for quick paste.
-bindsym $mod+Shift+p mark --toggle "paste target"
+bindsym $mod+Shift+p mark --add --toggle "paste target"
 
 # Set up a container to collect matplotlib windows.
-bindsym $mod+Shift+m mark --toggle "matplotlib"
+bindsym $mod+Shift+m mark --add --toggle "matplotlib"
 for_window [class="(?i)matplotlib"] move window to mark "matplotlib"
 
 # Lock screen.
