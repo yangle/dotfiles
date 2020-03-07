@@ -16,9 +16,8 @@ floating_modifier $mod
 # Kill focused window.
 bindsym $mod+Shift+q kill
 
-# Run rofi.
-bindsym $mod+grave exec rofi -show run
-bindsym $mod+Tab exec rofi -show window -show-icons
+# Run launcher.
+bindsym $mod+Shift+grave exec rofi -show run
 
 # Change focus.
 bindsym $mod+h focus left
@@ -93,6 +92,10 @@ bindsym $mod+Shift+6 move container to workspace "6"; workspace "6"
 bindsym $mod+Shift+7 move container to workspace "7"; workspace "7"
 bindsym $mod+Shift+8 move container to workspace "8"; workspace "8"
 bindsym $mod+Shift+9 move container to workspace "9"; workspace "9"
+
+# Refocus the previously focused window.
+exec --no-startup-id i3-mark-prev
+bindsym $mod+grave [con_mark=_prev] focus
 
 # Vim-style marks.
 bindsym $mod+m exec i3-input -F 'mark --add --toggle %s' -l 1 -P 'Mark: '
