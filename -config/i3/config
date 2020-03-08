@@ -140,5 +140,6 @@ for_window [class="^Wfica"] border none
 # Passthrough mode for workspace "10".
 mode "Passthrough Mode" {
     bindsym $mod+0 mode "default"; workspace back_and_forth
+    bindsym Mod4+l nop "Lock block"
 }
 bindsym $mod+0 mode "Passthrough Mode"; workspace "10"
