@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Keep track of window focus.
+# Mark the previously focused window with "_prev", and mark the most recently
+# focused local/remote window with "_local"/"_remote.
+# Adapted from https://redd.it/4d4luc
+
+# Kill all previous instances of the same script.
+self=${BASH_SOURCE[0]}
+for pid in $(pidof -x $self); do
+    if [ $pid != $$ ]; then
+        kill -9 $pid
+    fi
+done
+
+id_prev=0x0
+
+xprop -root -spy _NET_ACTIVE_WINDOW |
+    while read line
+    do
+        # Parse window_id from xprop output.
+        window_id=$(echo "$line" | awk -F' ' '{printf $NF}')
+
+        # Mark _prev and update id_prev.
+        i3-msg "[id=$id_prev] mark --add _prev"
+        id_prev=$window_id
+
+        # Mark _local or _remote based on the active workspace.
+        if [[ "$HOSTNAME" != *.* ]]; then
+            wksp=$(i3-msg -t get_workspaces \
+                | jq -r '.[] | select(.focused==true).name')
+
+            if [[ $wksp =~ (L|R) ]] ; then
+                i3-msg "[id=$window_id] mark --add _remote"
+            else
+                i3-msg "[id=$window_id] mark --add _local"
+            fi
+        fi
+
+        # When the workspace under focus is empty, xprop would keep sending
+        # "_NET_ACTIVE_WINDOW(WINDOW): window id # 0x0" updates.
+        # Sleep a bit to prevent this from hogging up CPU cycles.
+        sleep 0.1
+    done

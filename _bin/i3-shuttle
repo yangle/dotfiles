@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Move the current workspace to the next monitor.
+# For pinned workspace L & R, move the current window instead.
+
+wksp=$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+
+if [[ $wksp =~ (L|R) ]] ; then
+    next=$([[ "$wksp" == "L" ]] && echo "R" || echo "L")
+    i3-msg "move container to workspace \"$next\"; workspace \"$next\""
+else
+    i3-msg "move workspace to output right"
+fi

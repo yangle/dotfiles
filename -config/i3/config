@@ -1,8 +1,43 @@
+# Setup two monitors and define default workspace placements.
+exec_always --no-startup-id i3-xrandr
+set $ml HDMI-2
+set $mr DP-1
+workspace "1" output $ml
+workspace "2" output $ml
+workspace "3" output $ml
+workspace "4" output $ml
+workspace "5" output $ml
+workspace "6" output $ml
+workspace "7" output $ml
+workspace "8" output $ml
+workspace "9" output $ml
+workspace "F1" output $mr
+workspace "F2" output $mr
+workspace "F3" output $mr
+workspace "F4" output $mr
+workspace "F5" output $mr
+workspace "F6" output $mr
+workspace "F7" output $mr
+workspace "F8" output $mr
+workspace "F9" output $mr
+workspace "F9" output $mr
+workspace "F10" output $mr
+workspace "F11" output $mr
+workspace "F12" output $mr
+workspace "L" output $ml
+workspace "R" output $mr
+
+# Focus the next monitor.
+bindsym $mod+equal focus output right
+
+# Move the current workspace to the next monitor.
+bindsym $mod+Shift+equal exec --no-startup-id i3-shuttle
+
+# Set the main modifier to Alt.
 set $mod Mod1
 
 # Open a terminal in the current directory.
-# Quote escaping: https://github.com/i3/i3/issues/2374#issuecomment-225955359
-set $term "cd \\"`xcwd`\\"; termite &"
+set $term mate-terminal --disable-factory --working-directory="`xcwd`"
 
 # Font for window titles.
 font pango:DejaVu Sans Mono 10
@@ -12,6 +47,9 @@ hide_edge_borders both
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# Keep track of window focus.
+exec_always --no-startup-id i3-track
 
 # Kill focused window.
 bindsym $mod+Shift+q kill
@@ -36,7 +74,7 @@ focus_follows_mouse no
 focus_wrapping no
 
 # Move current window to another container selected by mouse input.
-bindsym --release $mod+Shift+e exec --no-startup-id i3-move
+bindsym --release $mod+Shift+e exec --no-startup-id i3-teleport
 
 # Move focused window.
 bindsym $mod+Shift+h move left
@@ -81,6 +119,18 @@ bindsym $mod+6 workspace "6"
 bindsym $mod+7 workspace "7"
 bindsym $mod+8 workspace "8"
 bindsym $mod+9 workspace "9"
+bindsym $mod+F1 workspace "F1"
+bindsym $mod+F2 workspace "F2"
+bindsym $mod+F3 workspace "F3"
+bindsym $mod+F4 workspace "F4"
+bindsym $mod+F5 workspace "F5"
+bindsym $mod+F6 workspace "F6"
+bindsym $mod+F7 workspace "F7"
+bindsym $mod+F8 workspace "F8"
+bindsym $mod+F9 workspace "F9"
+bindsym $mod+F10 workspace "F10"
+bindsym $mod+F11 workspace "F11"
+bindsym $mod+F12 workspace "F12"
 
 # Move focused container to a workspace, and switch to that workspace.
 bindsym $mod+Shift+1 move container to workspace "1"; workspace "1"
@@ -92,9 +142,20 @@ bindsym $mod+Shift+6 move container to workspace "6"; workspace "6"
 bindsym $mod+Shift+7 move container to workspace "7"; workspace "7"
 bindsym $mod+Shift+8 move container to workspace "8"; workspace "8"
 bindsym $mod+Shift+9 move container to workspace "9"; workspace "9"
+bindsym $mod+Shift+F1 move container to workspace "F1"; workspace "F1"
+bindsym $mod+Shift+F2 move container to workspace "F2"; workspace "F2"
+bindsym $mod+Shift+F3 move container to workspace "F3"; workspace "F3"
+bindsym $mod+Shift+F4 move container to workspace "F4"; workspace "F4"
+bindsym $mod+Shift+F5 move container to workspace "F5"; workspace "F5"
+bindsym $mod+Shift+F6 move container to workspace "F6"; workspace "F6"
+bindsym $mod+Shift+F7 move container to workspace "F7"; workspace "F7"
+bindsym $mod+Shift+F8 move container to workspace "F8"; workspace "F8"
+bindsym $mod+Shift+F9 move container to workspace "F9"; workspace "F9"
+bindsym $mod+Shift+F10 move container to workspace "F10"; workspace "F10"
+bindsym $mod+Shift+F11 move container to workspace "F11"; workspace "F11"
+bindsym $mod+Shift+F12 move container to workspace "F12"; workspace "F12"
 
 # Refocus the previously focused window.
-exec --no-startup-id i3-mark-prev
 bindsym $mod+grave [con_mark=_prev] focus
 
 # Vim-style marks.
@@ -134,12 +195,25 @@ for_window [class="Zeal"] floating enable
 for_window [title="Browser Console"] floating enable
 
 # Citrix settings.
-assign [class="^Wfica"] 10
 for_window [class="^Wfica"] border none
+exec_always --no-startup-id i3-knock
 
-# Passthrough mode for workspace "10".
+# Passthrough mode.
 mode "Passthrough Mode" {
-    bindsym $mod+0 mode "default"; workspace back_and_forth
+    bindsym $mod+0 mode "default"; [con_mark=_local] focus
+
+    # Block Win+L.
     bindsym Mod4+l nop "Lock block"
+
+    # Focus the next monitor.
+    bindsym $mod+equal focus output right
+
+    # Bring remote workspaces to the foreground.
+    bindsym $mod+Shift+0 exec --no-startup-id i3-remote
+
+    # Toggle scratchpad.
+    bindsym $mod+minus scratchpad show
 }
-bindsym $mod+0 mode "Passthrough Mode"; workspace "10"
+bindsym $mod+0 mode "Passthrough Mode"; [con_mark=_remote] focus
+bindsym $mod+Shift+0 mode "Passthrough Mode"; [con_mark=_remote] focus; \
+    exec --no-startup-id i3-remote

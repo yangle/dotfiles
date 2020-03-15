@@ -5,8 +5,6 @@ landscape" | rofi -dmenu -p "Orientation: ")
 
 export ICAROOT=/opt/Citrix/ICAClient
 
-echo +$orientation+lol
-
 if [[ "$orientation" == "landscape" ]]; then
     i3-msg 'workspace "L"'
     ${ICAROOT}/wfica -geometry 2560x1417 -file "$1"

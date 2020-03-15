@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Bring remote workspaces to the foreground.
+
+i3-msg "[con_mark=_remote] focus"
+
+wksp=$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+
+if [[ $wksp =~ (L|R) ]] ; then
+    next=$([[ "$wksp" == "L" ]] && echo "R" || echo "L")
+    i3-msg "workspace \"$next\"; workspace back_and_forth"
+else
+    i3-msg "workspace \"R\"; workspace \"L\""
+fi

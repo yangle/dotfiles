@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Set the first monitor as primary.
+xrandr --output HDMI-2 --primary
+
+# Put the second monitor in portrait mode.
+xrandr --output DP-1 --right-of HDMI-2 --rotate left

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Knock knock from time to time.
+
+# Kill all previous instances of the same script.
+self=${BASH_SOURCE[0]}
+for pid in $(pidof -x $self); do
+    if [ $pid != $$ ]; then
+        kill -9 $pid
+    fi
+done
+
+while true
+do
+    xwininfo -tree -root |
+        grep '("Wfica" "Wfica")' |
+        sed 's/^ *//' |
+        cut -d' ' -f1 |
+        while read window
+        do
+            xdotool key --window $window Scroll_Lock
+            xdotool key --window $window Scroll_Lock
+        done
+
+    sleep 1m $((RANDOM % 60))s
+done
