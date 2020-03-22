@@ -94,3 +94,6 @@
 [submodule "_vim/bundle/cool"]
 	path = _vim/bundle/cool
 	url = https://github.com/yangle/vim-cool.git
+[submodule "i3blocks"]
+	path = i3blocks
+	url = https://github.com/vivien/i3blocks-contrib.git
