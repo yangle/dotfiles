@@ -9,9 +9,6 @@ endif
 " http://stackoverflow.com/a/2064318
 setlocal nosmartindent
 
-" suppress jedi's docstring popup
-setlocal completeopt-=preview
-
 " workaround for jedi call signature
 " https://github.com/davidhalter/jedi-vim/issues/632
 setlocal nowrap

@@ -8,6 +8,7 @@ set autochdir " cd to the folder containing the current file
 set autoindent " pass indentation of the current line to the new line
 set backspace=2 " backspace through leading spaces & linebreak
 set breakindent " visually indent wrapped lines
+set completeopt=menu,menuone,longest " do not ever show preview
 set directory^=$HOME/.swap.vim// " put all swap files in one folder
 set display+=lastline " partially display lastline even if it doesn't fit
 set expandtab " convert tab input to spaces
