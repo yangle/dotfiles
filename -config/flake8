@@ -2,6 +2,7 @@
 # C901: method is too complex
 # E201: whitespace after ‘(‘
 # E202: whitespace before ‘)’
+# E203: whitespace before ‘:’
 # E221: multiple spaces before operator
 # E222: multiple spaces after operator
 # E241: multiple spaces after ‘,’
@@ -20,4 +21,4 @@
 # W391: line at end of file
 # W503: line break before binary operator
 # W504: line break after binary operator
-ignore = C901,E201,E202,E221,E222,E241,E251,E265,E303,E402,E501,E731,E741,E742,E743,F401,F841,W293,W391,W503,W504
+ignore = C901,E201,E202,E203,E221,E222,E241,E251,E265,E303,E402,E501,E731,E741,E742,E743,F401,F841,W293,W391,W503,W504
