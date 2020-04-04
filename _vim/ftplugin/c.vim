@@ -1,5 +1,6 @@
-" switch between header and source (using a.vim)
-map <C-H> :AlterA<CR>
+" Use clang-format for reformatting.
+setlocal equalprg=clang-format\ -style=google
 
-setlocal cinoptions+=g0 " do not indent member scope declarations
-setlocal cinoptions+=(0,W4 " custom indent inside unclosed parentheses
+" Use clangd language server for completion and lookup.
+setlocal omnifunc=ale#completion#OmniFunc
+nnoremap <buffer> <leader>d :ALEGoToDefinition<CR>
