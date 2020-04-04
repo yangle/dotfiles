@@ -22,3 +22,6 @@ augroup colorcolumn_python
     au BufWinEnter * if &ft ==# 'python' | let &colorcolumn=join(range(80,999),",") | endif
     au BufWinLeave * if &ft ==# 'python' | let &colorcolumn="" | endif
 augroup END
+
+" Use black for reformatting.
+setlocal equalprg=black\ --quiet\ -
