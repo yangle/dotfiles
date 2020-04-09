@@ -14,5 +14,5 @@ augroup colorcolumn_python
     au BufWinLeave * if &ft ==# 'python' | let &colorcolumn="" | endif
 augroup END
 
-" Use black for reformatting.
-setlocal equalprg=black\ --quiet\ -
+" Use black for ReformatAll().
+let b:equalprg = 'black --quiet - 2>/dev/null'

@@ -1,5 +1,5 @@
-" Use clang-format for reformatting.
-setlocal equalprg=clang-format\ -style=google
+" Use clang-format for ReformatAll().
+let b:equalprg = 'clang-format'
 
 " Use clangd language server for completion and lookup.
 setlocal omnifunc=ale#completion#OmniFunc

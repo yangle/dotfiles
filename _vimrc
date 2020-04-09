@@ -69,13 +69,25 @@ function! WithViewPreserved(command)
     " Manully insert an undo block that preserves the current cursor position.
     " https://github.com/rhysd/vim-clang-format/pull/55
     silent execute "noautocmd normal! ii\<esc>\"_x"
-    let w = winsaveview()
-    execute a:command
-    call winrestview(w)
+    try
+        let w = winsaveview()
+        execute a:command
+    finally
+        call winrestview(w)
+    endtry
 endfunction
 
-" Reformat the whole file.
-nnoremap <silent> <leader>= :silent call WithViewPreserved("normal gg=G")<CR>
+" Reformat the whole file using b:equalprg.
+function! ReformatAll()
+    let current_equalprg = &l:equalprg
+    try
+        let &l:equalprg = get(b:, 'equalprg', current_equalprg)
+        call WithViewPreserved("normal gg=G")
+    finally
+        let &l:equalprg = current_equalprg
+    endtry
+endfunction
+nnoremap <silent> <leader>= :silent call ReformatAll()<CR>
 
 " Fix all the things!
 " https://github.com/fatih/vim-go/issues/1447
