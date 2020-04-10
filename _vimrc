@@ -248,7 +248,7 @@ function! ChangeBuffer(direction)
     elseif l:is_popup || a:direction == "delete"
         execute ":bdelete"
     else
-        execute a:direction == "next" ? ":bnext" : ":bprev"
+        silent! execute a:direction == "next" ? ":bnext" : ":bprev"
     endif
 endfunction
 
