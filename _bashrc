@@ -45,6 +45,9 @@ alias gsl="git stash list --pretty=format:'%C(yellow)%h %Cred%ad %Cgreen%<(10,tr
 # https://stackoverflow.com/a/15009611
 __git_complete gl _git_log
 
+# ssh and cd to `pwd`.
+sshh() { ssh -X -t "$@" "cd '$(pwd)' 2>/dev/null; bash -l"; }
+
 # python virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 venv-activate() {
