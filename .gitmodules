@@ -97,3 +97,6 @@
 [submodule "i3blocks"]
 	path = i3blocks
 	url = https://github.com/vivien/i3blocks-contrib.git
+[submodule "_vim/bundle/jsonnet"]
+	path = _vim/bundle/jsonnet
+	url = https://github.com/google/vim-jsonnet.git
