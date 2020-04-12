@@ -83,6 +83,9 @@ function! ReformatAll()
     try
         let &l:equalprg = get(b:, 'equalprg', current_equalprg)
         call WithViewPreserved("normal gg=G")
+        if strlen(&l:equalprg) && v:shell_error
+            undo
+        endif
     finally
         let &l:equalprg = current_equalprg
     endtry
