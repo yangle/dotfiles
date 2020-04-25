@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+
+"""
+Move file(s) and leave symlink(s) behind.
+"""
+
+import argparse
+import os
+import sys
+
+
+def mvlns(absolute, src_paths, dst):
+    isdir_dst = os.path.isdir(dst)
+
+    if len(src_paths) > 1 and not isdir_dst:
+        print("mvlns: target %r is not a directory" % dst)
+        sys.exit(1)
+
+    for src_path in src_paths:
+        if isdir_dst:
+            dst_path = os.path.join(dst, os.path.basename(src_path))
+        else:
+            dst_path = dst
+
+        if os.path.realpath(src_path) == os.path.realpath(dst_path):
+            print("mvlns: %r and %r are the same file" % (src_path, dst_path))
+            sys.exit(1)
+
+        if absolute:
+            link_path = os.path.abspath(dst_path)
+        else:
+            src_parent = os.path.dirname(os.path.abspath(src_path))
+            link_path = os.path.relpath(dst_path, src_parent)
+
+        os.replace(src_path, dst_path)
+        os.symlink(link_path, src_path)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "-a", "--absolute", action="store_true", default=False,
+        help="whether to create absolute symlinks (default to relative)",
+    )
+    parser.add_argument("src", nargs="+", help="source path(s)")
+    parser.add_argument("dst", help="destination path (or directory)")
+    args = parser.parse_args()
+    mvlns(args.absolute, args.src, args.dst)
