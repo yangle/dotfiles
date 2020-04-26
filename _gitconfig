@@ -28,3 +28,5 @@
     lineNumber = true
 [merge]
     ff = only
+[diff]
+    tool = gvimdiff
