@@ -1,5 +1,6 @@
 {
   "load_extensions": {
+    "execute_time/ExecuteTime": true,
     "vim_binding/vim_binding": true
   },
   "Notebook": {
@@ -9,6 +10,18 @@
     "cm_config": {
       "autoCloseBrackets": false,
       "lineNumbers": true
+    }
+  },
+  "ExecuteTime": {
+    "clear_timings_on_clear_output": true,
+    "display_absolute_format": "YYYY/MM/DD HH:mm:ss",
+    "display_right_aligned": true,
+    "highlight": {
+      "color": "#DDFFDD"
+    },
+    "template": {
+      "executed": "${duration} # ${end_time}",
+      "queued": "${start_time}"
     }
   }
 }
