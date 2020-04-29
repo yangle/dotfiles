@@ -96,6 +96,9 @@ nnoremap <silent> <leader>= :silent call ReformatAll()<CR>
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
 
+" Copy the full path of the current buffer to clipboard.
+nnoremap <silent> <Leader>c :let @+=expand('%:p')<CR>
+
 " Paste the most recent yank (not counting delete).
 nnoremap <leader>p "0p
 nnoremap <leader>P "0P
