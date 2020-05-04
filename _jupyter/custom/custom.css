@@ -32,3 +32,8 @@
 .container {
   width:100% !important;
 }
+
+/* Make the prompts narrower. */
+.prompt {
+    min-width: 11ex !important;
+}
