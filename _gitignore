@@ -9,6 +9,7 @@
 *.egg-info/
 *.pyc
 *.pyo
+__pycache__/
 doc/tags
 gmon.out
 compile_commands.json
