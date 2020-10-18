@@ -6,6 +6,7 @@ Move file(s) and leave symlink(s) behind.
 
 import argparse
 import os
+import shutil
 import sys
 
 
@@ -32,7 +33,7 @@ def mvlns(absolute, src_paths, dst):
             src_parent = os.path.dirname(os.path.abspath(src_path))
             link_path = os.path.relpath(dst_path, src_parent)
 
-        os.replace(src_path, dst_path)
+        shutil.move(src_path, dst_path)
         os.symlink(link_path, src_path)
 
 
