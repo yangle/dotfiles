@@ -10,7 +10,12 @@ import shutil
 import sys
 
 
-def mvlns(absolute, src_paths, dst):
+def mvlns(absolute, relative, src_paths, dst):
+    if relative:
+        absolute = False
+    elif not absolute:
+        absolute = os.path.isabs(dst)
+
     isdir_dst = os.path.isdir(dst)
 
     if len(src_paths) > 1 and not isdir_dst:
@@ -39,11 +44,16 @@ def mvlns(absolute, src_paths, dst):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
         "-a", "--absolute", action="store_true", default=False,
-        help="whether to create absolute symlinks (default to relative)",
+        help="whether to create absolute symlinks (auto by default)",
+    )
+    group.add_argument(
+        "-r", "--relative", action="store_true", default=False,
+        help="whether to create relative symlinks (auto by default)",
     )
     parser.add_argument("src", nargs="+", help="source path(s)")
     parser.add_argument("dst", help="destination path (or directory)")
     args = parser.parse_args()
-    mvlns(args.absolute, args.src, args.dst)
+    mvlns(args.absolute, args.relative, args.src, args.dst)
