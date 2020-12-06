@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+"""
+Wail till a process is no longer running.
+"""
+
+import argparse
+import errno
+import logging
+import os
+import time
+
+
+def is_running(pid):
+    # https://stackoverflow.com/a/7654102
+    try:
+        os.kill(pid, 0)
+    except OSError as err:
+        if err.errno == errno.ESRCH:
+            return False
+    return True
+
+
+def pid_wait(pid, wait=60.0, quiet=False):
+    while is_running(pid):
+        if not quiet:
+            logging.warn('Waiting for pid %s to finish', pid)
+        time.sleep(wait)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('pid', type=int, help='process to wait for')
+    parser.add_argument(
+        '-w', '--wait', type=float, default=60.0,
+        help='number of seconds to wait between checking',
+    )
+    parser.add_argument(
+        '-q', '--quiet', action='store_true', default=False,
+        help='whether to log a warning on every check',
+    )
+    args = parser.parse_args()
+    pid_wait(args.pid, args.wait, args.quiet)
