@@ -109,8 +109,8 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
-# Disable mouse resizing of windows.
-bindsym --border button1 nop
+# Disable window resizing on border dragging.
+bindsym --border --exclude-titlebar button1 nop
 
 # Switch to a workspace.
 bindsym $mod+1 workspace "1"
