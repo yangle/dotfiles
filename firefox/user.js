@@ -23,6 +23,7 @@ user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 3);
 user_pref("browser.tabs.insertAfterCurrent", true);
 user_pref("browser.urlbar.autocomplete.enabled", false);
+user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 0);
