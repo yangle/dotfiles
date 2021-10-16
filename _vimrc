@@ -60,6 +60,10 @@ nnoremap Q gqq
 nnoremap K <nop>
 vnoremap K <nop>
 
+" Disable number increment/decrement.
+noremap <C-A> <nop>
+noremap <C-X> <nop>
+
 " Move to the first/last non-blank character of the line.
 noremap H ^
 noremap L g_
