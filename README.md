@@ -36,33 +36,3 @@ The [setup](setup) script uses pattern matching to create symlinks in the
 Before creating the symlinks and thus possibly overwriting existing files in
 the `$HOME` directory, `setup` creates a tarball backup of such files to be
 overwritten.
-
-
-## Goodies
-
-[**dconf**](dconf) -
-Basic settings for GNOME Shell:
-fix annoying defaults, set keyboard shortcuts, etc.
-
-[**find-venv**](_bin/find-venv) -
-Find the `activate` script of a Python virtual environment named
-`.venv` in a parent directory.
-
-[**clean-up-latex**](_bin/clean-up-latex) -
-Prepare `.tex` source files for arXiv / journal submission:
-remove comments, merge `.bbl` into `.tex`, move figures out of individual
-folders, etc.
-
-[**mytex**](_bin/mytex) -
-Wrapper around [rubber](https://launchpad.net/rubber) to compile
-(xe)latex + bibtex till convergence, *without littering* the current working
-directory.
-
-[**mytexmk**](_bin/mytexmk) -
-Monitor `.tex` source files and call `mytex` automatically upon
-changes.
-
-[**refresh-chromium**](_bin/refresh-chromium) -
-Monitor files and refresh Chromium automatically upon changes.
-
-... and many more!
