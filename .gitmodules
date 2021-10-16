@@ -103,3 +103,6 @@
 [submodule "_vim/bundle/pythonsense"]
 	path = _vim/bundle/pythonsense
 	url = https://github.com/jeetsukumaran/vim-pythonsense.git
+[submodule "_vim/bundle/cpp-syntax"]
+	path = _vim/bundle/cpp-syntax
+	url = https://github.com/yangle/vim-cpp.git
