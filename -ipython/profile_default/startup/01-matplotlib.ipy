@@ -1,5 +1,6 @@
 # Load matplotlib with Tk backend to be compatible with ptipython
 # https://github.com/jonathanslenders/python-prompt-toolkit/issues/63
+# Can't use qt because of https://github.com/ipython/ipython/issues/12348
 %matplotlib tk
 
 import matplotlib.pyplot as plt
