@@ -106,3 +106,6 @@
 [submodule "_vim/bundle/cpp-syntax"]
 	path = _vim/bundle/cpp-syntax
 	url = https://github.com/yangle/vim-cpp.git
+[submodule "_vim/bundle/commentary"]
+	path = _vim/bundle/commentary
+	url = https://github.com/tpope/vim-commentary.git
