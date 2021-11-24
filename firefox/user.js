@@ -8,6 +8,7 @@ user_pref("browser.download.dir", "/tmp");
 user_pref("browser.download.folderList", 2);
 user_pref("browser.download.panel.shown", true);
 user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.eme.ui.enabled", false);
 user_pref("browser.formfill.enable", false);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
