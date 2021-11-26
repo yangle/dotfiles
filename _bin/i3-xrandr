@@ -4,4 +4,8 @@
 xrandr --output DP3 --primary
 
 # Put the second monitor in portrait mode.
-xrandr --output DP2 --right-of DP3 --rotate left
+# Place it below *and* to the right of the primary output.
+# This restricts i3's "focus up/down/left/right" to the current output.
+# https://github.com/i3/i3/issues/2180#issuecomment-461327941
+# https://superuser.com/a/485165
+xrandr --output DP2 --pos 2560x1440 --rotate left
