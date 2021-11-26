@@ -4,11 +4,6 @@ $include /etc/inputrc
 # Colored tab completion.
 set colored-stats on
 
-# Disable bracketed paste.
-# Some mate-terminal bug is causing pasted text to be highlighted.
-# https://bugs.launchpad.net/ubuntu/+source/mate-terminal/+bug/1926256
-set enable-bracketed-paste off
-
 # Incremental history searching.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
