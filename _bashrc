@@ -99,6 +99,7 @@ fi
 
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+alias rgs="rg --sort-files"
 
 # PS1
 PS1_NAME="home"
