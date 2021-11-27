@@ -1,6 +1,6 @@
 # Setup two monitors and define default workspace placements.
 exec_always --no-startup-id i3-xrandr
-set $ml DP3
+set $ml DP1
 set $mr DP2
 workspace "1" output $ml
 workspace "2" output $ml

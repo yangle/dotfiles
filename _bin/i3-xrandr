@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the first monitor as primary.
-xrandr --output DP3 --primary
+xrandr --output DP1 --primary
 
 # Put the second monitor in portrait mode.
 # Place it below *and* to the right of the primary output.
