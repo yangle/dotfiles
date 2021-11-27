@@ -66,11 +66,6 @@ EOF
 
         export _OLD_VIRTUAL_PS1="$PS1"  # for deactivate()
         PS1="\[\e[1;92m\][v] $PS1"
-
-        # http://stackoverflow.com/a/677212
-        if hash crystallize 2>/dev/null; then
-            eval "$(_CRYSTALLIZE_COMPLETE=source crystallize)"
-        fi
     fi
 }
 p() {
@@ -80,10 +75,6 @@ p() {
         ptipython2 "$@"
     fi
 }
-
-# Jupyter
-alias jnotebook="env BROWSER=blotter jupyter-notebook"
-alias jconsole="jupyter-console --kernel=python2 --existing"
 
 alias nx="(cd ~/sandbox/scratch/nx && venv-activate && ./check)"
 
