@@ -27,12 +27,6 @@ workspace "F12" output $mr
 workspace "L" output $ml
 workspace "R" output $mr
 
-# Focus the next monitor.
-bindsym $mod+equal focus output right
-
-# Move the current workspace to the next monitor.
-bindsym $mod+Shift+equal exec --no-startup-id i3-shuttle
-
 # Set the main modifier to Alt.
 set $mod Mod1
 
@@ -67,11 +61,19 @@ bindsym $mod+l focus right
 bindsym --whole-window --border $mod+button4 focus left
 bindsym --whole-window --border $mod+button5 focus right
 
+# Focus the left/right monitor.
+bindsym $mod+Left focus output $ml
+bindsym $mod+Right focus output $mr
+
 # Do not let focus follow mouse.
 focus_follows_mouse no
 
 # Do not wrap around screen boundaries when changing focus.
 focus_wrapping no
+
+# Move workspace to the left/right monitor.
+bindsym $mod+Shift+Left move workspace to output $ml
+bindsym $mod+Shift+Right move workspace to output $mr
 
 # Move current window to another container selected by mouse input.
 bindsym --release $mod+Shift+e exec --no-startup-id i3-teleport
@@ -208,8 +210,9 @@ mode "Passthrough Mode" {
     # Block Win+L.
     bindsym Mod4+l nop "Lock block"
 
-    # Focus the next monitor.
-    bindsym $mod+equal focus output right
+    # Focus the left/right monitor.
+    bindsym $mod+Left focus output $ml
+    bindsym $mod+Right focus output $mr
 
     # Bring remote workspaces to the foreground.
     bindsym $mod+Shift+0 exec --no-startup-id i3-remote
