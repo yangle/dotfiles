@@ -112,3 +112,6 @@
 [submodule "_vim/bundle/replace"]
 	path = _vim/bundle/replace
 	url = https://github.com/inkarkat/vim-ReplaceWithRegister.git
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/yangle/fzf.git

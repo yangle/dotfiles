@@ -101,6 +101,11 @@ fi
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 alias rgs="rg --sort-files"
 
+# fzf
+[ -e $HOME/.fzf-key-bindings.bash ] && source $HOME/.fzf-key-bindings.bash
+[ -e $HOME/.fzf-completion.bash ] && source $HOME/.fzf-completion.bash
+export FZF_CTRL_T_COMMAND='rg --files --follow 2>/dev/null'
+
 # PS1
 PS1_NAME="home"
 [ -e $HOME/.ps1-name ] && source $HOME/.ps1-name
