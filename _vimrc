@@ -262,6 +262,9 @@ function! ChangeBuffer(direction)
     endif
 endfunction
 
+" Configure fzf.
+nnoremap gb :Buffers<cr>
+
 " Configure inline-edit.
 nnoremap <leader>e :InlineEdit<cr>
 xnoremap <leader>e :InlineEdit<cr>
