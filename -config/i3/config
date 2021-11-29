@@ -62,8 +62,8 @@ bindsym --whole-window --border $mod+button4 focus left
 bindsym --whole-window --border $mod+button5 focus right
 
 # Focus the left/right monitor.
-bindsym $mod+Left focus output $ml
-bindsym $mod+Right focus output $mr
+bindsym $mod+Ctrl+Left focus output $ml
+bindsym $mod+Ctrl+Right focus output $mr
 
 # Do not let focus follow mouse.
 focus_follows_mouse no
@@ -212,8 +212,8 @@ mode "Passthrough Mode" {
     bindsym Mod4+l nop "Lock block"
 
     # Focus the left/right monitor.
-    bindsym $mod+Left focus output $ml
-    bindsym $mod+Right focus output $mr
+    bindsym $mod+Ctrl+Left focus output $ml
+    bindsym $mod+Ctrl+Right focus output $mr
 
     # Bring remote workspaces to the foreground.
     bindsym $mod+Shift+0 exec --no-startup-id i3-remote
