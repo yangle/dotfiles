@@ -198,6 +198,7 @@ for_window [workspace="9"] floating enable
 # Floating windows.
 for_window [class="Zeal"] floating enable
 for_window [title="Browser Console"] floating enable
+for_window [class="Pavucontrol"] floating enable
 
 # Citrix settings.
 for_window [class="^Wfica"] border none
