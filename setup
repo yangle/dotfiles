@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf8 -*-
 
 import os
@@ -9,7 +9,9 @@ import time
 
 
 def execute(args, cwd=None, casual=False):
-    """execute a command"""
+    """
+    Execute a command.
+    """
     p = sp.Popen(args, shell=False, stdout=sp.PIPE, stderr=sp.PIPE, cwd=cwd)
     stdo, stde = p.communicate()
     code = p.returncode
@@ -20,12 +22,16 @@ def execute(args, cwd=None, casual=False):
 
 
 def locate_bundles(root):
-    """shallow-collect ./_* files and folders"""
+    """
+    Collect ./_* files and folders.
+    """
     return [name for name in os.listdir(root) if name.startswith('_')]
 
 
 def locate_singles(root):
-    """collect individual files inside ./-*"""
+    """
+    Collect individual files inside ./-* folders.
+    """
     # symlinks to folders are treated as files
     output = []
     for path in os.listdir(root):
@@ -38,28 +44,32 @@ def locate_singles(root):
 
 
 def perform_backup(root, home, backup):
-    """backup files and folders to be overwritten"""
-    print 'Creating backup'
+    """
+    Backup files and folders to be overwritten.
+    """
+    print('Creating backup')
     tarball = op.join(root, time.strftime('backup-%y%m%d.%H%M%S.tar.bz2'))
     stdo, stde, code = execute(['tar', 'jcvf', tarball] + backup,
                                cwd=home, casual=True)
 
     if len(stde) > 0 or code != 0:
-        print stdo
-        print stde
-        print 'Exit status %d' % code
+        print(stdo)
+        print(stde)
+        print('Exit status %d' % code)
 
         sys.exit(code)
 
-    print 'Removing files to overwrite'
+    print('Removing files to overwrite')
     execute(['rm', '-rf'] + backup, cwd=home)
 
 
 def create_symlinks(root, home, source, target):
-    """create symlinks to $HOME"""
-    print 'Creating symlinks'
+    """
+    Create symlinks in home directory.
+    """
+    print('Creating symlinks')
     for raw, symlink in zip(source, target):
-        print raw, '⇒', symlink
+        print(raw, '⇒', symlink)
         original = op.join(root, raw)
 
         dname = op.dirname(symlink)
