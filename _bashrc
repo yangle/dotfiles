@@ -11,11 +11,12 @@ export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH
 export PYTHONPATH=$HOME/.bin
 export TEXMFHOME=$HOME/.texmf
 
-export PYTHONSTARTUP=$HOME/.pythonrc
+# Somehow this defaults to ~/.pythonrc on some systems.
+unset PYTHONSTARTUP
 
 export GPG_TTY=$(tty)
 
-# silence annoying warnings from grep
+# Silence annoying warnings from grep.
 unset GREP_OPTIONS
 
 # Check for an interactive session
