@@ -101,6 +101,9 @@ fi
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 alias rgs="rg --sort-files"
 
+# fd
+alias fd="fd --color=never"
+
 # fzf
 [ -e $HOME/.fzf-key-bindings.bash ] && source $HOME/.fzf-key-bindings.bash
 [ -e $HOME/.fzf-completion.bash ] && source $HOME/.fzf-completion.bash
