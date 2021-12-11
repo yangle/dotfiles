@@ -1,49 +1,84 @@
-#!/usr/bin/env python2
-# -*- coding: utf8 -*-
+#!/usr/bin/env python
 
-def get_npage(pdf):
-    """get the number of pages for a pdf file"""
-    from sh import pdfinfo, grep
+import argh
+import os
+import subprocess
+import sys
+
+from sh import pdfinfo, grep
+
+
+def execute(command, choke=False):
+    """
+    Execute command in current directory, and optionally choke on non-zero
+    return code.
+    """
+    p = subprocess.Popen([command], shell=True, stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE)
+    stdout, stderr = p.communicate()
+
+    if choke and p.returncode != 0:
+        if len(stdout) > 0:
+            print(stdout, end='')
+        if len(stderr) > 0:
+            print(stderr, end='')
+
+        sys.exit(p.returncode)
+
+    return stdout, stderr, p.returncode
+
+
+def get_num_page(pdf):
+    """
+    Get the number of pages in a pdf file.
+    """
     return int((grep(pdfinfo(pdf), 'Pages')).rstrip('\n').split(' ')[-1])
 
+
 def parse(raw, filename):
-    """parse a single page range definition"""
+    """
+    Parse a single page range definition.
+    """
     if '-' not in raw:
         page = int(raw)
         return '-dFirstPage=%d -dLastPage=%d "%s"' % (page, page, filename)
     else:
         first, last = raw.split('-')
         first = int(first) if len(first) > 0 else 1
-        last = int(last) if len(last) > 0 else get_npage(filename)
+        last = int(last) if len(last) > 0 else get_num_page(filename)
         return '-dFirstPage=%d -dLastPage=%d "%s"' % (first, last, filename)
 
-from argh import arg
-@arg('filename', type=str, help='input pdf filename')
-@arg('-o', type=str, metavar='FILENAME', help='output pdf filename', default=None)
-@arg('-l', action='store_true', help='convert to letter size')
-@arg('-p', type=str, metavar='#,#-#,...', help='comma-separated page ranges', default='2-')
-def run(filename, o, l, p):
-    """pick selected pages from a pdf"""
-    if o is None:
-        from os.path import basename
-        if filename.endswith('-full.pdf'):
-            o = filename[:-len('-full.pdf')] + '.pdf'
-        else:
-            o = 'p%s_%s' % (p, basename(filename))
 
-    command = 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="%s" -dAutoRotatePages=/None ' % o
+@argh.arg('filename', type=str, help='Input pdf filename')
+@argh.arg('-o', '--output', type=str, metavar='FILENAME',
+          help='Output pdf filename')
+@argh.arg('-l', '--letter', help='Convert to letter size')
+@argh.arg('-p', '--pages', type=str, metavar='#,#-#,...',
+          help='Comma-separated page ranges (one-based)')
+def run(filename, output=None, letter=False, pages='2-'):
+    """
+    Pick selected pages from a pdf.
+    """
+    if output is None:
+        output = f'p{pages}_{os.path.basename(filename)}'
 
-    if l: # http://stackoverflow.com/a/7507511
+    command = (
+        f'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="{output}" '
+        f'-dAutoRotatePages=/None '
+    )
+
+    # http://stackoverflow.com/a/7507511
+    if letter:
         command += '-sPAPERSIZE=letter -dFIXEDMEDIA -dPDFFitPage '
 
-    command += ' '.join(parse(segment, filename) for segment in p.split(','))
+    command += ' '.join(parse(segment, filename)
+                        for segment in pages.split(','))
 
-    print command
-    from utils import execute
+    print(command)
     execute(command, choke=True)
 
+
 if __name__ == '__main__':
-    from argh.helpers import ArghParser
-    parser = ArghParser()
+    parser = argh.helpers.ArghParser()
     parser.set_default_command(run)
     parser.dispatch()
