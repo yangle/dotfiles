@@ -70,11 +70,8 @@ noremap L g_
 
 " Command wrapper that preserves the current window view.
 function! WithViewPreserved(command)
-    " Manully insert an undo block that preserves the current cursor position.
-    " https://github.com/rhysd/vim-clang-format/pull/55
-    silent execute "noautocmd normal! ii\<esc>\"_x"
+    let w = winsaveview()
     try
-        let w = winsaveview()
         execute a:command
     finally
         call winrestview(w)
@@ -83,9 +80,16 @@ endfunction
 
 " Reformat the whole file using b:equalprg.
 function! ReformatAll()
+    " Don't complain if the buffer is not modifiable.
+    if !&l:modifiable || &l:readonly
+        return
+    endif
     let current_equalprg = &l:equalprg
     try
         let &l:equalprg = get(b:, 'equalprg', current_equalprg)
+        " Manully insert an undo block that preserves the current cursor position.
+        " https://github.com/rhysd/vim-clang-format/pull/55
+        silent execute "noautocmd normal! ii\<esc>\"_x"
         call WithViewPreserved("normal gg=G")
         if strlen(&l:equalprg) && v:shell_error
             undo
