@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Pass without clipboard.
+
+set -e
+
+# Get the first line of pass output without the trailing '\n'.
+IFS= read -r pass < <(pass "$@")
+
+# Use xprop to prompt for a click, and replay the captured click in situ to
+# switch window focus before typing.
+xprop &> /dev/null
+xdotool click 1
+sleep 0.01
+echo "$pass" | xdotool type --clearmodifiers --file -
