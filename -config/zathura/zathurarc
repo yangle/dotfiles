@@ -12,7 +12,7 @@ set selection-clipboard "clipboard"
 # darker background (switch by Ctrl-R)
 set recolor-keephue true
 set recolor-darkcolor "#000000"
-set recolor-lightcolor "#CCCCCC"
+set recolor-lightcolor "#EEE8D5"
 
 set inputbar-fg "#000000" # default light-green is unusable
 set inputbar-bg "#FFFFFF"
