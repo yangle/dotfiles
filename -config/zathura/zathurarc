@@ -9,7 +9,7 @@ set first-page-column "1:1"
 
 set selection-clipboard "clipboard"
 
-# darker background (switch by Ctrl-R)
+set recolor true
 set recolor-keephue true
 set recolor-darkcolor "#000000"
 set recolor-lightcolor "#EEE8D5"
