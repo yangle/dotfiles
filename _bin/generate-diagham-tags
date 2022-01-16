@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ctags -f ~/.bin/diagham-tags -R --c++-kinds=+p --fields=+iaS --extra=+q ~/sandbox/diagham
