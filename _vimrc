@@ -289,6 +289,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " Get rid of the lingering netrw buffer.
 " https://github.com/tpope/vim-vinegar/issues/13
 let g:netrw_fastbrowse = 0
+let g:netrw_altfile = 1
 
 " Configure fugitive.
 nnoremap <leader>g :call FindFugitive()<CR>:Git<CR>
