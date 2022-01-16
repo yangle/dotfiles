@@ -176,7 +176,7 @@ for_window [class="(?i)matplotlib"] move window to mark "matplotlib"
 
 # Lock screen.
 bindsym Ctrl+Shift+$mod+l exec i3lock -c 000000
-bindsym Ctrl+Shift+$mod+Mod4+l exec "i3lock -c 000000; sleep 0.25s; systemctl suspend"
+bindsym Ctrl+Shift+$mod+Mod4+l exec "i3lock -c 000000; sleep 5s; systemctl suspend"
 
 # Reload the configuration file.
 bindsym $mod+Shift+c reload
