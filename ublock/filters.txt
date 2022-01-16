@@ -1,42 +1,48 @@
-stackoverflow.com##.hero-container.s-hero
-
+arxiv.org###bib-main
+arxiv.org###cu-identity
+arxiv.org###labstabs
+arxiv.org###pendo-base
+arxiv.org##.endorsers > .help
+arxiv.org##footer
+dictionary.com##[class*="TrendingWords"]
+dictionary.com##article
+dictionary.com##aside
 en.wikipedia.org###frb
 en.wikipedia.org###frb-inline
 en.wikipedia.org###frb-nag
 en.wikipedia.org##.frb-link
 en.wikipedia.org##.frb-rml-enabled.frb-nag.frb
-
-dictionary.com##aside
-dictionary.com##article
-dictionary.com##[class*="TrendingWords"]
-thesaurus.com##aside
-thesaurus.com##article
-thesaurus.com##div[class*="ModalContainer"]
-
-stackexchange.com##._fixed
-
-arxiv.org###bib-main
-arxiv.org###cu-identity
-arxiv.org##footer
-arxiv.org##.endorsers > .help
-
-! LinkedIn login
-www.linkedin.com###advocate-modal
-www.linkedin.com##body:style(overflow: visible !important)
-
-! Stupid "People also search for" pop-up
-! https://redd.it/7ws3do
-! https://redd.it/8alry4
-! https://redd.it/8m239z
-google.*##div[class*="explore-main"]
-google.*##div[class*="exp-outline"]
-google.*##div[jsl][data-ved]:if(h4:has-text(People also search for))
+genealogy.math.ndsu.nodak.edu##.eupopup-container
 google.*##.exp-outline
-google.*##[style="display: block; opacity: 1;"]
 google.*##[data-hveid]>div:style(height: auto !important)
-
+google.*##[style="display: block; opacity: 1;"]
+google.*##div[class*="exp-outline"]
+google.*##div[class*="explore-main"]
+google.*##div[jsl][data-ved]:if(h4:has-text(People also search for))
+linkedin.com###advocate-modal
+linkedin.com##body:style(overflow: visible !important)
+medium.com##+js(aeld, mouseup, getSelection)
+nytimes.com##main:style(position: unset !important)
 old.reddit.com##.commentsignupbar
 old.reddit.com##.infobar
+old.reddit.com##.premium-banner-outer
 old.reddit.com##.read-next-container
 old.reddit.com##.seo-comments
 old.reddit.com##.seo-comments-recommendations
+sci-hub.se###minime
+sci-hub.tw###minime
+stackexchange.com##._fixed
+stackoverflow.com##.hero-container.s-hero
+stackoverflow.com##.js-consent-banner
+stackoverflow.com##.js-theme-selector
+thesaurus.com##article
+thesaurus.com##aside
+thesaurus.com##div[class*="ModalContainer"]
+www.bloomberg.com###plug-overlay
+www.google.com###taw
+www.newyorker.com###signInContainer
+www.nytimes.com###chat
+www.nytimes.com###gateway-content
+www.nytimes.com###list
+www.nytimes.com###standalone-footer > div
+www.vanityfair.com##.cne-video-embed
