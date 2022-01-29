@@ -29,10 +29,7 @@ complete tar && compopt -o default tar
 complete -W "`make -qp 2>/dev/null | sed -n -E 's/^([^.#\s][^:=]*)(:$|:\s+.*$)/\1/p' | sort -u`" make
 
 # git
-__git_ps1 ()
-{
-    local foo="bar"
-}
+__git_ps1 () { :; }
 [ -e $HOME/.git-prompt.sh ] && source $HOME/.git-prompt.sh
 [ -e $HOME/.bash-completion-git ] && source $HOME/.bash-completion-git
 
@@ -42,9 +39,17 @@ alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Cgreen%<(10,trunc)%ae %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
 alias gsl="git stash list --pretty=format:'%C(yellow)%h %Cred%ad %Cgreen%<(10,trunc)%ae %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
+gf () {
+    git rev-parse --is-inside-work-tree &>/dev/null || return 1
+    gl --color=always "$@" | \
+        fzf --reverse --multi --ansi --no-info --tiebreak index \
+        --preview 'git show --color=always {+1}' \
+        --preview-window down,75%,border-none
+}
 
 # https://stackoverflow.com/a/15009611
 __git_complete gl _git_log
+__git_complete gf _git_log
 
 # ssh and cd to `pwd`.
 sshh() { ssh -X -t "$@" "cd '$(pwd)' 2>/dev/null; bash -l"; }
