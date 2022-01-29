@@ -68,6 +68,14 @@ noremap <C-X> <nop>
 noremap H ^
 noremap L g_
 
+" Yank from the cursor to the end of the line.
+nnoremap Y y$
+
+" Set an undo point before Ctrl-U and Ctrl-W.
+" https://unix.stackexchange.com/a/117409
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
 " Command wrapper that preserves the current window view.
 function! WithViewPreserved(command)
     let w = winsaveview()
