@@ -275,6 +275,7 @@ function! ChangeBuffer(direction)
 endfunction
 
 " Configure fzf.
+let g:fzf_preview_window = []
 nnoremap gb :Buffers<cr>
 
 " Configure inline-edit.
