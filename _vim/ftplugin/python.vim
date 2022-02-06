@@ -5,6 +5,9 @@ setlocal nosmartindent
 " https://github.com/davidhalter/jedi-vim/issues/632
 setlocal nowrap
 
+" Override the default textwidth. ("gq" uses 79 if textwidth is 0.)
+setlocal textwidth=88
+
 " Highlight lines longer than 88 chars in all Python files (per &ft).
 " http://stackoverflow.com/a/13731714
 " https://superuser.com/a/370621
