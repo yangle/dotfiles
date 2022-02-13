@@ -1,5 +1,5 @@
 setlocal spell
-setlocal textwidth=88
+setlocal textwidth=79
 setlocal iskeyword+=\|
 noremap <buffer> <silent> Q gq$
 
