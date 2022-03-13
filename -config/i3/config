@@ -173,6 +173,7 @@ bindsym $mod+Shift+p mark --add --toggle "paste target"
 # Set up a container to collect matplotlib windows.
 bindsym $mod+Shift+m mark --add --toggle "matplotlib"
 for_window [class="(?i)matplotlib"] move window to mark "matplotlib"
+for_window [title="^Figure " class="^ $"] move window to mark "matplotlib"
 
 # Lock screen.
 bindsym Ctrl+Shift+$mod+l exec i3lock -c 000000
