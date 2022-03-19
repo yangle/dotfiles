@@ -118,3 +118,6 @@
 [submodule "_vim/bundle/fzf"]
 	path = _vim/bundle/fzf
 	url = https://github.com/yangle/fzf.vim.git
+[submodule "_vim/bundle/linediff"]
+	path = _vim/bundle/linediff
+	url = https://github.com/AndrewRadev/linediff.vim.git

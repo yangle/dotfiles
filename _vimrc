@@ -285,6 +285,10 @@ nnoremap <C-H> :w<CR><C-^>
 let g:inline_edit_autowrite = 0
 let g:inline_edit_new_buffer_command = 'enew'
 
+" Configure linediff.
+vnoremap <leader>q :Linediff<CR>
+let g:linediff_further_buffer_command = 'rightbelow new'
+
 " Configure easymotion.
 let g:EasyMotion_do_mapping = 0
 map F <Plug>(easymotion-s)
