@@ -19,9 +19,6 @@
 [submodule "_vim/bundle/markdown"]
 	path = _vim/bundle/markdown
 	url = https://github.com/yangle/vim-markdown.git
-[submodule "_vim/bundle/multiple-cursors"]
-	path = _vim/bundle/multiple-cursors
-	url = https://github.com/terryma/vim-multiple-cursors.git
 [submodule "gnome-shell-extensions"]
 	path = gnome-shell-extensions
 	url = https://github.com/yangle/gnome-shell-extensions.git
