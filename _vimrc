@@ -71,6 +71,9 @@ noremap L g_
 " Yank from the cursor to the end of the line.
 nnoremap Y y$
 
+" Autocorrect :E to :e.
+cnoreabbrev <expr> E ((getcmdtype() is# ':' && getcmdline() is# 'E')?('e'):('E'))
+
 " Set an undo point before Ctrl-U and Ctrl-W.
 " https://unix.stackexchange.com/a/117409
 inoremap <C-U> <C-G>u<C-U>
