@@ -1,5 +1,7 @@
 [include]
     path = ~/.gitconfig-whoami
+[init]
+    defaultBranch = master
 [color]
     ui=auto
 [color "branch"]
