@@ -4,6 +4,9 @@ $include /etc/inputrc
 # Colored tab completion.
 set colored-stats on
 
+# Case-sensitive tab completion.
+set completion-ignore-case off
+
 # Incremental history searching.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
