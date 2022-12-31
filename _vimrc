@@ -98,12 +98,16 @@ function! ReformatAll()
     let current_equalprg = &l:equalprg
     try
         let &l:equalprg = get(b:, 'equalprg', current_equalprg)
-        " Manully insert an undo block that preserves the current cursor position.
+        " Manully insert an undo block to preserve the cursor position.
         " https://github.com/rhysd/vim-clang-format/pull/55
         silent execute "noautocmd normal! ii\<esc>\"_x"
         call WithViewPreserved("normal gg=G")
         if strlen(&l:equalprg) && v:shell_error
             undo
+        else
+            " Manully insert another undo block to move the last edit position
+            " from (0,0) (due to gg) back to the cursor position.
+            silent execute "noautocmd normal! ii\<esc>\"_x"
         endif
     finally
         let &l:equalprg = current_equalprg
