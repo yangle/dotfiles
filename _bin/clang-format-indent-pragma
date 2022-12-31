@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#
+# Wrapper around clang-format that indents "#pragma ..." properly.
+#
+# Adapted from https://stackoverflow.com/a/45158979, in lieu of the
+# IndentPragma flag to be implemented in https://reviews.llvm.org/D92753.
+#
+
+sed "s/#pragma/\/\/#pragma/g" | clang-format | sed "s/\/\/ *#pragma/#pragma/g"
