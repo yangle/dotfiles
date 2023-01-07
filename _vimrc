@@ -192,6 +192,10 @@ endif
 " Search for visual selection.
 vnoremap // y/<C-R>"<CR>
 
+" Select pasted text.
+" https://stackoverflow.com/a/4317090
+nnoremap <expr> g<C-V> '`[' . getregtype()[0] . '`]'
+
 " Begin an unformatted new line below cursor, if buffer is modifiable.
 nmap <silent><expr> <CR>
     \ &modifiable ? ':set paste<CR>o<ESC>:set nopaste<CR>i' : '<CR>'
