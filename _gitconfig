@@ -1,5 +1,7 @@
 [include]
     path = ~/.gitconfig-whoami
+[advice]
+    detachedHead = false
 [init]
     defaultBranch = master
 [color]
