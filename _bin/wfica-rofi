@@ -10,5 +10,5 @@ if [[ "$orientation" == "landscape" ]]; then
     ${ICAROOT}/wfica -geometry 2560x1417 -file "$1"
 else
     i3-msg 'workspace "R"'
-    ${ICAROOT}/wfica -geometry 1440x2537 -file "$1"
+    ${ICAROOT}/wfica -geometry 1600x2537 -file "$1"
 fi
