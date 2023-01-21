@@ -1,5 +1,5 @@
 export HISTFILESIZE=
-export HISTSIZE=
+export HISTSIZE=1000000000
 export HISTTIMEFORMAT="[%F %T] "
 
 # Protect history against truncation.
