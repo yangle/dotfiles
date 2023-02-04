@@ -190,7 +190,7 @@ if has("clipboard")
 endif
 
 " Search for visual selection.
-vnoremap // y/<C-R>"<CR>
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Select pasted text.
 " https://stackoverflow.com/a/4317090
