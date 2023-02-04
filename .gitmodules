@@ -72,7 +72,7 @@
 	url = https://github.com/mathjax/MathJax.git
 [submodule "_vim/bundle/sideways"]
 	path = _vim/bundle/sideways
-	url = https://github.com/AndrewRadev/sideways.vim.git
+	url = https://github.com/yangle/sideways.vim.git
 [submodule "_vim/bundle/ripgrep"]
 	path = _vim/bundle/ripgrep
 	url = https://github.com/yangle/vim-ripgrep.git

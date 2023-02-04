@@ -307,6 +307,14 @@ map F <Plug>(easymotion-s)
 " Configure sideways.
 nnoremap gh :SidewaysLeft<cr>
 nnoremap gl :SidewaysRight<cr>
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+nmap gsi <Plug>SidewaysArgumentInsertBefore
+nmap gsa <Plug>SidewaysArgumentAppendAfter
+nmap gsI <Plug>SidewaysArgumentInsertFirst
+nmap gsA <Plug>SidewaysArgumentAppendLast
 
 " Configure vinegar: hide dotfiles by default.
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
