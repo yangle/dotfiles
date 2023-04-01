@@ -39,6 +39,8 @@ alias cgdb="cgdb -q"
 
 alias gl="git log --pretty=format:'%C(yellow)%h %Cred%ad %Cgreen%<(10,trunc)%ae %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
 alias gsl="git stash list --pretty=format:'%C(yellow)%h %Cred%ad %Cgreen%<(10,trunc)%ae %Creset%s' --date=format:'%Y/%m/%d %H:%M'"
+alias gm="git add --all && git commit -a -m More && git push"
+
 gf () {
     git rev-parse --is-inside-work-tree &>/dev/null || return 1
     gl --color=always "$@" | \
