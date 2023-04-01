@@ -55,6 +55,7 @@ __git_complete gf _git_log
 
 # ssh and cd to `pwd`.
 sshh() { ssh -X -t "$@" "cd '$(pwd)' 2>/dev/null; bash -l"; }
+sshc() { ssh -X "$1" "cd '$(pwd)' 2>/dev/null; ${@:2}"; }
 
 # python virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
