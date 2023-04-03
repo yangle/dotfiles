@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 
 import click
 import errno
@@ -9,7 +9,8 @@ import sys
 
 
 def execute(command, choke=False):
-    """execute command in current directory
+    """
+    Execute command in current directory.
 
     choke = whether to choke on non-zero return code
     """
@@ -18,17 +19,18 @@ def execute(command, choke=False):
 
     if choke and p.returncode != 0:
         if len(stdout) > 0:
-            print stdout,
+            print(stdout.decode())
         if len(stderr) > 0:
-            print stderr,
-
+            print(stderr.decode())
         sys.exit(p.returncode)
 
     return stdout, stderr, p.returncode
 
 
 def find_master(filename):
-    """find the master .tex file"""
+    """
+    Find the master .tex file.
+    """
     with open(filename) as f:
         line = f.readline().rstrip(' \t\r\n')
 
@@ -40,7 +42,9 @@ def find_master(filename):
 
 
 def prepare_temp(base, temp):
-    """create symlinks in temp folder"""
+    """
+    Create symlinks in temp folder.
+    """
     execute('mkdir -p "%s"' % temp)
 
     skip_ext = ('.pdf', '.aux', '.log', '.out')
@@ -50,7 +54,7 @@ def prepare_temp(base, temp):
             target = op.join(base, temp, f)
             try:
                 os.symlink(source, target)
-            except OSError, e:
+            except OSError as e:
                 if e.errno == errno.EEXIST:
                     os.remove(target)
                     os.symlink(source, target)
@@ -71,7 +75,9 @@ def prepare_temp(base, temp):
 @click.option('-u', '--unsafe', is_flag=True,
               help="Call rubber with '--unsafe' flag")
 def run(filename, temp, latex, xelatex, unsafe):
-    """Compile LaTeX without littering."""
+    """
+    Compile LaTeX without littering.
+    """
     filename = find_master(filename)
 
     base = op.dirname(op.abspath(filename))
