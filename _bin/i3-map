@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Run each input line in a separate sibling terminal window.
+# Read from a file if provided, STDIN otherwise.
+
+id_orig=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
+
+[[ $# -ge 1 && -f "$1" ]] && input="$1" || input="-"
+cat $input | while read line
+do
+    # Move to the next window in the current container.
+    id_old=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
+    i3-msg 'focus next' >/dev/null
+    id_new=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | cut -d'#' -f2)
+    if [[ $id_old == $id_new ]] ; then
+        break
+    fi
+
+    windowname=$(xdotool getactivewindow getwindowname)
+    echo "$windowname # $line"
+    xdotool type "$line"
+    xdotool key KP_Enter
+done
+
+# Restore focus.
+i3-msg '[id="'$id_orig'"] focus' >/dev/null
