@@ -286,8 +286,24 @@ function! ChangeBuffer(direction)
 endfunction
 
 " Configure fzf.
-let g:fzf_preview_window = []
 nnoremap gb :Buffers<cr>
+let g:fzf_preview_window = []
+let g:fzf_colors = {
+    \ 'fg':      ['fg', 'Comment'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'String'],
+    \ 'fg+':     ['fg', 'Exception'],
+    \ 'bg+':     ['bg', 'EndOfBuffer'],
+    \ 'hl+':     ['fg', 'Special'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'gutter':  ['bg', 'Normal'],
+    \ 'header':  ['fg', 'Identifier'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'spinner': ['fg', 'Label'],
+    \ }
 
 " Configure inline-edit.
 nnoremap <leader>e :InlineEdit<cr>
