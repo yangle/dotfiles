@@ -23,7 +23,9 @@ xset r rate 400 35
 
 eval $(ssh-agent)
 
-redshift &
+# Adjust night temperature for monitor 0.
+redshift -m randr:crtc=0 -t 6500:3400 &
+redshift -m randr:crtc=1 &
 
 # Pretend to be gnome so that xdg-* works properly.
 export DE="gnome"
