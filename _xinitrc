@@ -21,6 +21,10 @@ setxkbmap -option "terminate:ctrl_alt_bksp,ctrl:nocaps,sculpt:sculpt_navkeys"
 # Increase key repeat speed (default is "660 25").
 xset r rate 400 35
 
+# Disable screen saver and DPMS (Energy Star).
+xset s off
+xset -dpms
+
 eval $(ssh-agent)
 
 # Adjust night temperature for monitor 0.
