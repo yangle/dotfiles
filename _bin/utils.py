@@ -94,7 +94,7 @@ def key_natural(key):
 
 def sorted_breadth_first(iterable):
     """abcdefgh -> aecgbfdh"""
-    key = lambda (i, stuff): bin(i)[2:].rjust(32, '0')[::-1]
+    key = lambda index_value: bin(index_value[0])[2:].rjust(32, '0')[::-1]
     return zip(*sorted(enumerate(iterable), key=key))[1]
 
 class DotDict(dict):
@@ -187,9 +187,9 @@ def execute(command, choke=False):
 
     if choke and p.returncode != 0:
         if len(stdout) > 0:
-            print stdout,
+            print(stdout, end='')
         if len(stderr) > 0:
-            print stderr,
+            print(stderr, end='')
 
         from sys import exit
         exit(p.returncode)
