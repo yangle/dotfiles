@@ -411,6 +411,8 @@ let g:ale_virtualenv_dir_names = ['.venv']
 let g:ale_set_signs = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+nmap <silent> <leader>j :ALENext<CR>
+nmap <silent> <leader>k :ALEPrevious<CR>
 
 " Configure html.
 autocmd BufRead,BufNewFile *.html,*.htm setlocal shiftwidth=2 tabstop=2 softtabstop=2
