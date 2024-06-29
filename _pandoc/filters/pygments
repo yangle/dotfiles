@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-import imp
 import sys
 import os.path as op
 import re
+
+from importlib.machinery import SourceFileLoader
 
 from pandocfilters import toJSONFilter, RawBlock, RawInline
 from pygments import highlight, lexers, formatters
@@ -51,7 +52,7 @@ def pygments(key, value, fmt, meta):
             module_path = op.expanduser(entry['c'][0]['c'])
             module = op.splitext(op.basename(module_path))[0]
             if module not in sys.modules:
-                imp.load_source(module, module_path)
+                SourceFileLoader(module, module_path).load_module()
 
     # Parse markdown fenced block header like "{.python .equation}".
     # http://pandoc.org/MANUAL.html#extension-fenced_code_attributes
