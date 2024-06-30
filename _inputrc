@@ -7,6 +7,9 @@ set colored-stats on
 # Case-sensitive tab completion.
 set completion-ignore-case off
 
+# Don't highlight bracketed paste.
+set enable-active-region off
+
 # Incremental history searching.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
