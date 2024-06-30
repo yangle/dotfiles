@@ -17,9 +17,8 @@ set recolor-lightcolor "#EEE8D5"
 set inputbar-fg "#000000" # default light-green is unusable
 set inputbar-bg "#FFFFFF"
 
-set highlight-active-color "#0DFF00"
-set highlight-color "#ED51D0"
-set highlight-transparency 0.7
+set highlight-active-color "rgba(13, 255, 0, 0.7)"
+set highlight-color "rgba(237, 81, 208, 0.7)"
 
 set render-loading false
 set render-loading-bg "#000000"
