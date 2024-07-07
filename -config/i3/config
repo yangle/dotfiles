@@ -114,6 +114,9 @@ bindsym $mod+d focus child
 # Disable window resizing on border dragging.
 bindsym --border --exclude-titlebar button1 nop
 
+# Disable tiling drag.
+tiling_drag off
+
 # Switch to a workspace.
 bindsym $mod+1 workspace "1"
 bindsym $mod+2 workspace "2"
