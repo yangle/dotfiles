@@ -8,4 +8,4 @@ xrandr --output DP1 --primary
 # This restricts i3's "focus up/down/left/right" to the current output.
 # https://github.com/i3/i3/issues/2180#issuecomment-461327941
 # https://superuser.com/a/485165
-xrandr --output DP3 --pos 2560x1440 --rotate left
+xrandr --output DP3 --pos 3840x2160 --rotate left

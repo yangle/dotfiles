@@ -7,8 +7,8 @@ export ICAROOT=/opt/Citrix/ICAClient
 
 if [[ "$orientation" == "landscape" ]]; then
     i3-msg 'workspace "L"'
-    ${ICAROOT}/wfica -geometry 2560x1417 -file "$1"
+    ${ICAROOT}/wfica -geometry 3840x2126 -file "$1"
 else
     i3-msg 'workspace "R"'
-    ${ICAROOT}/wfica -geometry 1600x2537 -file "$1"
+    ${ICAROOT}/wfica -geometry 2160x3806 -file "$1"
 fi

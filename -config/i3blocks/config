@@ -33,7 +33,7 @@ markup=none
 [time]
 command=date '+%Y/%m/%d %H:%M'
 interval=5
-min_width=1050
+min_width=1650
 
 # CPU usage
 #
