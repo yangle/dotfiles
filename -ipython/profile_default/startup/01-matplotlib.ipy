@@ -1,3 +1,15 @@
-%matplotlib qt
+import os
+from IPython import get_ipython
 
+# Run "%matplotlib qt" if we are not in a Jupyter notebook.
+if 'JPY_PARENT_PID' not in os.environ:
+    try:
+        get_ipython().run_line_magic("matplotlib", "qt")
+    except Exception:
+        pass
+
+del os
+del get_ipython
+
+# Make "plt" available.
 import matplotlib.pyplot as plt
