@@ -304,7 +304,7 @@ $endif$
 \newcommand{\addperiod}[1]{#1.}
 \titleformat{\subsubsection}[runin]
 {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{\addperiod}
-\titlespacing*{\subsubsection}{0pt}{.2ex plus .1ex minus .2ex}{.5em}
+\titlespacing*{\subsubsection}{0pt}{1ex plus .2ex minus .2ex}{.5em}
 
 % Reset \subsubsection counter without \subsection.
 % https://tex.stackexchange.com/a/127970
