@@ -435,6 +435,12 @@ endif
 " Release Ctrl-C from SQL plugin.
 let g:ftplugin_sql_omni_key = '<C-j>'
 
+" Make Vim 9 compatible with old vte rather than printing [?4m on start-up.
+" https://stackoverflow.com/a/75432130
+" https://github.com/vim/vim/issues/11728
+set keyprotocol=
+let &term=&term
+
 " Fancy cursor in terminal vim.
 " http://vim.wikia.com/wiki/Configuring_the_cursor
 if &term =~ "xterm\\|rxvt\\|vte"
