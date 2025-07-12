@@ -17,3 +17,7 @@ c.InteractiveShell.confirm_exit = False
 # Use the unnumbered ">>> " prompts
 from IPython.terminal.prompts import ClassicPrompts
 c.TerminalInteractiveShell.prompts_class = ClassicPrompts
+
+# Do not show tips
+c.InteractiveShell.enable_tip = False
+c.TerminalInteractiveShell.enable_tip = False
