@@ -388,6 +388,7 @@ endfunction
 au BufRead,BufNewFile *.asy setlocal filetype=asy
 
 " Configure python-syntax.
+let g:python_highlight_func_calls = 0
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
 
