@@ -11,8 +11,5 @@ setlocal nowrap
 " https://superuser.com/a/370621
 let &l:colorcolumn=join(range(80,999),",")
 
-" Reformat selection using the ruff-format-or-cat wrapper.
-set equalprg=ruff-format-or-cat\ -s\ --stdin-filename\ %\ -\ 2>/dev/null
-
-" Use 'ruff format' directly for ReformatAll, which handles errors internally.
+" Use 'ruff format' for ReformatRange().
 let b:equalprg = 'ruff format -s --stdin-filename % - 2>/dev/null'

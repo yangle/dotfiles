@@ -1,4 +1,4 @@
-" Use clang-format for ReformatAll().
+" Use clang-format for ReformatRange().
 let b:equalprg = 'clang-format-indent-pragma'
 
 " Use clangd language server for definition lookup.

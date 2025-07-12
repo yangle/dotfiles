@@ -89,8 +89,8 @@ function! WithViewPreserved(command)
     endtry
 endfunction
 
-" Reformat the whole file using b:equalprg.
-function! ReformatAll()
+" Reformat range using b:equalprg.
+function! ReformatRange(type) range
     " Don't complain if the buffer is not modifiable.
     if !&l:modifiable || &l:readonly
         return
@@ -101,7 +101,15 @@ function! ReformatAll()
         " Manully insert an undo block to preserve the cursor position.
         " https://github.com/rhysd/vim-clang-format/pull/55
         silent execute "noautocmd normal! ii\<esc>\"_x"
-        call WithViewPreserved("normal gg=G")
+
+        if a:type ==# 'V' || a:type ==# 'line'
+            " Visual line mode or :'<,'> usage.
+            call WithViewPreserved(printf('normal! %dG=%dG', a:firstline, a:lastline))
+        else
+            " Whole file formatting.
+            call WithViewPreserved('normal! gg=G')
+        endif
+
         if strlen(&l:equalprg) && v:shell_error
             undo
         else
@@ -113,7 +121,8 @@ function! ReformatAll()
         let &l:equalprg = current_equalprg
     endtry
 endfunction
-nnoremap <silent> <leader>= :silent call ReformatAll()<CR>
+nnoremap <silent> <leader>= :silent call ReformatRange('')<CR>
+xnoremap <silent> <leader>= :silent call ReformatRange(visualmode())<CR>
 
 " Fix all the things!
 " https://github.com/fatih/vim-go/issues/1447
