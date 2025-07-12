@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Call "ruff format" with stdin, forwarding all arguments.
+stdin=$(cat)
+formatted=$(echo "$stdin" | ruff format "$@" -)
+status=$?
+
+# Print formatted output on success, otherwise print back stdin.
+if [ $status -eq 0 ]; then
+    echo "$formatted"
+else
+    echo "$stdin"
+fi
