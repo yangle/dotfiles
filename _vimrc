@@ -128,6 +128,9 @@ xnoremap <silent> <leader>= :silent call ReformatRange(visualmode())<CR>
 " https://github.com/fatih/vim-go/issues/1447
 nnoremap <silent> <C-L> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
 
+" Show number of matches in the command line.
+let g:cool_total_matches = 1
+
 " Copy the full path of the current buffer to clipboard.
 nnoremap <silent> <Leader>c :let @+=expand('%:p')<CR>
 
