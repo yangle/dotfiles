@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Wrapper for "ruff format" that performs proper config discovery when
+# formatting code via stdin with --std-filename.
+
+set -e
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <filename>" >&2
+  exit 1
+fi
+
+FILENAME=$1
+
+# Exercise ruff's config discovery by calling it on the file directly, and
+# parse stderr to find the discovered config file.
+CONFIG=$(ruff format --diff --verbose "$FILENAME" 3>&1 1>/dev/null 2>&3 | awk '
+  /pyproject\.toml$/   { print $NF; exit }
+  /\.ruff\.toml$/      { print $NF; exit }
+  /ruff\.toml$/        { print $NF; exit }
+')
+
+if [ -n "$CONFIG" ]; then
+  CONFIG="--config $CONFIG"
+fi
+
+ruff format -s --stdin-filename "$FILENAME" $CONFIG - 2>/dev/null

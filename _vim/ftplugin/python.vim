@@ -12,4 +12,4 @@ setlocal nowrap
 let &l:colorcolumn=join(range(80,999),",")
 
 " Use 'ruff format' for ReformatRange().
-let b:equalprg = 'ruff format -s --stdin-filename % - 2>/dev/null'
+let b:equalprg = 'ruff-format-stdin-filename %'
