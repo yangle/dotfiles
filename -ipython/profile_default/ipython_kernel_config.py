@@ -21,3 +21,7 @@ c.TerminalInteractiveShell.prompts_class = ClassicPrompts
 # Do not show tips
 c.InteractiveShell.enable_tip = False
 c.TerminalInteractiveShell.enable_tip = False
+
+# Get rid of the yellow traceback background highlight.
+from IPython.core import ultratb
+ultratb.VerboseTB.tb_highlight = 'bg:#ffffff'
