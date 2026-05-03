@@ -302,6 +302,7 @@ nnoremap gb :Buffers<cr>
 let g:fzf_preview_window = []
 let g:fzf_vim = get(g:, 'fzf_vim', {})
 let g:fzf_vim.buffers_options = [
+      \ '--scheme=path',
       \ '--color=dark,fg:111,bg:235,hl:210,fg+:227,bg+:239,hl+:208',
       \ '--color=border:239,gutter:235,header:14,info:206',
       \ '--color=marker:227,pointer:227,prompt:227,spinner:227'
