@@ -300,22 +300,12 @@ endfunction
 " Configure fzf.
 nnoremap gb :Buffers<cr>
 let g:fzf_preview_window = []
-let g:fzf_colors = {
-    \ 'fg':      ['fg', 'Comment'],
-    \ 'bg':      ['bg', 'Normal'],
-    \ 'hl':      ['fg', 'String'],
-    \ 'fg+':     ['fg', 'Exception'],
-    \ 'bg+':     ['bg', 'EndOfBuffer'],
-    \ 'hl+':     ['fg', 'Special'],
-    \ 'border':  ['fg', 'Ignore'],
-    \ 'gutter':  ['bg', 'Normal'],
-    \ 'header':  ['fg', 'Identifier'],
-    \ 'info':    ['fg', 'PreProc'],
-    \ 'marker':  ['fg', 'Keyword'],
-    \ 'pointer': ['fg', 'Exception'],
-    \ 'prompt':  ['fg', 'Conditional'],
-    \ 'spinner': ['fg', 'Label'],
-    \ }
+let g:fzf_vim = get(g:, 'fzf_vim', {})
+let g:fzf_vim.buffers_options = [
+      \ '--color=dark,fg:111,bg:235,hl:210,fg+:227,bg+:239,hl+:208',
+      \ '--color=border:239,gutter:235,header:14,info:206',
+      \ '--color=marker:227,pointer:227,prompt:227,spinner:227'
+      \ ]
 
 " Configure inline-edit.
 nnoremap <leader>e :InlineEdit<cr>
