@@ -32,7 +32,7 @@ def get_num_page(pdf):
     """
     Get the number of pages in a pdf file.
     """
-    return int((grep(pdfinfo(pdf), 'Pages')).rstrip('\n').split(' ')[-1])
+    return int((grep('Pages', _in=pdfinfo(pdf))).rstrip('\n').split(' ')[-1])
 
 
 def parse(raw, filename):
