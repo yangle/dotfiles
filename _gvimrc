@@ -5,6 +5,8 @@ if hostname() == 'orbifold'
     "set mouse=
 elseif hostname() =~ 'gauge\|dragon'
     set guifont=Monospace\ 11
+else
+    set guifont=Monospace\ 10
 endif
 
 " hide toolbar/menu
