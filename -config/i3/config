@@ -43,7 +43,7 @@ hide_edge_borders both
 floating_modifier $mod
 
 # Keep track of window focus.
-exec_always --no-startup-id i3-track
+exec --no-startup-id i3-track
 
 # Kill focused window.
 bindsym $mod+Shift+q kill
